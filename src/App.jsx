@@ -15,7 +15,7 @@ export default function App() {
           color: '#010101',
         }}
       >
-        Wallet Finance App
+        Wallet Finance App 2022
       </div>
     </React.Fragment>
   );
