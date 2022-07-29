@@ -1,0 +1,30 @@
+@font-face {
+  font-family: 'Circe';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Circe'), url('../assets/fonts/circe-regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Circe';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Circe'), url('../assets/fonts/circe-bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Poppins'),
+    url('../assets/fonts/poppins-regular.woff2') format('woff2'),
+    url('../assets/fonts/poppins-regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Poppins'),
+    url('../assets/fonts/poppins-700.woff2') format('woff2'),
+    url('../assets/fonts/poppins-700.woff') format('woff');
+}

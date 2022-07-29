@@ -1,10 +1,10 @@
 import React from 'react';
-import { GlobalStyle } from './style/GlobalStyle';
+// import { GlobalStyle } from './stylesheet/GlobalStyle';
 
 export default function App() {
   return (
     <React.Fragment>
-      <GlobalStyle />
+      {/* <GlobalStyle /> */}
       <div
         style={{
           height: '100vh',
