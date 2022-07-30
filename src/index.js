@@ -6,7 +6,7 @@ import './stylesheet/common.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/Wallet-finance-app/">
       <App />
     </BrowserRouter>
   </React.StrictMode>,
