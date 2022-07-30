@@ -51,7 +51,7 @@ export default function App() {
           />
 
           <Route
-            path="statistics"
+            path="diagram"
             element={
               // <ProtectedRoute restricted>
               <Statistics />
