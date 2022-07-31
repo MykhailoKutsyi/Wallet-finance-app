@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://MykhailoKutsyi.github.io/Wallet-finance-app/",
   "dependencies": {
+    "@ramonak/react-progress-bar": "^5.0.2",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
@@ -39,5 +40,16 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "description": "1. Установи базовые зависимости проекта командой `npm install`.\r 2. Запусти режим разработки, выполнив команду `npm start`.\r 3. Перейди в браузере по адресу [http://localhost:3000](http://localhost:3000).\r    Эта страница будет автоматически перезагружаться после сохранения изменений в\r    файлах проекта.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MykhailoKutsyi/Wallet-finance-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MykhailoKutsyi/Wallet-finance-app/issues"
   }
 }
