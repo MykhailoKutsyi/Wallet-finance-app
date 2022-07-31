@@ -1,5 +1,5 @@
 import Logo from '../Logo/Logo.jsx';
-import sprite from "../../images/sprite.svg";
+import sprite from 'images/sprite.svg';
 import { useSelector } from 'react-redux';
 import authSelectors from '../../redux/auth/auth-selectors';
 import { Header, RightSideGroup, UserName, ExitBtn, BtnIconWrapper, BtnSpan } from './AppBar.styled';

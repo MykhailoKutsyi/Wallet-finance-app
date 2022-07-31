@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import Container from './components/Container/Container';
 // import AppBar from './components/AppBar/AppBar';
-// import Loader from './components/Loader/Loader';
+import Loader from './components/Loader/Loader';
 
 // const ProtectedRoute = lazy(() =>
 //   import('./components/ProtectedRoute/ProtectedRoute')
@@ -20,8 +20,8 @@ export default function App() {
   return (
     <Container>
       {/* <AppBar /> */}
-      {/* // <Suspense fallback={<Loader />}> */}
-      <Suspense fallback={'Loading bitch...'}>
+      <Suspense fallback={<Loader />}>
+        {/* <Suspense fallback={'Loading bitch...'}> */}
         <Routes>
           <Route
             path="/"
