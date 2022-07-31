@@ -11,7 +11,7 @@ import {
 } from './ModalLogout.styled';
 import Logo from '../Logo/Logo';
 import { useDispatch } from 'react-redux';
-import { logOut } from 'redux/auth/auth-operations';
+import { logOut } from 'redux/session/session-operations';
 const ModalRoot = document.querySelector('#modal-root');
 
 export default function ModalLogaut({ onClose }) {
