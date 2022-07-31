@@ -10,8 +10,8 @@ import Loader from './components/Loader/Loader';
 // );
 // const PublicRoute = lazy(() => import('./components/PublicRoute/PublicRoute'));
 
-const Login = lazy(() => import('./pages/Auth/Login/Login'));
-const Register = lazy(() => import('./pages/Auth/Register/Register'));
+const Login = lazy(() => import('./pages/Auth/LoginPage/LoginPage'));
+const Register = lazy(() => import('./pages/Auth/RegisterPage/RegisterPage'));
 
 const Dashboard = lazy(() => import('./pages/Dashboard/Dashboard'));
 const Statistics = lazy(() => import('./pages/Statistics/Statistics'));
