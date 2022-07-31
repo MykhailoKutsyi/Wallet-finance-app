@@ -17,7 +17,7 @@ export const LogoutBox = styled.div`
   width: 100vw;
   height: 100vh;
   padding: 20px;
-  background: #ffffff;
+  background: var(--white-color);
 
   @media (min-width: 768px) {
     width: 540px;
@@ -41,26 +41,23 @@ export const LogoutText = styled.p`
   width: 280px;
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 400;
   font-size: 30px;
   line-height: 45px;
   display: flex;
   align-items: center;
   text-align: center;
 
-  color: #000000;
+  color: var(--black-color);
 `;
 
 export const LogoutBtnY = styled.button`
   width: 280px;
   height: 50px;
-  background: #24cca7;
+  background: var(--category-leisure-color);
   border-radius: 20px;
   border: none;
 
-  font-family: 'Circe';
   font-style: normal;
-  font-weight: 400;
   font-size: 18px;
   line-height: 27px;
   text-align: center;
@@ -68,14 +65,14 @@ export const LogoutBtnY = styled.button`
   text-transform: uppercase;
   cursor: pointer;
 
-  color: #ffffff;
+  color: var(--white-color);
 `;
 export const LogoutBtnN = styled(LogoutBtnY)`
   margin-top: 20px;
-  background: #ffffff;
-  border: 1px solid #4a56e2;
+  background: var(--white-color);
+  border: 1px solid var(--blue-color);
 
-  color: #4a56e2;
+  color: var(--blue-color);
 `;
 
 export const BtnBox = styled.div`
