@@ -7,7 +7,7 @@ display: flex;
 flex-direction: row;
 justify-content: space-between;
 align-items: center;
-background-color: fff;
+background-color: var(--white-color);
 
     @media (min-width: 768px) {
     height: 80px;
@@ -23,23 +23,23 @@ align-items: center;
 export const UserName = styled.p`
 margin: 0px 10px 0px 0px;
 padding: 0px;
-font: Circe;
+font-family: Circe;
 font-weight: 400;
 font-size: 18px;
 line-height: 1.5;
 text-transform: uppercase;
 text-align: right;
-color: #BDBDBD;
+color: var(--grey-color);
 
     @media (min-width: 768px) {
     padding: 0px 10px 0px 0px;
-    border-right: 1px solid #BDBDBD;
+    border-right: 1px solid var(--grey-color);
     }
 `;
 
 export const ExitBtn = styled.button`
 border: none;
-background-color: #fff;
+background-color: var(--white-color);
 display: flex;
 align-items: center;
 outline: none;
@@ -60,12 +60,12 @@ export const BtnIconWrapper = styled.svg`
 export const BtnSpan = styled.span`
 margin: 0px 0px 0px 10px;
 padding: 0px;
-font: Circe;
+font-family: Circe;
 font-weight: 400;
 font-size: 18px;
 line-height: 1.5;
 text-align: right;
-color: #BDBDBD;
+color: var(--grey-color);
 
     @media (max-width: 768px) {
     display: none;
