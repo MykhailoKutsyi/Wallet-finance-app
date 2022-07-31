@@ -29,4 +29,16 @@ const register = createAsyncThunk(
   }
 );
 
-export { register };
+const logOut = createAsyncThunk(
+  'auth/logout',
+  async (credentials, thunkAPI) => {
+    try {
+      await axios.post('/api/auth/logout', credentials);
+      token.unset('');
+    } catch (error) {
+      toast.error('Something went wrong. Try again,please');
+      return thunkAPI.rejectWithValue();
+    }
+  }
+);
+export { register, logOut };
