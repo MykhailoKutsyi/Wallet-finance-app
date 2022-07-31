@@ -4,7 +4,7 @@ export const BalanceBox = styled.div`
   width: 280px;
   height: 80px;
   padding: 8px 32px;
-  background: #ffffff;
+  background: var(--white-color);
   border-radius: 30px;
 
   @media (min-width: 768px) {
@@ -18,9 +18,7 @@ export const BalanceBox = styled.div`
 
 export const BalanceTitle = styled.p`
   margin-bottom: 11.8px;
-  font-family: 'Circe';
   font-style: normal;
-  font-weight: 400;
   font-size: 12px;
   line-height: 18px;
   text-transform: uppercase;
@@ -33,11 +31,10 @@ export const BalanceTitle = styled.p`
 export const BalanceValue = styled.p`
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 400;
   font-size: 30px;
   line-height: 45px;
   display: flex;
   align-items: center;
 
-  color: #000000;
+  color: var(--black-color);
 `;
