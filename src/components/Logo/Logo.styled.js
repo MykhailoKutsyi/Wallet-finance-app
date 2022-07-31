@@ -25,12 +25,16 @@ export const LogoIconWrapper = styled.svg`
 `;
 
 export const LogoSpan = styled.span`
-  font: Poppins;
-  font-weight: 700;
-  font-size: 26px;
+
+  font-family: 'Poppins';
   line-height: 1.5;
+  font-style: normal;
+  font-display: auto;
+  font-weight: 700;
+  color: var(--black-color);
+  font-size: 26px;
   margin-left: 15px;
-  color: #000;
+
 
   @media (min-width: 768px) {
     font-size: 30px;
