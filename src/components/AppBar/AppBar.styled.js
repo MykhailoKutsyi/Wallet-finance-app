@@ -27,6 +27,7 @@ font-family: Circe;
 font-weight: 400;
 font-size: 18px;
 line-height: 1.5;
+text-transform: uppercase;
 text-align: right;
 color: var(--grey-color);
 

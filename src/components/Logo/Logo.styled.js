@@ -35,6 +35,7 @@ export const LogoSpan = styled.span`
   font-size: 26px;
   margin-left: 15px;
 
+
   @media (min-width: 768px) {
     font-size: 30px;
     margin-left: 20px;

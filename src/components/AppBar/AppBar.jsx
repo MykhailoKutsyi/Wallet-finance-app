@@ -1,11 +1,13 @@
 import Logo from '../Logo/Logo.jsx';
 import sprite from "../../images/sprite.svg";
+import { useSelector } from 'react-redux';
+import authSelectors from '../../redux/auth/auth-selectors';
 import { Header, RightSideGroup, UserName, ExitBtn, BtnIconWrapper, BtnSpan } from './AppBar.styled';
 
 
 const AppBar = () => {
 
-    const name = 'Name'; // Заглушка, замість цього буде селектор, який витягатиме зі store ім'я користувача
+    const name = useSelector(authSelectors.getUserName);
 
     return (
             <Header>

@@ -2,7 +2,6 @@ import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
 
-
   html {
     box-sizing: border-box;
     width: 100vw;
@@ -16,7 +15,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   body {
     margin: auto;
-  font-family: 'Poppins', sans-serif';
+  font-family: 'Circe', sans-serif';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   }
