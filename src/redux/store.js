@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers } from 'redux';
 import {
   persistStore,
   persistReducer,
@@ -10,18 +11,23 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import authReducer from './auth/auth-slice';
+import sessionReducer from './session/session-slice';
+import globalReducer from './global/global-slice';
+import financeReducer from './finance/finance-slice';
 
-const authPersistConfig = {
-  key: 'auth',
+const sessionPersistConfig = {
+  key: 'session',
   storage,
   whitelist: ['token'],
 };
+const rootReducer = combineReducers({
+  global: globalReducer,
+  finance: financeReducer,
+  session: persistReducer(sessionPersistConfig, sessionReducer),
+});
 
 export const store = configureStore({
-  reducer: {
-    auth: persistReducer(authPersistConfig, authReducer),
-  },
+  reducer: rootReducer,
 
   middleware: getDefaultMiddleware => {
     return getDefaultMiddleware({

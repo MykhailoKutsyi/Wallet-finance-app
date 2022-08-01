@@ -24,7 +24,7 @@ export default function App() {
         {/* <Suspense fallback={'Loading bitch...'}> */}
         <Routes>
           <Route
-            path="/"
+            path="/home"
             element={
               // <ProtectedRoute>
               <Dashboard />
