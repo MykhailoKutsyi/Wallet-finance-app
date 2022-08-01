@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Transaction = styled.li`
   width: 280px;
-  height: 40vh;
+  height: 35vh;
 
   display: flex;
   flex-direction: column;
