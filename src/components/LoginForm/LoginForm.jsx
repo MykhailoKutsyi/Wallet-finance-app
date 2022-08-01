@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
+import { useDispatch } from 'react-redux';
+import LoginValidation from './LoginValidation';
 import {
   FormContainer,
   Logo,
@@ -17,11 +18,14 @@ import {
 import sprite from '../../images/sprite.svg';
 
 function Login() {
-  const validate = Yup.object({
-    email: Yup.string().email('Email is invalid').required('Email is required'),
-    password: Yup.string().min(6).max(12).required('Password is required'),
-  });
+  const dispatch = useDispatch();
 
+  const handleSubmit = (values, { resetForm }) => {
+        console.log(values);
+        dispatch(operations.register(values));
+        resetForm();
+    };
+ 
   return (
     <Formik
       initialValues={{
@@ -30,15 +34,12 @@ function Login() {
         confirmPassword: '',
         firstName: '',
       }}
-      validationSchema={validate}
+      validationSchema={LoginValidation}
     >
       {({
         values,
-        errors,
-        touched,
         handleChange,
         handleBlur,
-        handleSubmit,
         isSubmitting,
       }) => (
         <FormContainer>
