@@ -8,7 +8,7 @@ export const FormContainer = styled.div`
     width: 280px;
     height: 500px;
     z-index: 10;
-    background: white;
+    background: var(--white-color);
   }
   @media screen and (min-width: 768px) {
     width: 533px;
@@ -29,6 +29,9 @@ export const Logo = styled.svg`
   }
 `;
 export const Input = styled.input`
+&:focus{
+  background-color: #dfedea;
+}
   ::placeholder {
     font-size: 18px;
     font-family: Circe;
@@ -53,7 +56,7 @@ export const Btn = styled.button`
     width: 280px;
     height: 50px;
     margin: 40px 20px 0px 20px;
-    background-color: #24cca7;
+    background-color: var(--light-green-color);
     border: none;
     border-radius: 20px;
   }
@@ -67,7 +70,7 @@ export const BtnTitle = styled.span`
   font-family: Circe;
   font-weight: 400;
   font-size: 18px;
-  color: #ffffff;
+  color: var(--white-color);
   margin: 0;
 `;
 export const Link = styled(NavLink)`
@@ -83,7 +86,7 @@ export const Link = styled(NavLink)`
     height: 50px;
     margin: 20px 20px 36px 20px;
     border-radius: 20px;
-    border: 1px solid #4a56e2;
+    border: 1px solid var(--blue-color);
   }
   @media screen and (min-width: 768px) {
     width: 300px;
@@ -95,7 +98,7 @@ export const LinkTitle = styled.span`
   font-family: Circe;
   font-weight: 400;
   font-size: 18px;
-  color: #4a56e2;
+  color: var(--blue-color);
   margin: 0;
 `;
 export const FormIcon = styled.svg`
@@ -119,18 +122,18 @@ export const InputContainer = styled.div`
   position: relative;
   display: flex;
   align-items: flex-end;
+  &:hover{
+  border-bottom: 1px solid  #1a8f75;
+}
   @media screen and (min-width: 320px) {
     width: 280px;
     height: 32px;
-    border: white;
-    border-bottom: 1px solid #e0e0e0;
+    border: var(--white-color);
+    border-bottom: 1px solid var(--light-grey-color);
     margin: 40px 20px 0px 20px;
   }
   @media screen and (min-width: 768px) {
     width: 410px;
-    border: white;
-    border-bottom: 1px solid #e0e0e0;
-    margin-top: 40px;
     margin-left: 65px;
   }
 `;
