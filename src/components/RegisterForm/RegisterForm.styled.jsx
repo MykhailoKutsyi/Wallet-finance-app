@@ -116,6 +116,7 @@ export const Progress = styled(ProgressBar)`
   }
 `;
 export const InputContainer = styled.div`
+  position: relative;
   display: flex;
   align-items: flex-end;
   @media screen and (min-width: 320px) {
@@ -133,3 +134,11 @@ export const InputContainer = styled.div`
     margin-left: 65px;
   }
 `;
+export const Error = styled.p`
+  position: absolute;
+  font-size: 12px;
+  color: red;
+  top: -24px;
+  
+`
+
