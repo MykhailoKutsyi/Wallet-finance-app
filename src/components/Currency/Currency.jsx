@@ -1,22 +1,22 @@
 import {
   //div:
-  CurrencyContainer,
-  CurrencyHead,
-  CurrencyBody,
-  HeadItem,
-  BodyList,
-  BodyItem,
-  ItemData,
+  // CurrencyContainer,
+  // CurrencyHead,
+  // CurrencyBody,
+  // HeadItem,
+  // BodyList,
+  // BodyItem,
+  // ItemData,
 
   //table:
-  // BodyItem,
-  // BodyRow,
-  // HeadItem,
-  // HeadRow,
-  // Table,
-  // TableBody,
-  // TableContainer,
-  // TableHead,
+  BodyItem,
+  BodyRow,
+  HeadItem,
+  HeadRow,
+  Table,
+  TableBody,
+  TableContainer,
+  TableHead,
 } from './Currency.styled';
 
 const templateDollarExchange = [
@@ -39,25 +39,26 @@ const templateDollarExchange = [
 
 const Currency = ({ dollarExchangeRate }) => {
   return (
-    <CurrencyContainer>
-      <CurrencyHead>
-        <HeadItem>Currency</HeadItem>
-        <HeadItem>Purchase</HeadItem>
-        <HeadItem>Sale</HeadItem>
-      </CurrencyHead>
-      <CurrencyBody>
-        <BodyList>
-          {templateDollarExchange.map(({ currency, purchase, sale }) => (
-            <BodyItem key={`${currency}-currency-id`}>
-              <ItemData>{currency}</ItemData>
-              <ItemData>{purchase}</ItemData>
-              <ItemData>{sale}</ItemData>
-            </BodyItem>
+    <TableContainer>
+      <Table>
+        <TableHead>
+          <HeadRow>
+            <HeadItem>Currency</HeadItem>
+            <HeadItem>Purchase</HeadItem>
+            <HeadItem>Sale</HeadItem>
+          </HeadRow>
+        </TableHead>
+        <TableBody>
+          {templateDollarExchange.map(item => (
+            <BodyRow key={`${item.currency}_id`}>
+              <BodyItem>{item.currency}</BodyItem>
+              <BodyItem>{item.purchase}</BodyItem>
+              <BodyItem>{item.sale}</BodyItem>
+            </BodyRow>
           ))}
-        </BodyList>
-        <BodyItem></BodyItem>
-      </CurrencyBody>
-    </CurrencyContainer>
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 
@@ -84,3 +85,24 @@ export default Currency;
 //     </TableBody>
 //   </Table>
 // </TableContainer>
+
+//DIV
+// <CurrencyContainer>
+//   <CurrencyHead>
+//     <HeadItem>Currency</HeadItem>
+//     <HeadItem>Purchase</HeadItem>
+//     <HeadItem>Sale</HeadItem>
+//   </CurrencyHead>
+//   <CurrencyBody>
+//     <BodyList>
+//       {templateDollarExchange.map(({ currency, purchase, sale }) => (
+//         <BodyItem key={`${currency}-currency-id`}>
+//           <ItemData>{currency}</ItemData>
+//           <ItemData>{purchase}</ItemData>
+//           <ItemData>{sale}</ItemData>
+//         </BodyItem>
+//       ))}
+//     </BodyList>
+//     <BodyItem></BodyItem>
+//   </CurrencyBody>
+// </CurrencyContainer>
