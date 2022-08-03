@@ -1,9 +1,12 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
+import { ContainerStyled } from './Container.styled';
 
-const Container = ({ children }) => <div>{children}</div>;
+const Container = ({ children }) => (
+  <ContainerStyled>{children}</ContainerStyled>
+);
 
 export default Container;
 
 Container.propTypes = {
-  //   children: PropTypes.object.isRequired,
+  children: PropTypes.object.isRequired,
 };
