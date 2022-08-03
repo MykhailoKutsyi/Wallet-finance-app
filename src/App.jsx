@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { ToastContainer} from 'react-toastify';
 
 import Container from './components/Container/Container';
 // import AppBar from './components/AppBar/AppBar';
@@ -60,6 +61,7 @@ export default function App() {
           />
         </Routes>
       </Suspense>
+      <ToastContainer/>
     </Container>
   );
 }

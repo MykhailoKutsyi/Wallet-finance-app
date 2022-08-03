@@ -1,6 +1,8 @@
 import React from 'react';
 import { Formik, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
+import RegisterValidation from './RegisterValidation';
+import { useDispatch } from 'react-redux';
+import { register } from '../../redux/session/session-operations';
 import {
   FormContainer,
   Logo,
@@ -18,43 +20,36 @@ import {
 import sprite from '../../images/sprite.svg';
 
 function Registration() {
-  const validate = Yup.object({
-    email: Yup.string().email('Email is invalid').required('Email is required'),
-    password: Yup.string().min(6).max(12).required('Password is required'),
-    confirmPassword: Yup.string()
-      .oneOf([Yup.ref('password'), null], 'Password must match')
-      .required('Confirm password is required'),
-    firstName: Yup.string()
-      .min(1, 'Must be 1 character or more')
-      .max(15, 'Must be 15 characters or less')
-      .required('Required'),
-  });
+  const dispatch = useDispatch();
+
+  const handleSubmit = async (values, { resetForm }) => {
+    const obj = {
+      email: values.email,
+      name: values.name,
+      password: values.password,
+    };
+    await dispatch(register(obj));
+    console.log('ghhjk');
+    resetForm();
+  };
 
   return (
     <Formik
+      onSubmit={handleSubmit}
       initialValues={{
         email: '',
         password: '',
         confirmPassword: '',
-        firstName: '',
+        name: '',
       }}
-      validationSchema={validate}
+      validationSchema={RegisterValidation}
     >
-      {({
-        values,
-        errors,
-        touched,
-        handleChange,
-        handleBlur,
-        handleSubmit,
-        isSubmitting,
-      }) => (
+      {({ values, handleChange, handleBlur, isSubmitting }) => (
         <FormContainer>
-          {console.log(values)}
           <Logo>
             <use href={sprite + '#logo'} />
           </Logo>
-          <RegistrationForm onSubmit={handleSubmit}>
+          <RegistrationForm>
             <InputContainer style={{ marginTop: '60px' }}>
               <FormIcon>
                 <use href={sprite + '#icon-email'} />
@@ -118,13 +113,13 @@ function Registration() {
               </FormIcon>
               <Input
                 placeholder="First name"
-                name="firstName"
+                name="name"
                 type="text"
-                value={values.firstName}
+                value={values.name}
                 onChange={handleChange}
               />
               <Error>
-                <ErrorMessage name={'firstName'} />
+                <ErrorMessage name={'name'} />
               </Error>
             </InputContainer>
 

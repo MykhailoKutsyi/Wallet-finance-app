@@ -1,13 +1,13 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-
+import {Form, Field} from 'formik'
 
 export const FormContainer = styled.div`
   @media screen and (min-width: 320px) {
     width: 280px;
     height: 500px;
     z-index: 10;
-    background: white;
+    background: var(--white-color);
   }
   @media screen and (min-width: 768px) {
     width: 533px;
@@ -27,7 +27,11 @@ export const Logo = styled.svg`
     margin: 40px 176px 0px 176px;
   }
 `;
-export const Input = styled.input`
+export const Input = styled(Field)`
+  &:focus {
+    background-color: #dfedea;
+    outline: none;
+  }
   ::placeholder {
     font-size: 18px;
     font-family: Circe;
@@ -42,17 +46,21 @@ export const Input = styled.input`
     width: 373px;
   }
 `;
-export const RegistrationForm = styled.form``;
+export const RegistrationForm = styled(Form)``;
 
 export const Btn = styled.button`
-&:hover, &:focus{
-  background-color: #1a8f75
-}
+  &:disabled{
+    background-color: #1a8f75;
+  }
+  &:hover,
+  &:focus {
+    background-color: #1a8f75;
+  }
   @media screen and (min-width: 320px) {
     width: 280px;
     height: 50px;
     margin: 40px 20px 0px 20px;
-    background-color: #24cca7;
+    background-color: var(--light-green-color);
     border: none;
     border-radius: 20px;
   }
@@ -66,13 +74,14 @@ export const BtnTitle = styled.span`
   font-family: Circe;
   font-weight: 400;
   font-size: 18px;
-  color: #ffffff;
+  color: var(--white-color);
   margin: 0;
 `;
 export const Link = styled(NavLink)`
-  &:hover, &:focus{
-  background-color: #dfedea
-}
+  &:hover,
+  &:focus {
+    background-color: #dfedea;
+  }
   display: flex;
   justify-content: center;
   align-items: center;
@@ -82,7 +91,7 @@ export const Link = styled(NavLink)`
     height: 50px;
     margin: 20px 20px 36px 20px;
     border-radius: 20px;
-    border: 1px solid #4a56e2;
+    border: 1px solid var(--blue-color);
   }
   @media screen and (min-width: 768px) {
     width: 300px;
@@ -94,7 +103,7 @@ export const LinkTitle = styled.span`
   font-family: Circe;
   font-weight: 400;
   font-size: 18px;
-  color: #4a56e2;
+  color: var(--blue-color);
   margin: 0;
 `;
 export const FormIcon = styled.svg`
@@ -120,6 +129,9 @@ export const InputContainer = styled.div`
   position: relative;
   display: flex;
   align-items: flex-end;
+  &:hover {
+    border-bottom: 1px solid #1a8f75;
+  }
   @media screen and (min-width: 320px) {
     width: 280px;
     height: 32px;
@@ -129,7 +141,7 @@ export const InputContainer = styled.div`
   }
   @media screen and (min-width: 768px) {
     width: 410px;
-    border: white;
+    border: var(--white-color);
     border-bottom: 1px solid #e0e0e0;
     margin-top: 40px;
     margin-left: 65px;
@@ -140,5 +152,4 @@ export const Error = styled.p`
   font-size: 12px;
   color: red;
   top: -24px;
- 
-`
+`;
