@@ -1,7 +1,10 @@
 import Logo from '../Logo/Logo.jsx';
 import sprite from 'images/sprite.svg';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import sessionSelectors from '../../redux/session/session-selectors';
+import globalSelectors from '../../redux/global/global-selectors';
+import { toggleModalLogout } from '../../redux/global/global-slice';
+import ModalLogout from 'components/ModalLogout/ModalLogout.jsx';
 import {
   Header,
   RightSideGroup,
@@ -12,7 +15,10 @@ import {
 } from './AppBar.styled';
 
 const AppBar = () => {
+  const dispatch = useDispatch();
+
   const name = useSelector(sessionSelectors.getUserName);
+  const isLogoutModalOpen = useSelector(globalSelectors.getIsModalLogout);
 
   return (
     <Header>
@@ -20,7 +26,7 @@ const AppBar = () => {
       <RightSideGroup>
         <UserName>{name}</UserName>
         <ExitBtn
-          onClick={() => console.log('click!!!')} // заглушка, замість цього буде діспатч, який змінюватиме у store стан модалки
+          onClick={() => dispatch(toggleModalLogout())}
         >
           <BtnIconWrapper>
             <use href={`${sprite}#icon-exit`} />
@@ -28,6 +34,9 @@ const AppBar = () => {
           <BtnSpan>Exit</BtnSpan>
         </ExitBtn>
       </RightSideGroup>
+      {isLogoutModalOpen &&
+        <ModalLogout />
+      }
     </Header>
   );
 };

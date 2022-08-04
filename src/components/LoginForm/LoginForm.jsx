@@ -1,6 +1,8 @@
 import React from 'react';
 import { Formik, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
+import LoginValidation from './LoginValidation';
+import { useDispatch } from 'react-redux';
+import { logIn } from '../../redux/session/session-operations';
 import {
   FormContainer,
   Logo,
@@ -17,35 +19,29 @@ import {
 import sprite from '../../images/sprite.svg';
 
 function Login() {
-  const validate = Yup.object({
-    email: Yup.string().email('Email is invalid').required('Email is required'),
-    password: Yup.string().min(6).max(12).required('Password is required'),
-  });
+  const dispatch = useDispatch();
+
+  const handleSubmit = async (values, { resetForm }) => {
+    console.log('submit');
+    await dispatch(logIn(values));
+    resetForm();
+  };
 
   return (
     <Formik
+      onSubmit={handleSubmit}
       initialValues={{
         email: '',
         password: '',
-        confirmPassword: '',
-        firstName: '',
       }}
-      validationSchema={validate}
+      validationSchema={LoginValidation}
     >
-      {({
-        values,
-        errors,
-        touched,
-        handleChange,
-        handleBlur,
-        handleSubmit,
-        isSubmitting,
-      }) => (
+      {({ values, handleChange, handleBlur, isSubmitting }) => (
         <FormContainer>
           <Logo>
             <use href={sprite + '#logo'} />
           </Logo>
-          <RegistrationForm onSubmit={handleSubmit}>
+          <RegistrationForm>
             <InputContainer style={{ marginTop: '60px' }}>
               <FormIcon>
                 <use href={sprite + '#icon-email'} />

@@ -6,12 +6,17 @@ const initialState = {
   data: [],
   error: null,
   loading: false,
+  totalBalance: null,
 };
 
 const financeSlice = createSlice({
   name: 'finance',
   initialState,
   extraReducers: {
+    // get balance
+    [financeOperations.totalBalance.fulfilled](state, { payload }) {
+      state.totalBalance = payload.totalBalance;
+    },
     // get transaction current user's
     [financeOperations.getCurrentTransactions.pending]: (state, action) => {
       state.loading = true;

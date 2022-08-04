@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
-
 export const Container = styled.div`
-position: relative;
+  position: relative;
   @media screen and (min-width: 320px) {
     width: 320px;
     height: 568px;
@@ -42,7 +41,7 @@ export const Title = styled.h1`
   font-family: Poppins;
   font-size: 30px;
   font-weight: 400;
-  z-index:10;
+  z-index: 10;
 `;
 export const Upside = styled.div`
   @media screen and (min-width: 320px) {
@@ -66,7 +65,7 @@ export const Upside = styled.div`
   }
 `;
 export const Elips1 = styled.img`
-@media screen and (min-width: 320px) {
+  @media screen and (min-width: 320px) {
     display: none;
   }
   @media screen and (min-width: 768px) {
@@ -75,17 +74,15 @@ export const Elips1 = styled.img`
     left: 0;
     bottom: 0;
   }
-  
 `;
 export const Elips2 = styled.img`
-@media screen and (min-width: 320px) {
+  @media screen and (min-width: 320px) {
     display: none;
   }
   @media screen and (min-width: 768px) {
     display: block;
     position: absolute;
     right: 0;
-    top:0;
+    top: 0;
   }
-  
 `;

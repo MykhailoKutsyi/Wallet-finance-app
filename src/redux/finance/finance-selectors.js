@@ -1,4 +1,4 @@
-const getCurrentTransactions = state => state.finance.data;
+getCurrentTransactions = state => state.finance.data;
 
 const financeSelectors = {
   getCurrentTransactions,

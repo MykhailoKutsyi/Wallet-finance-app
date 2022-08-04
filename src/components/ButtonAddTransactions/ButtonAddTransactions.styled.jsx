@@ -14,7 +14,7 @@ export const BtnAddTransactions = styled.button`
   &:focus {
     background-color: var(--light-green-hover-color);
   }
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     right: 40px;
     bottom: 40px;
   }
