@@ -1,31 +1,5 @@
 import styled from 'styled-components';
 
-// temporary templates
-
-export const BalanceTemplate = styled.div`
-  width: 280px;
-  height: 80px;
-
-  border-radius: 30px;
-  background: radial-gradient(
-    circle,
-    rgba(63, 94, 251, 1) 0%,
-    rgba(252, 70, 107, 1) 100%
-  );
-  margin-bottom: 32px;
-
-  @media (min-width: 768px) {
-    width: 336px;
-    margin: 0;
-    margin-top: 28px;
-  }
-
-  @media (min-width: 1280px) {
-    width: 395px;
-    margin-bottom: 32px;
-  }
-`;
-
 export const DashboardContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -79,8 +53,11 @@ export const NavBalWrapper = styled.div`
   flex-direction: column;
   align-items: center;
 
+  margin-bottom: 32px;
+
   @media (min-width: 768px) {
     margin-top: 8px;
+    margin-bottom: 20px;
     margin-right: 32px;
     align-items: start;
   }

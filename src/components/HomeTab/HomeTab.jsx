@@ -1,3 +1,4 @@
+// styled components
 import {
   LineSide,
   Transaction,
@@ -8,6 +9,7 @@ import {
   TransactionHead,
   HeadRow,
   HeadItem,
+  DataWrapper,
 } from './HomeTab.styled';
 
 const transactions = [
@@ -16,10 +18,12 @@ const transactions = [
     date: '04.01.19',
     type: '+',
     category: 'Other',
-    comment: 'Gift for your wife',
+    comment:
+      'Gift for your wife. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id, voluptates.',
     sum: '300.00',
     balance: '6900.00',
   },
+
   {
     id: '00000002',
     date: '05.01.19',
@@ -35,8 +39,8 @@ const transactions = [
     type: '-',
     category: 'Products',
     comment: 'Buy products',
-    sum: '500.00',
-    balance: ' 5800.00',
+    sum: '5000000.00',
+    balance: ' 5800000.00',
   },
 ];
 
@@ -63,32 +67,44 @@ const HomeTab = () => {
                   <TransactionField>
                     <LineSide color={color} />
                     <Text>Date</Text>
-                    <Data>{date}</Data>
+                    <DataWrapper>
+                      <Data text={date} length={8} />
+                    </DataWrapper>
                   </TransactionField>
                   <TransactionField>
                     <LineSide color={color} />
                     <Text>Type</Text>
-                    <Data>{type}</Data>
+                    <DataWrapper>
+                      <Data text={type} length={1} />
+                    </DataWrapper>
                   </TransactionField>
                   <TransactionField>
                     <LineSide color={color} />
                     <Text>Category</Text>
-                    <Data>{category}</Data>
+                    <DataWrapper>
+                      <Data text={category} length={8} />
+                    </DataWrapper>
                   </TransactionField>
                   <TransactionField>
                     <LineSide color={color} />
                     <Text>Comment</Text>
-                    <Data>{comment}</Data>
+                    <DataWrapper>
+                      <Data text={comment} length={15} />
+                    </DataWrapper>
                   </TransactionField>
                   <TransactionField>
                     <LineSide color={color} />
                     <Text>Sum</Text>
-                    <Data color={color}>{sum}</Data>
+                    <DataWrapper>
+                      <Data color={color} text={sum} length={10} />
+                    </DataWrapper>
                   </TransactionField>
                   <TransactionField>
                     <LineSide color={color} />
                     <Text>Balance</Text>
-                    <Data>{balance}</Data>
+                    <DataWrapper>
+                      <Data text={balance} length={12} />
+                    </DataWrapper>
                   </TransactionField>
                 </Transaction>
               );
@@ -100,47 +116,3 @@ const HomeTab = () => {
 };
 
 export default HomeTab;
-
-// <ul>
-// {transactions.map(
-//   ({ id, date, type, category, comment, sum, balance }) => (
-//     <Transaction key={id}>
-//       <TransactionField>
-//         <LineSide />
-//         <Text>Date</Text>
-//         <Data>{date}</Data>
-//       </TransactionField>
-
-//       <TransactionField>
-//         <LineSide />
-//         <Text>Type</Text>
-//         <Data>{type}</Data>
-//       </TransactionField>
-
-//       <TransactionField>
-//         <LineSide />
-//         <Text>Category</Text>
-//         <Data>{category}</Data>
-//       </TransactionField>
-
-//       <TransactionField>
-//         <LineSide />
-//         <Text>Comment</Text>
-//         <Data>{comment}</Data>
-//       </TransactionField>
-
-//       <TransactionField>
-//         <LineSide />
-//         <Text>Sum</Text>
-//         <Data>{sum}</Data>
-//       </TransactionField>
-
-//       <TransactionField>
-//         <LineSide />
-//         <Text>Balance</Text>
-//         <Data>{balance}</Data>
-//       </TransactionField>
-//     </Transaction>
-//   )
-// )}
-// </ul>

@@ -18,12 +18,6 @@ export const BtnAddTransactions = styled.button`
     right: 40px;
     bottom: 40px;
   }
-`;
-
-export const BtnIconWrapper = styled.svg`
-  height: 20px;
-  width: 20px;
-
   &:hover {
     cursor: pointer;
   }

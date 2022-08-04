@@ -1,5 +1,4 @@
 // components
-// import { ReactComponent as HomeIcon } from '../../images/sprite.svg#icon-home';
 import Icon from 'components/Icon/Icon';
 import Media from 'react-media';
 
@@ -11,10 +10,18 @@ import {
   IconWrapper,
 } from './Navigation.styled';
 
-const Navigation = () => {
+const Navigation = ({ setViewCurrency, viewCurrency }) => {
+  const handleClick = () => {
+    if (viewCurrency) {
+      return;
+    } else {
+      setViewCurrency(true);
+    }
+  };
+
   return (
     <NavContainer>
-      <NavButton to="/home">
+      <NavButton to="/home" onClick={() => setViewCurrency(false)}>
         <IconWrapper>
           <Media query="(max-width: 767px)">
             <Icon id={'#icon-home-mobile'} width={38} height={38} />
@@ -26,7 +33,7 @@ const Navigation = () => {
         <Text>Home</Text>
       </NavButton>
 
-      <NavButton to="/diagram">
+      <NavButton to="/diagram" onClick={() => setViewCurrency(false)}>
         <IconWrapper>
           <Media query="(max-width: 767px)">
             <Icon id={'#icon-statistics'} width={38} height={38} />
@@ -38,11 +45,25 @@ const Navigation = () => {
         <Text>Statistic</Text>
       </NavButton>
 
-      <NavButton to="/currency">
+      <Media queries={{ mobile: '(max-width: 767px)' }}>
+        {matches =>
+          matches.mobile && (
+            <>
+              <NavButton to="/home" onClick={handleClick}>
+                <IconWrapper>
+                  <Icon id={'#icon-currency-mobile'} width={38} height={38} />
+                </IconWrapper>
+              </NavButton>
+            </>
+          )
+        }
+      </Media>
+
+      {/* <button type="button" onClick={handleClick}>
         <IconWrapper>
           <Icon id={'#icon-currency-mobile'} width={38} height={38} />
         </IconWrapper>
-      </NavButton>
+      </button> */}
     </NavContainer>
   );
 };

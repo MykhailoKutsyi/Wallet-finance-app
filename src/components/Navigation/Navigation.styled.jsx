@@ -19,13 +19,17 @@ export const NavContainer = styled.div`
 
   @media (min-width: 768px) {
     flex-direction: column;
+    /* & > * {
+      &:last-child {
+        display: none;
+      }
+    } */
   }
 `;
 
 export const NavButton = styled(NavLink)`
   display: block;
   width: max-content;
-
   border-radius: 6px;
 
   @media (min-width: 768px) {
@@ -35,10 +39,6 @@ export const NavButton = styled(NavLink)`
     margin-bottom: 12px;
 
     border-radius: 2px;
-
-    &:last-child {
-      display: none;
-    }
   }
 
   &:hover {

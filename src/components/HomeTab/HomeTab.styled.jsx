@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import EllipsisText from 'react-ellipsis-text';
 
 export const Transactions = styled.div`
   border-radius: 10px;
@@ -35,7 +36,6 @@ export const TransactionHead = styled.thead`
     overflow: hidden;
 
     border-radius: 30px;
-    background-color: white;
   }
 
   @media (min-width: 1280px) {
@@ -46,7 +46,7 @@ export const TransactionHead = styled.thead`
 export const HeadRow = styled.tr`
   @media (min-width: 768px) {
     display: grid;
-    grid-template-columns: 50px 150px 120px 140px 130px 60px;
+    grid-template-columns: 30px 170px 100px 140px 165px 20px;
     align-self: center;
 
     padding: 16px 20px 15px;
@@ -66,7 +66,7 @@ export const Transaction = styled.tbody`
   flex-direction: column;
   justify-content: space-between;
 
-  margin-bottom: 40px;
+  margin-bottom: 8px;
 
   border-radius: 10px;
   background-color: transparent;
@@ -86,6 +86,8 @@ export const Transaction = styled.tbody`
   @media (min-width: 1280px) {
     width: 715px;
   }
+  padding-left: 20px;
+  padding-right: 20px;
 `;
 
 export const LineSide = styled.td`
@@ -113,15 +115,14 @@ export const TransactionField = styled.tr`
   position: relative;
   overflow: hidden;
 
-  padding-left: 20px;
-  padding-right: 20px;
-
   width: 100%;
   height: 60px;
 
   overflow: hidden;
 
   @media (max-width: 767px) {
+    padding-left: 20px;
+    padding-right: 20px;
     &:first-child {
       border-radius: 10px 10px 0px 0px;
     }
@@ -139,6 +140,9 @@ export const TransactionField = styled.tr`
     &:nth-child(5) {
       justify-content: end;
     }
+    &:nth-child(6) {
+      justify-content: end;
+    }
   }
 
   font-family: font-face;
@@ -154,7 +158,14 @@ export const Text = styled.td`
     display: none;
   }
 `;
-export const Data = styled.td`
+
+export const DataWrapper = styled.td`
+  @media (max-width: 767px) {
+    width: 70px;
+  }
+`;
+
+export const Data = styled(EllipsisText)`
   font-size: 16px;
   line-height: 24px;
   font-weight: ${props => (props.color ? 700 : 400)};

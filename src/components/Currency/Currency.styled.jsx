@@ -1,17 +1,33 @@
 import styled from 'styled-components';
 
-// Curerncy table
+export const Info = styled.div`
+  width: 100%;
+  height: 100%;
 
-export const TableContainer = styled.div`
-  margin-top: 10px; // not according to layout
-`;
+  background-color: #4a56e2;
+  filter: opacity(0.8);
 
-export const Table = styled.table`
-  width: 280px;
-  height: 174px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   border-radius: 30px;
   color: white;
+
+  & > * {
+    &:nth-child(2n) {
+      margin-top: 20px;
+      text-align: center;
+    }
+  }
+`;
+
+export const TableContainer = styled.div`
+  margin-top: 10px; // not according to layout
+
+  width: 280px;
+  height: 174px;
 
   @media (min-width: 768px) {
     width: 336px;
@@ -21,6 +37,11 @@ export const Table = styled.table`
     width: 393px;
     height: 347px;
   }
+`;
+
+export const Table = styled.table`
+  border-radius: 30px;
+  color: white;
 `;
 
 export const TableHead = styled.thead`

@@ -58,9 +58,9 @@ function Login() {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-            <Error>
-              <ErrorMessage name={'email'} />
-            </Error>
+              <Error>
+                <ErrorMessage name={'email'} />
+              </Error>
             </InputContainer>
             <InputContainer>
               <FormIcon>
@@ -74,9 +74,9 @@ function Login() {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-            <Error>
-              <ErrorMessage name={'password'} />
-            </Error>
+              <Error>
+                <ErrorMessage name={'password'} />
+              </Error>
             </InputContainer>
             <Btn type="submit" disabled={isSubmitting}>
               <BtnTitle>LOG IN</BtnTitle>
