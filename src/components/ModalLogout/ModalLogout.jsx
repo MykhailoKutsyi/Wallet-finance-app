@@ -11,11 +11,14 @@ import {
 } from './ModalLogout.styled';
 import Logo from '../Logo/Logo';
 import { useDispatch } from 'react-redux';
+import { toggleModalLogout } from '../../redux/global/global-slice';
 import { logOut } from 'redux/session/session-operations';
 const ModalRoot = document.querySelector('#modal-root');
 
-export default function ModalLogaut({ onClose }) {
+const ModalLogout = () => {
   const dispatch = useDispatch();
+
+  const onClose = () => dispatch(toggleModalLogout());
 
   const onBackdropClick = e => {
     if (e.currentTarget === e.target) {
@@ -33,7 +36,7 @@ export default function ModalLogaut({ onClose }) {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [onClose]);
+  });
 
   const handleLogOut = () => {
     dispatch(logOut());
@@ -59,4 +62,6 @@ export default function ModalLogaut({ onClose }) {
     </LogoutBackdrop>,
     ModalRoot
   );
-}
+};
+
+export default ModalLogout;
