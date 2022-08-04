@@ -1,4 +1,6 @@
 import React, { lazy, Suspense } from 'react';
+// import { Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import { Routes, Route, NavLink } from 'react-router-dom';
 
 import Container from './components/Container/Container';
@@ -75,6 +77,7 @@ export default function App() {
           />
         </Routes>
       </Suspense>
+      <ToastContainer />
     </Container>
   );
 }
