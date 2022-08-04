@@ -160,6 +160,7 @@ export const Text = styled.td`
 `;
 
 export const DataWrapper = styled.td`
+  text-align: right;
   @media (max-width: 767px) {
     width: 70px;
   }

@@ -32,6 +32,10 @@ export default function Dashboard() {
     console.log(viewCurrency);
   }, [viewCurrency]);
 
+  // const currentUser = await sessionSelectors.getUser();
+  // const balance = currentUser.balance;
+  // console.log(balance);
+
   // useEffect(() => {
   //   window.addEventListener('resize', console.log(window.screen.availWidth));
   //   return () => {
@@ -56,8 +60,8 @@ export default function Dashboard() {
   //   };
   // }, [handleWindowResize]);
 
-  const VIEW_CURRENCY = viewCurrency === true;
-  const VIEW_HOME = viewCurrency === false;
+  // const VIEW_CURRENCY = viewCurrency === true;
+  // const VIEW_HOME = viewCurrency === false;
 
   // Добавить медиа правило!
 
@@ -65,31 +69,22 @@ export default function Dashboard() {
     <div style={stylesTest}>
       <AppBar />
       <DashboardContainer>
-        {VIEW_HOME && (
-          <DashboardWrapper>
-            <HomeInfo>
-              <NavBalWrapper>
-                <Navigation
-                  setViewCurrency={setViewCurrency}
-                  viewCurrency={viewCurrency}
-                />
-                <Balance />
-              </NavBalWrapper>
-              <CurrencyWrapper>
-                <Currency />
-              </CurrencyWrapper>
-            </HomeInfo>
-            <HomeTab />
-            <ButtonAddTransactions />
-          </DashboardWrapper>
-        )}
-
-        {VIEW_CURRENCY && (
-          <>
-            <Navigation />
-            <Currency />
-          </>
-        )}
+        <DashboardWrapper>
+          <HomeInfo>
+            <NavBalWrapper>
+              <Navigation
+                setViewCurrency={setViewCurrency}
+                viewCurrency={viewCurrency}
+              />
+              <Balance />
+            </NavBalWrapper>
+            <CurrencyWrapper>
+              <Currency />
+            </CurrencyWrapper>
+          </HomeInfo>
+          <HomeTab />
+          <ButtonAddTransactions />
+        </DashboardWrapper>
       </DashboardContainer>
     </div>
   );

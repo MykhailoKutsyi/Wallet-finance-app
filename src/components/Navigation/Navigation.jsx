@@ -20,7 +20,7 @@ const Navigation = ({ setViewCurrency, viewCurrency }) => {
   };
 
   return (
-    <NavContainer>
+    <NavContainer viewCurrency={viewCurrency}>
       <NavButton to="/home" onClick={() => setViewCurrency(false)}>
         <IconWrapper>
           <Media query="(max-width: 767px)">

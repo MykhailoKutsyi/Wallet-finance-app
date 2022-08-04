@@ -15,6 +15,22 @@ export const NavContainer = styled.div`
     &:not(:last-child) {
       margin-right: 38px;
     }
+    &.active {
+      > * {
+        &:first-child {
+          backdrop-filter: ${props =>
+            props.viewCurrency === false && 'blur(50px)'};
+          filter: ${props =>
+            props.viewCurrency === false &&
+            'drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5))'};
+          opacity: ${props => props.viewCurrency === false && '1'};
+        }
+
+        &:last-child {
+          font-weight: 700;
+        }
+      }
+    }
   }
 
   @media (min-width: 768px) {
@@ -41,6 +57,15 @@ export const NavButton = styled(NavLink)`
     border-radius: 2px;
   }
 
+  /* &:last-child {
+    backdrop-filter: ${props => (props.viewCurrency ? 'blur(50px)' : 0)};
+    filter: ${props =>
+    props.viewCurrency
+      ? 'drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5))'
+      : 0};
+    opacity: ${props => (props.viewCurrency ? 1 : 0.8)};
+  } */
+
   &:hover {
     > * {
       &:first-child {
@@ -53,20 +78,6 @@ export const NavButton = styled(NavLink)`
         font-weight: 700;
         backdrop-filter: none;
         filter: none;
-      }
-    }
-  }
-
-  &.active {
-    > * {
-      &:first-child {
-        backdrop-filter: blur(50px);
-        filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
-        opacity: 1;
-      }
-
-      &:last-child {
-        font-weight: 700;
       }
     }
   }
