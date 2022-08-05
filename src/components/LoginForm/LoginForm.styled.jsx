@@ -71,9 +71,6 @@ export const Btn = styled.button`
   }
 `;
 export const BtnTitle = styled.span`
-  font-family: Circe;
-  font-weight: 400;
-  font-size: 18px;
   color: var(--white-color);
   margin: 0;
 `;
@@ -100,9 +97,6 @@ export const Link = styled(NavLink)`
   }
 `;
 export const LinkTitle = styled.span`
-  font-family: Circe;
-  font-weight: 400;
-  font-size: 18px;
   color: var(--blue-color);
   margin: 0;
 `;

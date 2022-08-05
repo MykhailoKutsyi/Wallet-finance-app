@@ -3,8 +3,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-axios.defaults.baseURL = 'http://wallet-backend-app-api.herokuapp.com/';
-//axios.defaults.baseURL = 'http://localhost:5000/';
+//axios.defaults.baseURL = 'http://wallet-backend-app-api.herokuapp.com/';
+axios.defaults.baseURL = 'http://localhost:5000/';
 
 const token = {
   set(token) {
@@ -15,7 +15,7 @@ const token = {
   },
 };
 
-const register = createAsyncThunk('register', async (credentials, thunkAPI) => {
+const register = createAsyncThunk('register', async (credentials, { rejectWithValue }) => {
   try {
     const { data } = await axios.post('/api/auth/users/signup', credentials);
     token.set(data.token);
@@ -23,13 +23,13 @@ const register = createAsyncThunk('register', async (credentials, thunkAPI) => {
     return data;
   } catch (error) {
     toast.error('Email in use');
-    return thunkAPI.rejectWithValue();
+    return rejectWithValue();
   }
 });
 
 const logIn = createAsyncThunk(
   '/users/login',
-  async (credentials, thunkAPI) => {
+  async (credentials, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/api/auth/users/login', credentials);
       token.set(data.token);
@@ -37,18 +37,18 @@ const logIn = createAsyncThunk(
       return data;
     } catch (error) {
       toast.error('E-mail or password is wrong');
-      return thunkAPI.rejectWithValue();
+      return rejectWithValue();
     }
   }
 );
 
-const logOut = createAsyncThunk('auth/logout', async thunkAPI => {
+const logOut = createAsyncThunk('auth/logout', async ({ rejectWithValue }) => {
   try {
     await axios.post('/api/auth/logout');
     token.unset('');
   } catch (error) {
     toast.error('Something went wrong. Try again,please');
-    return thunkAPI.rejectWithValue();
+    return rejectWithValue();
   }
 });
 export { register, logIn, logOut };
