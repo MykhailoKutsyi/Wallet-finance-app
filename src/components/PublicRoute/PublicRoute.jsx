@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import selectors from 'redux/session/session-selectors';
@@ -10,6 +10,6 @@ const PublicRoute = ({ children, restricted = false }) => {
 };
 
 export default PublicRoute;
-PublicRoute.propTypes = {
-  children: PropTypes.object.isRequired,
-};
+// PublicRoute.propTypes = {
+//   children: PropTypes.object.isRequired,
+// };
