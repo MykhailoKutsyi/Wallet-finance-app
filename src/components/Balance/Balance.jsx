@@ -9,8 +9,9 @@ export default function Balance() {
   // const totalBalance = useSelector(globalSelectors.getTotalBalance);
 
   // useEffect(() => {
-  //   dispatch(financeOperations.totalBalance());
+  //   dispatch(financeOperations.totalBalance()); // ???
   // }, [dispatch]);
+
   return (
     <BalanceBox>
       <BalanceTitle>Your balance</BalanceTitle>

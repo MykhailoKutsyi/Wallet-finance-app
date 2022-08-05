@@ -2,7 +2,7 @@
 import axios from 'axios';
 import Icon from 'components/Icon/Icon';
 import Spinner from 'components/Loader/Loader';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 // styled components
 import {
@@ -22,12 +22,15 @@ const Currency = ({ dollarExchangeRate }) => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const [seconds, setSeconds] = useState(10);
+  const stopwatchRef = useRef(null);
+
   useEffect(() => {
     const lastQueryRate = localStorage.getItem('lastQueryRate');
     const oldRate = localStorage.getItem('oldRate');
     const currentDate = Date.now();
 
-    // Если нету даты последнего запроса
+    // If no date of last request
     if (!lastQueryRate && !oldRate) {
       exchangeQuery();
       console.log('No data in local storage. Request...');
@@ -35,7 +38,7 @@ const Currency = ({ dollarExchangeRate }) => {
       return;
     }
 
-    // Если дата есть и она устарела
+    // If there is a date, but it's out of date
     const difference = currentDate - lastQueryRate;
     if (lastQueryRate && difference > 3600000) {
       console.log('There is a date, but it is outdated. Request...');
@@ -44,8 +47,8 @@ const Currency = ({ dollarExchangeRate }) => {
       return;
     }
 
-    // Если дата есть и она ещё акутальна
-    if (difference < 3600000) {
+    // If there is a date and it is still relevant
+    if (difference < 3600000 && !error) {
       console.log(
         'Date is actually. Take the data from local storage.',
         difference
@@ -53,17 +56,26 @@ const Currency = ({ dollarExchangeRate }) => {
       setRate(JSON.parse(oldRate));
       return;
     }
-  }, []);
+  }, [error]);
 
   useEffect(() => {
     let timer;
     if (error === true) {
       timer = setInterval(() => {
         exchangeQuery();
-      }, 3000);
+        setSeconds(11);
+      }, 60000);
     } else {
       clearInterval(timer);
       return;
+    }
+
+    if (timer) {
+      stopwatchRef.current = setInterval(() => {
+        setSeconds(seconds => seconds - 1);
+      }, 1000);
+    } else {
+      clearInterval(stopwatchRef.current);
     }
   }, [error]);
 
@@ -72,15 +84,11 @@ const Currency = ({ dollarExchangeRate }) => {
     await axios
       .get('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5')
       .then(res => {
-        console.log(res);
-        // setTimeout(() => {
         console.log(res.data);
         localStorage.setItem('oldRate', JSON.stringify(res.data));
         setRate(res.data);
-
         setError(false);
         setLoading(false);
-        // }, 2000);
       })
       .catch(error => {
         setError(true);
@@ -99,6 +107,7 @@ const Currency = ({ dollarExchangeRate }) => {
             color={'rgb(218,8,204)'}
           />
           <h4>Sorry, the exchange rate service is temporarily unavailable.</h4>
+          <h5>Next request: {seconds}s</h5>
         </Info>
       )}
 
@@ -109,7 +118,6 @@ const Currency = ({ dollarExchangeRate }) => {
       )}
 
       {!error && !loading && (
-        // {error && (
         <Table>
           <TableHead>
             <HeadRow>

@@ -20,45 +20,40 @@ import {
 } from './Dashboard.styled';
 
 import { useEffect, useState } from 'react';
-
-const stylesTest = {
-  backgroundColor: '#707070a6f',
-};
+import { useDispatch, useSelector } from 'react-redux';
+import financeOperations from 'redux/finance/finance-operations';
+import sessionSelectors from 'redux/session/session-selectors';
 
 export default function Dashboard() {
+  const dispatch = useDispatch();
   const [viewCurrency, setViewCurrency] = useState(false);
+
+  const user = useSelector(state => state.session.user);
+  // const user = sessionSelectors.getUser(); // don't work (state in selector is undefined)
+  console.log(user);
 
   useEffect(() => {
     console.log(viewCurrency);
   }, [viewCurrency]);
 
-  // const currentUser = await sessionSelectors.getUser();
-  // const balance = currentUser.balance;
-  // console.log(balance);
+  // 1. Взять id текущего пользователя через селектор -
+  // 2. Сделать запрос за балансом текущего пользователя и записать баланс в state.finance.balance +
+  // 3. Сделать запрос за транзакциями текщуего пользователя и записать их в state.finance.data +
 
-  // useEffect(() => {
-  //   window.addEventListener('resize', console.log(window.screen.availWidth));
-  //   return () => {
-  //     // window.removeEventListener('resize');
-  //   };
-  // }, [window.screen.availWidth]);
+  const getTransactions = async () => {
+    await dispatch(
+      financeOperations.getCurrentTransactions('${currentUser.id}')
+    ); // Сюда нужно передать id текущего пользователя, которого я беру через селектор в session slice
+  };
 
-  // const [windowSize, setWindowSize] = useState(window.innerWidth);
+  const getBalance = async () => {
+    await dispatch(financeOperations.getTotalBalance());
+  };
 
-  // const handleWindowResize = useCallback(event => {
-  //   setWindowSize(window.innerWidth);
-  // }, []);
-
-  // useEffect(() => {
-  //   window.addEventListener('resize', handleWindowResize);
-
-  //   if (windowSize > 767) {
-  //     setViewCurrency(false);
-  //   }
-  //   return () => {
-  //     window.removeEventListener('resize', handleWindowResize);
-  //   };
-  // }, [handleWindowResize]);
+  useEffect(() => {
+    getTransactions();
+    getBalance();
+  }, [dispatch]);
 
   // const VIEW_CURRENCY = viewCurrency === true;
   // const VIEW_HOME = viewCurrency === false;
@@ -66,26 +61,26 @@ export default function Dashboard() {
   // Добавить медиа правило!
 
   return (
-    <div style={stylesTest}>
-      <AppBar />
-      <DashboardContainer>
-        <DashboardWrapper>
-          <HomeInfo>
-            <NavBalWrapper>
-              <Navigation
-                setViewCurrency={setViewCurrency}
-                viewCurrency={viewCurrency}
-              />
-              <Balance />
-            </NavBalWrapper>
-            <CurrencyWrapper>
-              <Currency />
-            </CurrencyWrapper>
-          </HomeInfo>
-          <HomeTab />
-          <ButtonAddTransactions />
-        </DashboardWrapper>
-      </DashboardContainer>
-    </div>
+    // <div style={stylesTest}>
+    // {/* <AppBar /> */}
+    <DashboardContainer>
+      <DashboardWrapper>
+        <HomeInfo>
+          <NavBalWrapper>
+            <Navigation
+              setViewCurrency={setViewCurrency}
+              viewCurrency={viewCurrency}
+            />
+            <Balance />
+          </NavBalWrapper>
+          <CurrencyWrapper>
+            <Currency />
+          </CurrencyWrapper>
+        </HomeInfo>
+        <HomeTab />
+        <ButtonAddTransactions />
+      </DashboardWrapper>
+    </DashboardContainer>
+    // </div>
   );
 }

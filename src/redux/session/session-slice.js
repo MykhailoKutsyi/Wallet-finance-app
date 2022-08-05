@@ -9,9 +9,9 @@ const initialState = {
   token: null,
 
   user: {
-    name: '',
-    email: '',
-    balance: '',
+    id: '223123123',
+    name: 'Изабелла Шмаровоз',
+    email: 'izi228.bitch@mail.com',
   },
 };
 
@@ -24,7 +24,7 @@ const sessionSlice = createSlice({
       state.token = payload.token;
       state.isAuth = true;
     },
-    [register.rejected](state){
+    [register.rejected](state) {
       state.error = true;
     },
     [logIn.fulfilled](state, { payload }) {
@@ -32,7 +32,7 @@ const sessionSlice = createSlice({
       state.token = payload.token;
       state.isAuth = true;
     },
-    [logIn.rejected](state){
+    [logIn.rejected](state) {
       state.error = true;
     },
     [logOut.fulfilled](state) {

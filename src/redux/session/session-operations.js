@@ -51,4 +51,5 @@ const logOut = createAsyncThunk('auth/logout', async thunkAPI => {
     return thunkAPI.rejectWithValue();
   }
 });
+
 export { register, logIn, logOut };
