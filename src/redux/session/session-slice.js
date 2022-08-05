@@ -38,7 +38,7 @@ const sessionSlice = createSlice({
     [logOut.fulfilled](state) {
       state.user = { name: null, email: null };
       state.token = null;
-      state.session.isAuth = false;
+      state.isAuth = false;
     },
   },
 });

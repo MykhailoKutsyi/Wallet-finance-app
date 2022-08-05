@@ -44,7 +44,7 @@ const logIn = createAsyncThunk(
 
 const logOut = createAsyncThunk('auth/logout', async thunkAPI => {
   try {
-    await axios.post('/api/auth/logout');
+    await axios.get('/api/auth/logout');
     token.unset('');
   } catch (error) {
     toast.error('Something went wrong. Try again,please');
