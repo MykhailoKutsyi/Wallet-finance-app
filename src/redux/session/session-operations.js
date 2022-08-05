@@ -3,8 +3,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-axios.defaults.baseURL = 'http://wallet-backend-app-api.herokuapp.com/';
-//axios.defaults.baseURL = 'http://localhost:5000/';
+axios.defaults.baseURL = 'https://wallet-backend-app-api.herokuapp.com/';
+// axios.defaults.baseURL = 'http://localhost:5000/';
 
 const token = {
   set(token) {
@@ -51,4 +51,5 @@ const logOut = createAsyncThunk('auth/logout', async thunkAPI => {
     return thunkAPI.rejectWithValue();
   }
 });
+
 export { register, logIn, logOut };
