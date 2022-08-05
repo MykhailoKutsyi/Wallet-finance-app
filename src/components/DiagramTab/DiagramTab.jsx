@@ -1,22 +1,27 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import globalSelectors from 'redux/finance/finance-selectors';
-
-
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Chart from "../Chart/Chart";
 import Table from "../Table/Table";
 import DatePicker from 'components/DatePicker/DatePicker';
 import { Wrapper, SubWrapper } from "./DiagramTab.styled";
+import { useEffect } from 'react';
 
 const DiagramTab = () => {
-  const currentBalance = useSelector(globalSelectors.getTotalBalance);
-
-  const userTransactions = useSelector(globalSelectors.getTransactions) || [];
 
   const [datesForFilter, setDatesForFilter] = useState({
     firstDate: null,
     secondDate: null,
   });
+    
+  useEffect(() => {
+  }, [datesForFilter]);
+
+  const currentBalance = useSelector(globalSelectors.getTotalBalance);
+
+  const userTransactions = useSelector(globalSelectors.getTransactions) || [];
 
   const filteredTransactionsByDate = userTransactions.filter(item => ((item.date >= datesForFilter.firstDate) && (item.date <= datesForFilter.secondDate)));
 
@@ -51,15 +56,14 @@ const DiagramTab = () => {
   ];
   
   const dataForTable = expenseArray.map(item => {
-    const totalExpenseAmount = filteredExpenses.map(exp => {
-      if (exp.category === item) {
-        return item;
-      };
-    })
+
+    const totalExpenseAmount = filteredExpenses
+      .filter(exp => exp.category === item)
       .map(item => item.amount)
       .reduce((acc, value) => {
         return acc + value
       }, 0);
+    
     const tableRowItem = {
       color: colorsArray[expenseArray.indexOf(item)],
       expense: item,
@@ -84,7 +88,7 @@ const DiagramTab = () => {
     labels: expenseArray,
     datasets: [
       {
-        label: '# of Votes',
+        label: 'expenses',
         data: dataForTable.map(item => item.value),
         // data: [8700.00, 3800.74, 1500.00, 800.00, 2208.50, 300.00, 3400.00, 1230.00, 610.00],
         backgroundColor: colorsArray,
@@ -93,7 +97,8 @@ const DiagramTab = () => {
       },
     ],
   }; 
-  
+
+ 
   // const expenses = 22549.24;
 
   const expenses = filteredExpenses
@@ -112,19 +117,25 @@ const DiagramTab = () => {
   
   const onDateInput = (event) => {
     const { firstDate, secondDate } = datesForFilter;
+    if (firstDate > secondDate) {
+      toast.error("wrong date range!!!");
+      setDatesForFilter({
+        firstDate: null,
+        secondDate: null,
+      });
 
+    }
     const { id, value } = event.currentTarget;
     setDatesForFilter({ ...datesForFilter, [id]: value });
     console.log(datesForFilter);
-    console.log(firstDate < secondDate);
   }
   
   return (
     <Wrapper>
-      <Chart
+      {expenses > 0 ? <Chart
           dataForChart={dataForChart}
           currentBalance={currentBalance}
-      />
+      /> : <h2 style={{padding: '200px 50px', width: '50%'}}> Sorry, no expenses to display. Please, set date range including any transactions</h2>}
       <SubWrapper>
         <DatePicker
           onChange={onDateInput}
@@ -137,6 +148,7 @@ const DiagramTab = () => {
           income={income}
           />
       </SubWrapper>
+      <ToastContainer />
     </Wrapper>
   )
 };
