@@ -24,15 +24,15 @@ const sessionSlice = createSlice({
       state.token = payload.token;
       state.isAuth = true;
     },
-    [register.rejected](state){
+    [register.rejected](state) {
       state.error = true;
     },
     [logIn.fulfilled](state, { payload }) {
-      state.user = payload.user;
+      // state.user = payload.user;
       state.token = payload.token;
       state.isAuth = true;
     },
-    [logIn.rejected](state){
+    [logIn.rejected](state) {
       state.error = true;
     },
     [logOut.fulfilled](state) {
