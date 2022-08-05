@@ -23,10 +23,18 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import financeOperations from 'redux/finance/finance-operations';
 import sessionSelectors from 'redux/session/session-selectors';
+import Media from 'react-media';
 
 export default function Dashboard() {
   const dispatch = useDispatch();
   const [viewCurrency, setViewCurrency] = useState(false);
+  // const [width, setWidth] = useState(window.innerWidth);
+
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 768) {
+      setViewCurrency(false);
+    }
+  });
 
   const user = useSelector(state => state.session.user);
   // const user = sessionSelectors.getUser(); // don't work (state in selector is undefined)
@@ -40,23 +48,13 @@ export default function Dashboard() {
   // 2. Сделать запрос за балансом текущего пользователя и записать баланс в state.finance.balance +
   // 3. Сделать запрос за транзакциями текщуего пользователя и записать их в state.finance.data +
 
-  const getTransactions = async () => {
-    await dispatch(
-      financeOperations.getCurrentTransactions('${currentUser.id}')
-    ); // Сюда нужно передать id текущего пользователя, которого я беру через селектор в session slice
-  };
-
-  const getBalance = async () => {
-    await dispatch(financeOperations.getTotalBalance());
-  };
-
   useEffect(() => {
-    getTransactions();
-    getBalance();
+    dispatch(financeOperations.getCurrentTransactions('${currentUser.id}')); // Сюда нужно передать id текущего пользователя, которого я беру через селектор в session slice
+    dispatch(financeOperations.getTotalBalance());
   }, [dispatch]);
 
-  // const VIEW_CURRENCY = viewCurrency === true;
-  // const VIEW_HOME = viewCurrency === false;
+  const VIEW_CURRENCY = viewCurrency === true;
+  const VIEW_HOME = viewCurrency === false;
 
   // Добавить медиа правило!
 
@@ -64,22 +62,38 @@ export default function Dashboard() {
     // <div style={stylesTest}>
     // {/* <AppBar /> */}
     <DashboardContainer>
-      <DashboardWrapper>
-        <HomeInfo>
-          <NavBalWrapper>
-            <Navigation
-              setViewCurrency={setViewCurrency}
-              viewCurrency={viewCurrency}
-            />
-            <Balance />
-          </NavBalWrapper>
-          <CurrencyWrapper>
-            <Currency />
-          </CurrencyWrapper>
-        </HomeInfo>
-        <HomeTab />
-        <ButtonAddTransactions />
-      </DashboardWrapper>
+      {VIEW_HOME && (
+        <DashboardWrapper>
+          <HomeInfo>
+            <NavBalWrapper>
+              <Navigation
+                setViewCurrency={setViewCurrency}
+                viewCurrency={viewCurrency}
+              />
+              <Balance />
+            </NavBalWrapper>
+            <CurrencyWrapper>
+              <Currency />
+            </CurrencyWrapper>
+          </HomeInfo>
+          <HomeTab />
+          <ButtonAddTransactions />
+        </DashboardWrapper>
+      )}
+      <Media queries={{ mobile: '(max-width: 767px)' }}>
+        {matches =>
+          matches.mobile &&
+          VIEW_CURRENCY && (
+            <DashboardWrapper>
+              <Navigation
+                setViewCurrency={setViewCurrency}
+                viewCurrency={viewCurrency}
+              />
+              <Currency />
+            </DashboardWrapper>
+          )
+        }
+      </Media>
     </DashboardContainer>
     // </div>
   );

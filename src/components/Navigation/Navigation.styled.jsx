@@ -17,14 +17,12 @@ export const NavContainer = styled.div`
     }
     &.active {
       > * {
-        &:first-child {
-          backdrop-filter: ${props =>
-            props.viewCurrency === false && 'blur(50px)'};
-          filter: ${props =>
-            props.viewCurrency === false &&
-            'drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5))'};
-          opacity: ${props => props.viewCurrency === false && '1'};
-        }
+        backdrop-filter: ${props =>
+          props.viewCurrency === false && 'blur(50px)'};
+        filter: ${props =>
+          props.viewCurrency === false &&
+          'drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5))'};
+        opacity: ${props => props.viewCurrency === false && '1'};
 
         &:last-child {
           font-weight: 700;
@@ -35,11 +33,6 @@ export const NavContainer = styled.div`
 
   @media (min-width: 768px) {
     flex-direction: column;
-    /* & > * {
-      &:last-child {
-        display: none;
-      }
-    } */
   }
 `;
 
@@ -47,24 +40,30 @@ export const NavButton = styled(NavLink)`
   display: block;
   width: max-content;
   border-radius: 6px;
+  > * {
+    border-radius: 6px;
+    background-color: var(--white-color);
+  }
 
   @media (min-width: 768px) {
     display: flex;
     align-items: center;
-
     margin-bottom: 12px;
-
     border-radius: 2px;
+    &:last-child {
+      display: none;
+    }
   }
 
-  /* &:last-child {
-    backdrop-filter: ${props => (props.viewCurrency ? 'blur(50px)' : 0)};
+  &:last-child {
+    backdrop-filter: ${props =>
+      props.viewCurrency ? 'blur(0px)' : 'blur(50px)'};
     filter: ${props =>
-    props.viewCurrency
-      ? 'drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5))'
-      : 0};
+      props.viewCurrency
+        ? 'drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5))'
+        : 0};
     opacity: ${props => (props.viewCurrency ? 1 : 0.8)};
-  } */
+  }
 
   &:hover {
     > * {
@@ -84,11 +83,6 @@ export const NavButton = styled(NavLink)`
 
   &:visited {
     color: inherit;
-  }
-
-  > * {
-    border-radius: 6px;
-    background-color: var(--white-color);
   }
 `;
 

@@ -45,25 +45,11 @@ const Navigation = ({ setViewCurrency, viewCurrency }) => {
         <Text>Statistic</Text>
       </NavButton>
 
-      <Media queries={{ mobile: '(max-width: 767px)' }}>
-        {matches =>
-          matches.mobile && (
-            <>
-              <NavButton to="/home" onClick={handleClick}>
-                <IconWrapper>
-                  <Icon id={'#icon-currency-mobile'} width={38} height={38} />
-                </IconWrapper>
-              </NavButton>
-            </>
-          )
-        }
-      </Media>
-
-      {/* <button type="button" onClick={handleClick}>
+      <NavButton to="/home" onClick={handleClick}>
         <IconWrapper>
           <Icon id={'#icon-currency-mobile'} width={38} height={38} />
         </IconWrapper>
-      </button> */}
+      </NavButton>
     </NavContainer>
   );
 };
