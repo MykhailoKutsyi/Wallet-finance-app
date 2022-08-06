@@ -21,9 +21,9 @@ const getTotalBalance = createAsyncThunk(
 
 const getCurrentTransactions = createAsyncThunk(
   'dashboard/getCurrentTransactions',
-  async ({ userId }) => {
+  async () => {
     try {
-      // const { data } = await axios.get(`api/transactions/${userId}`);
+      // const { data } = await axios.get(`api/transactions/`);
       // template data
       const data = {
         status: 'success',

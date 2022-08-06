@@ -49,14 +49,12 @@ export default function Dashboard() {
   // 3. Сделать запрос за транзакциями текщуего пользователя и записать их в state.finance.data +
 
   useEffect(() => {
-    dispatch(financeOperations.getCurrentTransactions('${currentUser.id}')); // Сюда нужно передать id текущего пользователя, которого я беру через селектор в session slice
-    dispatch(financeOperations.getTotalBalance());
+    dispatch(financeOperations.getCurrentTransactions());
+    dispatch(financeOperations.getTotalBalance()); // refresh
   }, [dispatch]);
 
   const VIEW_CURRENCY = viewCurrency === true;
   const VIEW_HOME = viewCurrency === false;
-
-  // Добавить медиа правило!
 
   return (
     // <div style={stylesTest}>
