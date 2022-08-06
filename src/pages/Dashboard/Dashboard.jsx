@@ -1,5 +1,5 @@
 // libs
-// import Media from 'react-media';
+import Media from 'react-media';
 
 // import components
 
@@ -12,11 +12,12 @@ import Loader from 'components/Loader/Loader';
 import ButtonAddTransactions from 'components/ButtonAddTransactions/ButtonAddTransactions';
 
 // redux/react
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { refresh } from 'redux/session/session-operations';
-import { useSelector, useDispatch } from 'react-redux';
-
+import financeOperations from 'redux/finance/finance-operations';
+import sessionSelectors from 'redux/session/session-selectors';
+import globalSelectors from 'redux/global/global-selectors';
 
 // import styled components
 import {
@@ -25,13 +26,8 @@ import {
   DashboardWrapper,
   HomeInfo,
   NavBalWrapper,
+  InfoContainer,
 } from './Dashboard.styled';
-
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import financeOperations from 'redux/finance/finance-operations';
-import sessionSelectors from 'redux/session/session-selectors';
-import Media from 'react-media';
 
 export default function Dashboard() {
   const dispatch = useDispatch();
@@ -42,6 +38,10 @@ export default function Dashboard() {
   useEffect(() => {
     dispatch(refresh());
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(financeOperations.getCurrentTransactions());
+  }, []);
 
   // const [width, setWidth] = useState(window.innerWidth);
 
@@ -63,19 +63,17 @@ export default function Dashboard() {
   // 2. Сделать запрос за балансом текущего пользователя и записать баланс в state.finance.balance +
   // 3. Сделать запрос за транзакциями текщуего пользователя и записать их в state.finance.data +
 
-  useEffect(() => {
-    dispatch(financeOperations.getCurrentTransactions());
-    dispatch(financeOperations.getTotalBalance()); // refresh
-  }, [dispatch]);
-
   const VIEW_CURRENCY = viewCurrency === true;
   const VIEW_HOME = viewCurrency === false;
-
+  const LOADING = isLoading === true;
   return (
-    // <div style={stylesTest}>
-    // {/* <AppBar /> */}
     <DashboardContainer>
-      {VIEW_HOME && (
+      {LOADING && (
+        <InfoContainer>
+          <Loader />
+        </InfoContainer>
+      )}
+      {!LOADING && VIEW_HOME && (
         <DashboardWrapper>
           <HomeInfo>
             <NavBalWrapper>
@@ -96,6 +94,7 @@ export default function Dashboard() {
       <Media queries={{ mobile: '(max-width: 767px)' }}>
         {matches =>
           matches.mobile &&
+          LOADING &&
           VIEW_CURRENCY && (
             <DashboardWrapper>
               <Navigation
@@ -108,5 +107,5 @@ export default function Dashboard() {
         }
       </Media>
     </DashboardContainer>
-    // </div>
-)
+  );
+}

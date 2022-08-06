@@ -24,6 +24,13 @@ export const Transactions = styled.div`
   }
 `;
 
+export const InfoContainer = styled.div`
+  margin-top: 80px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
 export const TransactionHead = styled.thead`
   @media (max-width: 767px) {
     display: none;

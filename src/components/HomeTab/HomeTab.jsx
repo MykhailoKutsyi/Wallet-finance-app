@@ -3,6 +3,9 @@ import moment from 'moment'; // for formating array of transactions
 import { useEffect } from 'react';
 import { useState } from 'react';
 
+// components
+import Spinner from 'components/Loader/Loader';
+
 // styled components
 import { useSelector } from 'react-redux';
 import financeSelectors from 'redux/finance/finance-selectors';
@@ -18,15 +21,22 @@ import {
   HeadRow,
   HeadItem,
   DataWrapper,
+  InfoContainer,
 } from './HomeTab.styled';
 
 const HomeTab = () => {
   const transactions = useSelector(financeSelectors.getCurrentTransactions); // redux state => state.finance.data
+  const loading = useSelector(state => state.finance.loading);
+
+  console.log(transactions);
   const [sortTransactions, setSortTransactions] = useState([]);
+
+  const totalBalance = useSelector(state => state.finance.totalBalance);
+  const balanceString = totalBalance.toString();
 
   // sort transactions
   useEffect(() => {
-    if (transactions.length !== 0) {
+    if (transactions && transactions.length !== 0) {
       const copyTransactionsForSort = [...transactions];
       setSortTransactions(
         copyTransactionsForSort.sort(
@@ -36,16 +46,24 @@ const HomeTab = () => {
     }
   }, [transactions]);
 
+  const LOADING = loading === true;
   const NO_TRASACTIONS = sortTransactions.length === 0;
 
   return (
     <Transactions>
-      {NO_TRASACTIONS && (
-        <h4>
-          Your transactions will be displayed here. They don't exist yet...
-        </h4>
+      {LOADING && (
+        <InfoContainer>
+          <Spinner />
+        </InfoContainer>
       )}
-      {!NO_TRASACTIONS > 0 && (
+      {!LOADING && NO_TRASACTIONS && (
+        <InfoContainer>
+          <h4>
+            Your transactions will be displayed here. They don't exist yet...
+          </h4>
+        </InfoContainer>
+      )}
+      {!LOADING && !NO_TRASACTIONS && (
         <table>
           <TransactionHead>
             <HeadRow>
@@ -58,10 +76,12 @@ const HomeTab = () => {
             </HeadRow>
           </TransactionHead>
           {sortTransactions.map(
-            ({ id, date, type, category, comment, sum, balance }) => {
-              const color = type === '-' ? '#ff6596' : '#24cca7';
+            ({ _id, date, type, category, comment, amount }) => {
+              const color = type === 'expense' ? '#ff6596' : '#24cca7';
+              const typeValid = type === 'income' ? '+' : '-';
+              const amountString = amount.toString();
               return (
-                <Transaction key={id}>
+                <Transaction key={_id}>
                   <TransactionField>
                     <LineSide color={color} />
                     <Text>Date</Text>
@@ -73,7 +93,7 @@ const HomeTab = () => {
                     <LineSide color={color} />
                     <Text>Type</Text>
                     <DataWrapper>
-                      <Data text={type} length={1} />
+                      <Data text={typeValid} length={1} />
                     </DataWrapper>
                   </TransactionField>
                   <TransactionField>
@@ -94,14 +114,14 @@ const HomeTab = () => {
                     <LineSide color={color} />
                     <Text>Sum</Text>
                     <DataWrapper>
-                      <Data color={color} text={sum} length={10} />
+                      <Data color={color} text={amountString} length={10} />
                     </DataWrapper>
                   </TransactionField>
                   <TransactionField>
                     <LineSide color={color} />
                     <Text>Balance</Text>
                     <DataWrapper>
-                      <Data text={balance} length={12} />
+                      <Data text={balanceString} length={12} />
                     </DataWrapper>
                   </TransactionField>
                 </Transaction>

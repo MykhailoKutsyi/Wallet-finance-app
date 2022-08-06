@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+export const InfoContainer = styled.div`
+  text-align: center;
+  margin-top: 200px;
+`;
+
 export const DashboardContainer = styled.div`
   display: flex;
   flex-direction: column;
