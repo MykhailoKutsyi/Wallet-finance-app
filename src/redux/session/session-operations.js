@@ -3,8 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-//axios.defaults.baseURL = 'http://wallet-backend-app-api.herokuapp.com/';
-axios.defaults.baseURL = 'http://localhost:5000/';
+axios.defaults.baseURL = 'https://wallet-backend-app-api.herokuapp.com/';
 
 const token = {
   set(token) {
@@ -15,17 +14,20 @@ const token = {
   },
 };
 
-const register = createAsyncThunk('register', async (credentials, { rejectWithValue }) => {
-  try {
-    const { data } = await axios.post('/api/auth/users/signup', credentials);
-    token.set(data.token);
-    toast('Welcome to wallet');
-    return data;
-  } catch (error) {
-    toast.error('Email in use');
-    return rejectWithValue();
+const register = createAsyncThunk(
+  'register',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post('/api/auth/users/signup', credentials);
+      token.set(data.token);
+      toast('Welcome to wallet');
+      return data;
+    } catch (error) {
+      toast.error('Email in use');
+      return rejectWithValue();
+    }
   }
-});
+);
 
 const logIn = createAsyncThunk(
   '/users/login',
@@ -42,13 +44,36 @@ const logIn = createAsyncThunk(
   }
 );
 
-const logOut = createAsyncThunk('auth/logout', async ({ rejectWithValue }) => {
-  try {
-    await axios.post('/api/auth/logout');
-    token.unset('');
-  } catch (error) {
-    toast.error('Something went wrong. Try again,please');
-    return rejectWithValue();
+const logOut = createAsyncThunk(
+  'auth/logout',
+  async (_, { rejectWithValue }) => {
+    try {
+      await axios.get('/api/auth/logout');
+      token.unset('');
+    } catch (error) {
+      toast.error('Something went wrong. Try again,please');
+      return rejectWithValue();
+    }
   }
-});
-export { register, logIn, logOut };
+);
+
+const refresh = createAsyncThunk(
+  'auth/refresh',
+  async (_, { getState, rejectWithValue }) => {
+    const state = getState();
+    const localStorageToken = state.session.token;
+
+    if (localStorageToken === null) return rejectWithValue();
+
+    token.set(localStorageToken);
+    try {
+      const { data } = await axios.get('/api/auth/current');
+      console.log(data);
+      return data;
+    } catch (error) {
+      rejectWithValue(error.message);
+    }
+  }
+);
+
+export { register, logIn, logOut, refresh };

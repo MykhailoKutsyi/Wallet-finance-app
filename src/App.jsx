@@ -1,5 +1,7 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 // import { Routes, Route } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { refresh } from 'redux/session/session-operations';
 import { ToastContainer } from 'react-toastify';
 import { Routes, Route, NavLink } from 'react-router-dom';
 
@@ -16,6 +18,12 @@ const Dashboard = lazy(() => import('./pages/Dashboard/Dashboard'));
 const Statistics = lazy(() => import('./pages/Statistics/Statistics'));
 
 export default function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(refresh());
+  }, [dispatch]);
+
   return (
     <Container>
       <Suspense fallback={<Loader />}>
