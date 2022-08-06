@@ -16,6 +16,10 @@ const financeSlice = createSlice({
     [financeOperations.totalBalance.fulfilled](state, { payload }) {
       state.totalBalance = payload.totalBalance;
     },
+
+    [financeOperations.transactions.fulfilled](state, { payload }) {
+      state.data = payload;
+    },
   },
 });
 
