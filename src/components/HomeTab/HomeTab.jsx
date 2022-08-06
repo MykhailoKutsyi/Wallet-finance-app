@@ -1,5 +1,7 @@
 // libs
 import moment from 'moment'; // for formating array of transactions
+
+// react/redux
 import { useEffect } from 'react';
 import { useState } from 'react';
 
@@ -7,7 +9,7 @@ import { useState } from 'react';
 import Spinner from 'components/Loader/Loader';
 
 // styled components
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import financeSelectors from 'redux/finance/finance-selectors';
 
 import {
@@ -22,16 +24,22 @@ import {
   HeadItem,
   DataWrapper,
   InfoContainer,
+  LoadButton,
+  LoaderWrapper,
 } from './HomeTab.styled';
+import financeOperations from 'redux/finance/finance-operations';
 
 const HomeTab = () => {
+  const dispatch = useDispatch();
+
   const transactions = useSelector(financeSelectors.getCurrentTransactions); // redux state => state.finance.data
   const loading = useSelector(state => state.finance.loading);
-
-  console.log(transactions);
-  const [sortTransactions, setSortTransactions] = useState([]);
-
+  const totalPages = useSelector(state => state.finance.totalPages);
   const totalBalance = useSelector(state => state.finance.totalBalance);
+  const currentPage = useSelector(state => state.finance.page);
+  const limit = useSelector(state => state.finance.limit);
+
+  const [sortTransactions, setSortTransactions] = useState([]);
   const balanceString = totalBalance.toString();
 
   // sort transactions
@@ -40,18 +48,32 @@ const HomeTab = () => {
       const copyTransactionsForSort = [...transactions];
       setSortTransactions(
         copyTransactionsForSort.sort(
-          (a, b) => +moment(b.date, 'DD.MM.YY') - +moment(a.date, 'DD.MM.YY')
+          (a, b) =>
+            +moment(b.date, 'YYYY-MM-DD') - +moment(a.date, 'YYYY-MM-DD')
+          // (a, b) => +moment(b.date, 'DD.MM.YY') - +moment(a.date, 'DD.MM.YY')
         )
       );
     }
   }, [transactions]);
 
+  const handleClick = async e => {
+    e.preventDefault();
+
+    await dispatch(
+      financeOperations.getCurrentTransactions({
+        page: currentPage,
+        limit: limit,
+      })
+    );
+  };
+
   const LOADING = loading === true;
   const NO_TRASACTIONS = sortTransactions.length === 0;
+  const VIEW_BUTTON = totalPages >= currentPage;
 
   return (
     <Transactions>
-      {LOADING && (
+      {LOADING && NO_TRASACTIONS && (
         <InfoContainer>
           <Spinner />
         </InfoContainer>
@@ -63,7 +85,7 @@ const HomeTab = () => {
           </h4>
         </InfoContainer>
       )}
-      {!LOADING && !NO_TRASACTIONS && (
+      {!NO_TRASACTIONS && (
         <table>
           <TransactionHead>
             <HeadRow>
@@ -77,8 +99,8 @@ const HomeTab = () => {
           </TransactionHead>
           {sortTransactions.map(
             ({ _id, date, type, category, comment, amount }) => {
-              const color = type === 'expense' ? '#ff6596' : '#24cca7';
-              const typeValid = type === 'income' ? '+' : '-';
+              const color = type === false ? '#ff6596' : '#24cca7';
+              const typeValid = type === true ? '+' : '-';
               const amountString = amount.toString();
               return (
                 <Transaction key={_id}>
@@ -86,7 +108,7 @@ const HomeTab = () => {
                     <LineSide color={color} />
                     <Text>Date</Text>
                     <DataWrapper>
-                      <Data text={date} length={8} />
+                      <Data text={date} length={20} />
                     </DataWrapper>
                   </TransactionField>
                   <TransactionField>
@@ -129,6 +151,16 @@ const HomeTab = () => {
             }
           )}
         </table>
+      )}
+      {VIEW_BUTTON && LOADING && !NO_TRASACTIONS && (
+        <LoaderWrapper>
+          <Spinner />
+        </LoaderWrapper>
+      )}
+      {VIEW_BUTTON && !LOADING && (
+        <LoadButton type="button" onClick={handleClick}>
+          Load previous
+        </LoadButton>
       )}
     </Transactions>
   );

@@ -23,6 +23,33 @@ export const Info = styled.div`
   }
 `;
 
+export const InfoText = styled.h4``;
+export const InfoButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-self: center;
+
+  margin-top: 5px;
+
+  outline: none;
+  border-radius: 50%;
+  background-color: transparent;
+  opacity: 0.7;
+
+  transition: transform 0.3s ease-in-out;
+  &:hover {
+    transform: rotate(360deg) scale(1.1);
+    /* transition: transform 0.6s linear; */
+    transition: transform 0.7s ease 0s, opacity 0.3s ease 0s;
+
+    opacity: 1;
+  }
+
+  @media (min-width: 1280px) {
+    margin-top: 40px;
+  }
+`;
+
 export const TableContainer = styled.div`
   margin-top: 10px; // not according to layout
 

@@ -14,12 +14,17 @@ export const BtnAddTransactions = styled.button`
   justify-content: center;
   align-items: center;
 
+  position: fixed;
+
+  bottom: 40px;
+  right: 40px;
   &:hover,
   &:focus {
     background-color: var(--light-green-hover-color);
   }
   @media (max-width: 767px) {
-    margin: auto 40px 40px auto;
+    bottom: 20px;
+    right: 20px;
   }
   &:hover {
     cursor: pointer;

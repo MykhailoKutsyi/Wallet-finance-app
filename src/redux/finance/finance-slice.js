@@ -7,6 +7,9 @@ const initialState = {
   error: null,
   loading: false,
   totalBalance: 28000, //null
+  page: 1,
+  limit: 5,
+  totalPages: 1,
 };
 
 const financeSlice = createSlice({
@@ -18,17 +21,15 @@ const financeSlice = createSlice({
       state.error = false;
     },
     [financeOperations.getCurrentTransactions.fulfilled]: (state, action) => {
-      state.data = action.payload;
+      state.data = [...state.data, ...action.payload.data];
+      state.page += 1;
+      state.totalPages = action.payload.totalPages;
       state.loading = false;
       state.error = false;
     },
     [financeOperations.getCurrentTransactions.rejected]: (state, action) => {
       state.loading = false;
       state.error = true;
-    },
-
-    [financeOperations.transactions.fulfilled](state, { payload }) {
-      state.data = payload;
     },
   },
 });

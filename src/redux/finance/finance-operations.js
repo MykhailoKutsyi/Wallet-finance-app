@@ -5,11 +5,10 @@ import axios from 'axios';
 
 const getCurrentTransactions = createAsyncThunk(
   'finance/transactions',
-  async (credentials, thunkAPI) => {
+  async ({ page, limit }, thunkAPI) => {
     try {
       const { data } = await axios.get(
-        '/api/finance/transactions',
-        credentials
+        `/api/transactions?page=${page}&limit=${limit}`
       );
       return data;
     } catch (error) {
@@ -19,3 +18,5 @@ const getCurrentTransactions = createAsyncThunk(
 );
 
 const financeOperations = { getCurrentTransactions };
+
+export default financeOperations;

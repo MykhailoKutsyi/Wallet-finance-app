@@ -5,7 +5,6 @@ import Media from 'react-media';
 
 import HomeTab from 'components/HomeTab/HomeTab';
 import Navigation from 'components/Navigation/Navigation';
-import AppBar from 'components/AppBar/AppBar';
 import Balance from 'components/Balance';
 import Currency from 'components/Currency/Currency';
 import Loader from 'components/Loader/Loader';
@@ -15,9 +14,8 @@ import ButtonAddTransactions from 'components/ButtonAddTransactions/ButtonAddTra
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { refresh } from 'redux/session/session-operations';
-import sessionSelectors from 'redux/session/session-selectors';
 import globalSelectors from 'redux/global/global-selectors';
-import { getCurrentTransactions } from 'redux/finance/finance-operations';
+import financeOperations from 'redux/finance/finance-operations';
 
 // import styled components
 import {
@@ -33,17 +31,24 @@ export default function Dashboard() {
   const dispatch = useDispatch();
 
   const [viewCurrency, setViewCurrency] = useState(false);
+
   const isLoading = useSelector(globalSelectors.getIsLoading);
+  const nextPage = useSelector(state => state.finance.page);
+  const limit = useSelector(state => state.finance.limit);
 
   useEffect(() => {
     dispatch(refresh());
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(getCurrentTransactions());
+    console.log(nextPage);
+    dispatch(
+      financeOperations.getCurrentTransactions({
+        page: nextPage,
+        limit: limit,
+      })
+    );
   }, []);
-
-  // const [width, setWidth] = useState(window.innerWidth);
 
   window.addEventListener('resize', function () {
     if (window.innerWidth > 768) {
@@ -51,13 +56,7 @@ export default function Dashboard() {
     }
   });
 
-  const user = useSelector(state => state.session.user);
-  // const user = sessionSelectors.getUser(); // don't work (state in selector is undefined)
-  console.log(user);
-
-  useEffect(() => {
-    console.log(viewCurrency);
-  }, [viewCurrency]);
+  useEffect(() => {}, [viewCurrency]);
 
   // 1. Взять id текущего пользователя через селектор -
   // 2. Сделать запрос за балансом текущего пользователя и записать баланс в state.finance.balance +
@@ -91,21 +90,16 @@ export default function Dashboard() {
           <ButtonAddTransactions />
         </DashboardWrapper>
       )}
-      <Media queries={{ mobile: '(max-width: 767px)' }}>
-        {matches =>
-          matches.mobile &&
-          !LOADING &&
-          VIEW_CURRENCY && (
-            <DashboardWrapper>
-              <Navigation
-                setViewCurrency={setViewCurrency}
-                viewCurrency={viewCurrency}
-              />
-              <Currency />
-            </DashboardWrapper>
-          )
-        }
-      </Media>
+
+      {!LOADING && VIEW_CURRENCY && (
+        <DashboardWrapper>
+          <Navigation
+            setViewCurrency={setViewCurrency}
+            viewCurrency={viewCurrency}
+          />
+          <Currency />
+        </DashboardWrapper>
+      )}
     </DashboardContainer>
   );
 }

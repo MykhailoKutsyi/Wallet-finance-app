@@ -67,7 +67,7 @@ export const HeadItem = styled.th``;
 
 export const Transaction = styled.tbody`
   width: 280px;
-  height: 45vh;
+  height: 350px;
 
   display: flex;
   flex-direction: column;
@@ -169,7 +169,7 @@ export const Text = styled.td`
 export const DataWrapper = styled.td`
   text-align: right;
   @media (max-width: 767px) {
-    width: 70px;
+    width: 90px;
   }
 `;
 
@@ -178,4 +178,29 @@ export const Data = styled(EllipsisText)`
   line-height: 24px;
   font-weight: ${props => (props.color ? 700 : 400)};
   color: ${props => props.color || ' #000000'};
+`;
+
+export const LoadButton = styled.button`
+  margin: 0 auto;
+  margin-top: 20px;
+
+  width: 150px;
+  height: 35px;
+
+  background-color: var(--blue-color);
+  color: var(--white-color);
+
+  border-radius: 10px;
+  font-weight: 700;
+
+  &:hover,
+  &:focus {
+    background-color: var(--blue-hover-color);
+  }
+`;
+
+export const LoaderWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
 `;

@@ -68,7 +68,6 @@ const refresh = createAsyncThunk(
     token.set(localStorageToken);
     try {
       const { data } = await axios.get('/api/auth/current');
-      console.log(data);
       return data;
     } catch (error) {
       rejectWithValue(error.message);

@@ -10,7 +10,7 @@ export const DashboardContainer = styled.div`
   flex-direction: column;
   align-items: center;
 
-  position: relative;
+  /* position: relative; */
 
   @media (min-width: 768px) {
   }
@@ -72,25 +72,5 @@ export const CurrencyWrapper = styled.div`
   display: none;
   @media (min-width: 768px) {
     display: block;
-  }
-`;
-
-export const AddButton = styled.button`
-  width: 44px;
-  height: 44px;
-
-  border-radius: 50%;
-
-  background-color: var(--light-green-color);
-  box-shadow: 0px 6px 15px rgba(36, 204, 167, 0.5);
-
-  position: fixed;
-
-  bottom: 20px;
-  right: 20px;
-
-  @media (min-width: 768px) {
-    bottom: 40px;
-    right: 40px;
   }
 `;
