@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 
 export const BtnAddTransactions = styled.button`
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
+  margin: auto 20px 20px auto;
   width: 44px;
   height: 44px;
   border: none;
@@ -21,8 +19,7 @@ export const BtnAddTransactions = styled.button`
     background-color: var(--light-green-hover-color);
   }
   @media (max-width: 767px) {
-    right: 40px;
-    bottom: 40px;
+    margin: auto 40px 40px auto;
   }
   &:hover {
     cursor: pointer;

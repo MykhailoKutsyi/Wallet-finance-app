@@ -8,7 +8,15 @@ import Navigation from 'components/Navigation/Navigation';
 import AppBar from 'components/AppBar/AppBar';
 import Balance from 'components/Balance';
 import Currency from 'components/Currency/Currency';
+import Loader from 'components/Loader/Loader';
 import ButtonAddTransactions from 'components/ButtonAddTransactions/ButtonAddTransactions';
+
+// redux/react
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { refresh } from 'redux/session/session-operations';
+import { useSelector, useDispatch } from 'react-redux';
+
 
 // import styled components
 import {
@@ -27,7 +35,14 @@ import Media from 'react-media';
 
 export default function Dashboard() {
   const dispatch = useDispatch();
+
   const [viewCurrency, setViewCurrency] = useState(false);
+  const isLoading = useSelector(globalSelectors.getIsLoading);
+
+  useEffect(() => {
+    dispatch(refresh());
+  }, [dispatch]);
+
   // const [width, setWidth] = useState(window.innerWidth);
 
   window.addEventListener('resize', function () {
@@ -94,5 +109,4 @@ export default function Dashboard() {
       </Media>
     </DashboardContainer>
     // </div>
-  );
-}
+)

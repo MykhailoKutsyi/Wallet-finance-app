@@ -25,18 +25,14 @@ const AppBar = () => {
       <Logo />
       <RightSideGroup>
         <UserName>{name}</UserName>
-        <ExitBtn
-          onClick={() => dispatch(toggleModalLogout())}
-        >
+        <ExitBtn onClick={() => dispatch(toggleModalLogout())}>
           <BtnIconWrapper>
             <use href={`${sprite}#icon-exit`} />
           </BtnIconWrapper>
           <BtnSpan>Exit</BtnSpan>
         </ExitBtn>
       </RightSideGroup>
-      {isLogoutModalOpen &&
-        <ModalLogout />
-      }
+      {isLogoutModalOpen && <ModalLogout />}
     </Header>
   );
 };

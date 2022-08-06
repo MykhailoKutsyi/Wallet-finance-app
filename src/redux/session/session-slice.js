@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register, logOut, logIn } from './session-operations';
+import { register, logOut, logIn, refresh } from './session-operations';
 
 const initialState = {
   error: null,
@@ -28,7 +28,7 @@ const sessionSlice = createSlice({
       state.error = true;
     },
     [logIn.fulfilled](state, { payload }) {
-      state.user = payload.user;
+      // state.user = payload.user;
       state.token = payload.token;
       state.isAuth = true;
     },
@@ -39,6 +39,10 @@ const sessionSlice = createSlice({
       state.user = { name: null, email: null };
       state.token = null;
       state.session.isAuth = false;
+    },
+    [refresh.fulfilled](state, { payload }) {
+      state.user = payload;
+      state.isAuth = true;
     },
   },
 });

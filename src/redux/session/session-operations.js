@@ -3,8 +3,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-axios.defaults.baseURL = 'http://wallet-backend-app-api.herokuapp.com/';
-//axios.defaults.baseURL = 'http://localhost:5000/';
+axios.defaults.baseURL = 'https://wallet-backend-app-api.herokuapp.com/';
+// axios.defaults.baseURL = 'http://localhost:5000/';
 
 const token = {
   set(token) {
@@ -52,4 +52,23 @@ const logOut = createAsyncThunk('auth/logout', async thunkAPI => {
   }
 });
 
-export { register, logIn, logOut };
+const refresh = createAsyncThunk(
+  'auth/refresh',
+  async (_, { getState, rejectWithValue }) => {
+    const state = getState();
+    const localStorageToken = state.session.token;
+
+    if (localStorageToken === null) return rejectWithValue();
+
+    token.set(localStorageToken);
+    try {
+      const { data } = await axios.get('/api/auth/current');
+      console.log(data);
+      return data;
+    } catch (error) {
+      rejectWithValue(error.message);
+    }
+  }
+);
+
+export { register, logIn, logOut, refresh };
