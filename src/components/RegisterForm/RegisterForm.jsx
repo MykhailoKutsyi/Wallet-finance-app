@@ -124,7 +124,7 @@ function Registration() {
             </InputContainer>
 
             <Btn type="submit" disabled={isSubmitting}>
-              <BtnTitle>REGISTER</BtnTitle>
+              {isSubmitting? <BtnTitle>LOADING...</BtnTitle>: <BtnTitle>REGISTER</BtnTitle>}
             </Btn>
             <Link to="/login">
               <LinkTitle>LOG IN</LinkTitle>
