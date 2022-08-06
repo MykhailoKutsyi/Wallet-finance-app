@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik, ErrorMessage } from 'formik';
 import RegisterValidation from './RegisterValidation';
 import { useDispatch } from 'react-redux';
-import { register } from '../../redux/session/session-operations';
+import { register } from 'redux/session/session-operations';
 import {
   FormContainer,
   Logo,
