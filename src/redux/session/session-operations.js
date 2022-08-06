@@ -44,15 +44,18 @@ const logIn = createAsyncThunk(
   }
 );
 
-const logOut = createAsyncThunk('auth/logout', async ({ rejectWithValue }) => {
-  try {
-    await axios.get('/api/auth/logout');
-    token.unset('');
-  } catch (error) {
-    toast.error('Something went wrong. Try again,please');
-    return rejectWithValue();
+const logOut = createAsyncThunk(
+  'auth/logout',
+  async (_, { rejectWithValue }) => {
+    try {
+      await axios.get('/api/auth/logout');
+      token.unset('');
+    } catch (error) {
+      toast.error('Something went wrong. Try again,please');
+      return rejectWithValue();
+    }
   }
-});
+);
 
 const refresh = createAsyncThunk(
   'auth/refresh',
