@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'nodejs-rest-api-heroku.herokuapp.com/';
 const totalBalance = createAsyncThunk(
   'finance/totalBalance',
   async (credentials, thunkAPI) => {
