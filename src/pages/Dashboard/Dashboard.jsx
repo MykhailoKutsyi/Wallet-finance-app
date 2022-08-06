@@ -94,7 +94,7 @@ export default function Dashboard() {
       <Media queries={{ mobile: '(max-width: 767px)' }}>
         {matches =>
           matches.mobile &&
-          LOADING &&
+          !LOADING &&
           VIEW_CURRENCY && (
             <DashboardWrapper>
               <Navigation
