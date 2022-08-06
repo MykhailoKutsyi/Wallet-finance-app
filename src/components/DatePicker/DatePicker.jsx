@@ -1,19 +1,28 @@
 import { DatePickWrapper, DatePickHeader, DatePickSubheader, SubHeaderSpan, Input, Form } from './DatePicker.styled';
+import Datetime from 'react-datetime';
+import "react-datetime/css/react-datetime.css";
 
 const DatePicker = ({ onChange }) => {
 
   return (
-    <DatePickWrapper>
-      <DatePickHeader>Enter date period</DatePickHeader>
-      <DatePickSubheader>
-        <SubHeaderSpan>From:</SubHeaderSpan>
-        <SubHeaderSpan>To:</SubHeaderSpan>
-      </DatePickSubheader>
-      <Form>
-        <Input type="date" placeholder="Please input date" id="firstDate" onChange={onChange} />
-        <Input type="date" placeholder="Please input date" id="secondDate" onChange={onChange} />
-      </Form>
-    </DatePickWrapper>
+      <>
+      <Datetime
+        dateFormat="YYYY"
+        timeFormat={false}
+        onClose={(event) => {
+          onChange(event, "year");
+        }}
+      />
+      
+      <Datetime
+        dateFormat="MM"
+        timeFormat={false}
+        onClose={(event) => {
+          onChange(event, "month");
+        }}
+      />
+      </>
+
   )
 }
 

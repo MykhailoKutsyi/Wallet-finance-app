@@ -17,14 +17,16 @@ import {
 const AppBar = () => {
   const dispatch = useDispatch();
 
-  const name = useSelector(sessionSelectors.getUserName);
+  // const name = useSelector(sessionSelectors.getUserName);
   const isLogoutModalOpen = useSelector(globalSelectors.getIsModalLogout);
 
   return (
     <Header>
       <Logo />
       <RightSideGroup>
-        <UserName>{name}</UserName>
+        {/* <UserName>{name}</UserName> */}
+        <UserName>Somebody</UserName>
+
         <ExitBtn onClick={() => dispatch(toggleModalLogout())}>
           <BtnIconWrapper>
             <use href={`${sprite}#icon-exit`} />

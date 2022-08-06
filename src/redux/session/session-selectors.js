@@ -4,6 +4,8 @@ const getUserName = state => state.session.user.name;
 
 const getUser = state => state.session.user;
 
-const sessionSelectors = { getIsAuth, getUserName, getUser };
+const getTotalBalance = state => state.session.user.balance;
+
+const sessionSelectors = { getIsAuth, getUserName, getUser, getTotalBalance };
 
 export default sessionSelectors;

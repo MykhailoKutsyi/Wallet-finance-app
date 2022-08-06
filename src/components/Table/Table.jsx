@@ -13,8 +13,8 @@ import {
     TotalIncValue
 } from "./Table.styled";
 
-const Table = ({ data, expenses, income, onDateInput }) => {
-    // console.log(data);
+const Table = ({ data, expenses, income }) => {
+    console.log(data);
     
     return (
         <TableWrapper>
