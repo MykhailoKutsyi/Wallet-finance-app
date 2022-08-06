@@ -4,7 +4,6 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 axios.defaults.baseURL = 'https://wallet-backend-app-api.herokuapp.com/';
-// axios.defaults.baseURL = 'http://localhost:5000/';
 
 const token = {
   set(token) {
@@ -15,21 +14,24 @@ const token = {
   },
 };
 
-const register = createAsyncThunk('register', async (credentials, thunkAPI) => {
-  try {
-    const { data } = await axios.post('/api/auth/users/signup', credentials);
-    token.set(data.token);
-    toast('Welcome to wallet');
-    return data;
-  } catch (error) {
-    toast.error('Email in use');
-    return thunkAPI.rejectWithValue();
+const register = createAsyncThunk(
+  'register',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post('/api/auth/users/signup', credentials);
+      token.set(data.token);
+      toast('Welcome to wallet');
+      return data;
+    } catch (error) {
+      toast.error('Email in use');
+      return rejectWithValue();
+    }
   }
-});
+);
 
 const logIn = createAsyncThunk(
   '/users/login',
-  async (credentials, thunkAPI) => {
+  async (credentials, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/api/auth/users/login', credentials);
       token.set(data.token);
@@ -37,20 +39,23 @@ const logIn = createAsyncThunk(
       return data;
     } catch (error) {
       toast.error('E-mail or password is wrong');
-      return thunkAPI.rejectWithValue();
+      return rejectWithValue();
     }
   }
 );
 
-const logOut = createAsyncThunk('auth/logout', async thunkAPI => {
-  try {
-    await axios.post('/api/auth/logout');
-    token.unset('');
-  } catch (error) {
-    toast.error('Something went wrong. Try again,please');
-    return thunkAPI.rejectWithValue();
+const logOut = createAsyncThunk(
+  'auth/logout',
+  async (_, { rejectWithValue }) => {
+    try {
+      await axios.get('/api/auth/logout');
+      token.unset('');
+    } catch (error) {
+      toast.error('Something went wrong. Try again,please');
+      return rejectWithValue();
+    }
   }
-});
+);
 
 const refresh = createAsyncThunk(
   'auth/refresh',

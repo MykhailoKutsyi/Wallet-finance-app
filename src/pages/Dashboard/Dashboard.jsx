@@ -15,9 +15,9 @@ import ButtonAddTransactions from 'components/ButtonAddTransactions/ButtonAddTra
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { refresh } from 'redux/session/session-operations';
-import financeOperations from 'redux/finance/finance-operations';
 import sessionSelectors from 'redux/session/session-selectors';
 import globalSelectors from 'redux/global/global-selectors';
+import { getCurrentTransactions } from 'redux/finance/finance-operations';
 
 // import styled components
 import {
@@ -40,7 +40,7 @@ export default function Dashboard() {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(financeOperations.getCurrentTransactions());
+    dispatch(getCurrentTransactions());
   }, []);
 
   // const [width, setWidth] = useState(window.innerWidth);

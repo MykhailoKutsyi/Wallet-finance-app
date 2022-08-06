@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "image": "https://avatars.githubusercontent.com/u/91030243?v=4",
+    "name": "Mykhailo Kutsyi",
+    "role": "Team Lead",
+    "link": "https://github.com/MykhailoKutsyi"
+  },
+  {
+    "id": 2,
+    "image": "https://avatars.githubusercontent.com/u/87721107?v=4",
+    "name": "Bohdan Shparuk",
+    "role": "Scrum master",
+    "link": "https://github.com/stargazinghero"
+  },
+  {
+    "id": 3,
+    "image": "https://avatars.githubusercontent.com/u/91738263?v=4",
+    "name": "Osadchyi Nikita",
+    "role": "Developer",
+    "link": "https://github.com/NikitaOsa7"
+  },
+  {
+    "id": 4,
+    "image": "https://avatars.githubusercontent.com/u/77636476?v=4",
+    "name": "Akim Grakovskiy",
+    "role": "Frontend Developer",
+    "link": "https://github.com/Akim3351"
+  },
+  {
+    "id": 5,
+    "image": "https://avatars.githubusercontent.com/u/74345435?v=4",
+    "name": "Andriy Lesyk",
+    "role": "Frontend Developer",
+    "link": "https://github.com/Andriy-Lesyk"
+  },
+  {
+    "id": 6,
+    "image": "https://avatars.githubusercontent.com/u/62342343?v=4",
+    "name": "Orlovskiy Pavlo",
+    "role": "Developer",
+    "link": "https://github.com/Lorengreyn"
+  },
+  {
+    "id": 7,
+    "image": "https://avatars.githubusercontent.com/u/89809418?v=4",
+    "name": "Skuba Anatolii",
+    "role": "Developer",
+    "link": "https://github.com/AnatoliiSkuba"
+  },
+  {
+    "id": 8,
+    "image": "https://avatars.githubusercontent.com/u/87702429?v=4",
+    "name": "Alex Krasnobokyi",
+    "role": "Backend Developer",
+    "link": "https://github.com/AlexxRed/Wallet-BackEnd"
+  }
+]

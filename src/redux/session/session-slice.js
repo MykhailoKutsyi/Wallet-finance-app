@@ -21,14 +21,12 @@ const sessionSlice = createSlice({
   extraReducers: {
     [register.fulfilled](state, { payload }) {
       state.user = payload.user;
-      state.token = payload.token;
       state.isAuth = true;
     },
     [register.rejected](state) {
       state.error = true;
     },
     [logIn.fulfilled](state, { payload }) {
-      // state.user = payload.user;
       state.token = payload.token;
       state.isAuth = true;
     },
@@ -38,7 +36,7 @@ const sessionSlice = createSlice({
     [logOut.fulfilled](state) {
       state.user = { name: null, email: null };
       state.token = null;
-      state.session.isAuth = false;
+      state.isAuth = false;
     },
     [refresh.fulfilled](state, { payload }) {
       state.user = payload;
