@@ -75,7 +75,7 @@ function Login() {
               </Error>
             </InputContainer>
             <Btn type="submit" disabled={isSubmitting}>
-              <BtnTitle>LOG IN</BtnTitle>
+              {isSubmitting? <BtnTitle>LOADING...</BtnTitle>: <BtnTitle>LOG IN</BtnTitle>}
             </Btn>
             <Link to="/register">
               <LinkTitle>REGISTER</LinkTitle>
