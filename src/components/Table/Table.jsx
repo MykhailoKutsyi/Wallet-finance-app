@@ -13,8 +13,7 @@ import {
     TotalIncValue
 } from "./Table.styled";
 
-const Table = ({ data, expenses, income, onDateInput }) => {
-    // console.log(data);
+const Table = ({ data, expenses, income }) => {
     
     return (
         <TableWrapper>
@@ -32,7 +31,6 @@ const Table = ({ data, expenses, income, onDateInput }) => {
                 <TableBody>
                     {
                         data.map(item => {
-                            // console.log(item);
                             return (
                                 <TableRow key={ item.expense }>
                                     <TableCell>
