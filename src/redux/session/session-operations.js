@@ -70,7 +70,10 @@ const refresh = createAsyncThunk(
       const { data } = await axios.get('/api/auth/current');
       return data;
     } catch (error) {
-      rejectWithValue(error.message);
+      if (error.response.status === 401) {
+        toast.error('Session expired. Please, log in again');
+      }
+      return rejectWithValue();
     }
   }
 );

@@ -10,7 +10,7 @@ const initialState = {
 
   user: {
     id: '',
-    name: '',
+    name: 'Unknown',
     email: '',
     balance: '',
   },
@@ -42,6 +42,9 @@ const sessionSlice = createSlice({
     [refresh.fulfilled](state, { payload }) {
       state.user = payload;
       state.isAuth = true;
+    },
+    [refresh.rejected](state) {
+      state.isAuth = false;
     },
   },
 });
