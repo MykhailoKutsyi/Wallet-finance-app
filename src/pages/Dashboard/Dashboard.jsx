@@ -58,10 +58,6 @@ export default function Dashboard() {
 
   useEffect(() => {}, [viewCurrency]);
 
-  // 1. Взять id текущего пользователя через селектор -
-  // 2. Сделать запрос за балансом текущего пользователя и записать баланс в state.finance.balance +
-  // 3. Сделать запрос за транзакциями текщуего пользователя и записать их в state.finance.data +
-
   const VIEW_CURRENCY = viewCurrency === true;
   const VIEW_HOME = viewCurrency === false;
   const LOADING = isLoading === true;
