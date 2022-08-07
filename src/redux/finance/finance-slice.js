@@ -20,6 +20,12 @@ const financeSlice = createSlice({
     [financeOperations.transactions.fulfilled](state, { payload }) {
       state.data = payload;
     },
+    [financeOperations.createTransactions.fulfilled](state, { payload }) {
+      return [payload, ...state];
+    },
+    [financeOperations.categories.fulfilled](_, { payload }) {
+      return payload;
+    },
   },
 });
 

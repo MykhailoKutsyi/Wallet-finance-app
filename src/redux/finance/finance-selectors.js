@@ -4,6 +4,7 @@ const getIsModalLogout = state => state.global.isModalLogoutOpen;
 const getIsLoading = state => state.global.isLoading;
 const getTotalBalance = state => state.finance.totalBalance;
 const getTransactions = state => state.finance.transactions;
+const getCategories = state => state.finance.categories;
 
 const globalSelectors = {
   getIsModalAddTransaction,
@@ -11,6 +12,7 @@ const globalSelectors = {
   getIsLoading,
   getTotalBalance,
   getTransactions,
+  getCategories,
 };
 
 export default globalSelectors;

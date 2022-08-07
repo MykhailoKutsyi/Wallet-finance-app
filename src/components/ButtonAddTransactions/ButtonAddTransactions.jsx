@@ -4,10 +4,12 @@ import {
   BtnIconWrapper,
 } from './ButtonAddTransactions.styled';
 import { toggleModalAddTransaction } from 'redux/global/global-slice';
+
 import { useDispatch } from 'react-redux';
 
 const ButtonAddTransactions = () => {
   const dispatch = useDispatch();
+
   return (
     <BtnAddTransactions
       type="button"

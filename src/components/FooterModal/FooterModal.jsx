@@ -1,5 +1,11 @@
 import React, { useEffect } from 'react';
-import { Modal, ModalTitle, Overlay, CloseBtn, CloseIcon } from './FooterModal.styled';
+import {
+  Modal,
+  ModalTitle,
+  Overlay,
+  CloseBtn,
+  CloseIcon,
+} from './FooterModal.styled';
 import TeamList from '../TeamList/TeamList';
 
 function FooterModal({ onClose }) {
@@ -25,9 +31,11 @@ function FooterModal({ onClose }) {
   return (
     <Overlay onClick={handleBackdropClick}>
       <Modal>
-        <ModalTitle >EightUp</ModalTitle>
+        <ModalTitle>EightUp</ModalTitle>
         <TeamList />
-        <CloseBtn onClick={onClose}><CloseIcon/></CloseBtn>
+        <CloseBtn onClick={onClose}>
+          <CloseIcon />
+        </CloseBtn>
       </Modal>
     </Overlay>
   );

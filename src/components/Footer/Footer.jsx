@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
-import {
-  Container,
-  FooterText,
-  HeartIcon,
-  ModalBtn,
-} from './Footer.styled';
-import FooterModal from '../FooterModal/FooterModal'
+import { Container, FooterText, HeartIcon, ModalBtn } from './Footer.styled';
+import FooterModal from '../FooterModal/FooterModal';
 
 function Footer() {
   const [showModal, setShowModal] = useState(false);
@@ -16,13 +11,15 @@ function Footer() {
 
   return (
     <Container>
+      <FooterText>&copy; 2022 | All Rights Reserved </FooterText>
       <FooterText>
-        &copy; 2022 | All Rights Reserved </FooterText><FooterText>| Developed with <HeartIcon /> by{' '}</FooterText>
-      
-      <ModalBtn type="button" onClick={openModal}>EightUp</ModalBtn>
-      {showModal&&(
-      <FooterModal onClose={closeModal} showModal={showModal}/>
-      )}
+        | Developed with <HeartIcon /> by{' '}
+      </FooterText>
+
+      <ModalBtn type="button" onClick={openModal}>
+        EightUp
+      </ModalBtn>
+      {showModal && <FooterModal onClose={closeModal} showModal={showModal} />}
     </Container>
   );
 }

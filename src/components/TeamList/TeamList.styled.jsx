@@ -38,7 +38,7 @@ export const TeamItemName = styled.p`
 `;
 export const TeamItemRole = styled.p`
   font-size: 13px;
-    @media screen and (min-width: 320px) {
+  @media screen and (min-width: 320px) {
     display: none;
   }
   @media screen and (min-width: 768px) {
@@ -53,4 +53,3 @@ export const TeamItemSocials = styled(BsGithub)`
     display: inline;
   }
 `;
-

@@ -7,7 +7,6 @@ import {
   TeamItemRole,
   TeamItemName,
   TeamItemSocials,
-  
 } from './TeamList.styled';
 
 function TeamList() {
