@@ -38,6 +38,8 @@ const HomeTab = () => {
   const totalBalance = useSelector(state => state.finance.totalBalance);
   const currentPage = useSelector(state => state.finance.page);
   const limit = useSelector(state => state.finance.limit);
+  // const nextPage = useSelector(state => state.finance.page);
+  // const page = useSelector(state => state.finance.page);
 
   const [sortTransactions, setSortTransactions] = useState([]);
   const balanceString = totalBalance.toString();
@@ -62,7 +64,7 @@ const HomeTab = () => {
     await dispatch(
       financeOperations.getCurrentTransactions({
         page: currentPage,
-        limit: limit,
+        limit,
       })
     );
   };

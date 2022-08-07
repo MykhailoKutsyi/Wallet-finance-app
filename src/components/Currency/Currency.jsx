@@ -48,7 +48,7 @@ const Currency = () => {
       setRate(JSON.parse(oldRate));
       return;
     }
-  }, [error]);
+  }, [error, rate]);
 
   async function exchangeQuery() {
     setLoading(true);

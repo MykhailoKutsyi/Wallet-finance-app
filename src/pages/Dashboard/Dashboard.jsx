@@ -1,5 +1,5 @@
 // libs
-import Media from 'react-media';
+// import Media from 'react-media';
 
 // import components
 
@@ -33,22 +33,18 @@ export default function Dashboard() {
   const [viewCurrency, setViewCurrency] = useState(false);
 
   const isLoading = useSelector(globalSelectors.getIsLoading);
-  const nextPage = useSelector(state => state.finance.page);
-  const limit = useSelector(state => state.finance.limit);
+  // const page = useSelector(state => state.finance.page);
+  // const limit = useSelector(state => state.finance.limit);
+  // const totalPages = useSelector(state => state.finance.totalPages);
 
   useEffect(() => {
     dispatch(refresh());
+    dispatch(financeOperations.getCurrentTransactions({ page: 1, limit: 5 }));
   }, [dispatch]);
 
-  useEffect(() => {
-    console.log(nextPage);
-    dispatch(
-      financeOperations.getCurrentTransactions({
-        page: nextPage,
-        limit: limit,
-      })
-    );
-  }, []);
+  // useEffect(() => {
+  //   dispatch(financeOperations.getCurrentTransactions({ page: 1, limit: 5 }));
+  // }, [dispatch]);
 
   window.addEventListener('resize', function () {
     if (window.innerWidth > 768) {
@@ -61,6 +57,7 @@ export default function Dashboard() {
   const VIEW_CURRENCY = viewCurrency === true;
   const VIEW_HOME = viewCurrency === false;
   const LOADING = isLoading === true;
+
   return (
     <DashboardContainer>
       {LOADING && (
