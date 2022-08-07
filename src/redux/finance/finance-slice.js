@@ -6,7 +6,7 @@ const initialState = {
   data: [],
   error: null,
   loading: false,
-  totalBalance: 28000, //null
+  totalBalance: 0,
   page: 1,
   limit: 5,
   totalPages: 1,
@@ -30,6 +30,12 @@ const financeSlice = createSlice({
     [financeOperations.getCurrentTransactions.rejected]: (state, action) => {
       state.loading = false;
       state.error = true;
+    },
+    [financeOperations.createTransactions.fulfilled]: (state, { payload }) => {
+      state.totalBalance = payload.balance;
+    },
+    [financeOperations.categories.fulfilled](state, { payload }) {
+      state.categories = payload;
     },
   },
 });

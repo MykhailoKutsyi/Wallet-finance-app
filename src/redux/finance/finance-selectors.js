@@ -5,6 +5,7 @@ const getTotalPages = state => state.finance.totalPages;
 const getPage = state => state.finance.page;
 const getLimit = state => state.finance.limit;
 const getLoadingStaus = state => state.finance.loading;
+const getCategories = state => state.finance.categories;
 
 const financeSelectors = {
   getCurrentTransactions,
@@ -14,6 +15,7 @@ const financeSelectors = {
   getPage,
   getLimit,
   getLoadingStaus,
+  getCategories,
 };
 
 export default financeSelectors;
