@@ -1,11 +1,14 @@
-import { DatePickWrapper, DatePickHeader, DatePickSubheader, SubHeaderSpan, Input, Form } from './DatePicker.styled';
+import {
+  DatePickWrapper,
+  DatePickHeader,
+  DatePickSubheader,
+  SubHeaderSpan,
+  Form,
+} from './DatePicker.styled';
 import Datetime from 'react-datetime';
-import "react-datetime/css/react-datetime.css";
-
-
+import 'react-datetime/css/react-datetime.css';
 
 const DatePicker = ({ onChange }) => {
-
   return (
     <DatePickWrapper>
       <DatePickHeader>Enter period</DatePickHeader>
@@ -14,24 +17,24 @@ const DatePicker = ({ onChange }) => {
         <SubHeaderSpan>Month:</SubHeaderSpan>
       </DatePickSubheader>
       <Form>
-      <Datetime
-        dateFormat="YYYY"
-        timeFormat={false}
-        onClose={(event) => {
-          onChange(event, "year");
-        }}
-      />
+        <Datetime
+          dateFormat="YYYY"
+          timeFormat={false}
+          onClose={event => {
+            onChange(event, 'year');
+          }}
+        />
 
-      <Datetime
-        dateFormat="MM"
-        timeFormat={false}
-        onClose={(event) => {
-          onChange(event, "month");
-        }}
-      />
+        <Datetime
+          dateFormat="MM"
+          timeFormat={false}
+          onClose={event => {
+            onChange(event, 'month');
+          }}
+        />
       </Form>
     </DatePickWrapper>
-  )
-}
+  );
+};
 
 export default DatePicker;
