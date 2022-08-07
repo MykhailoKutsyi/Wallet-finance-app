@@ -1,11 +1,8 @@
-import sprite from 'images/sprite.svg';
-import {
-  BtnAddTransactions,
-  BtnIconWrapper,
-} from './ButtonAddTransactions.styled';
+import { BtnAddTransactions } from './ButtonAddTransactions.styled';
 import { toggleModalAddTransaction } from 'redux/global/global-slice';
 
 import { useDispatch } from 'react-redux';
+import Icon from 'components/Icon/Icon';
 
 const ButtonAddTransactions = () => {
   const dispatch = useDispatch();
@@ -15,9 +12,7 @@ const ButtonAddTransactions = () => {
       type="button"
       onClick={() => dispatch(toggleModalAddTransaction())}
     >
-      <BtnIconWrapper>
-        <use href={`${sprite}#icon-plus`} />
-      </BtnIconWrapper>
+      <Icon id={'#icon-plus'} width={20} height={20} />
     </BtnAddTransactions>
   );
 };

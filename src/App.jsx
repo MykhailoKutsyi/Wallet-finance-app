@@ -10,6 +10,7 @@ import AppBar from './components/AppBar/AppBar';
 import Loader from './components/Loader/Loader';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import PublicRoute from './components/PublicRoute/PublicRoute';
+import CustomRoute from './components/CustomRoute/CustomRoute';
 import Footer from 'components/Footer/Footer';
 const Login = lazy(() => import('./pages/Auth/LoginPage/LoginPage'));
 const Register = lazy(() => import('./pages/Auth/RegisterPage/RegisterPage'));
@@ -46,7 +47,7 @@ export default function App() {
           <Route
             path="register"
             element={
-              <PublicRoute restricted>
+              <PublicRoute>
                 <NavLink to="/register">| REGISTER |</NavLink>
                 <NavLink to="/login">| LOGIN |</NavLink>
                 <NavLink to="/home">| HOME |</NavLink>
@@ -59,7 +60,7 @@ export default function App() {
           <Route
             path="login"
             element={
-              <PublicRoute restricted>
+              <PublicRoute>
                 <NavLink to="/register">| REGISTER |</NavLink>
                 <NavLink to="/login">| LOGIN |</NavLink>
                 <NavLink to="/home">| HOME |</NavLink>
@@ -72,7 +73,7 @@ export default function App() {
           <Route
             path="diagram"
             element={
-              <ProtectedRoute restricted>
+              <ProtectedRoute>
                 <AppBar />
 
                 <NavLink to="/register">| REGISTER |</NavLink>
@@ -83,6 +84,7 @@ export default function App() {
               </ProtectedRoute>
             }
           />
+          <Route path="*" element={<CustomRoute />} />
         </Routes>
       </Suspense>
       <Footer />
