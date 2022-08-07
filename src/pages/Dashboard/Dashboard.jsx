@@ -1,6 +1,3 @@
-// libs
-// import Media from 'react-media';
-
 // import components
 
 import HomeTab from 'components/HomeTab/HomeTab';
@@ -16,6 +13,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { refresh } from 'redux/session/session-operations';
 import globalSelectors from 'redux/global/global-selectors';
 import financeOperations from 'redux/finance/finance-operations';
+import financeSelectors from 'redux/finance/finance-selectors';
 
 // import styled components
 import {
@@ -31,20 +29,16 @@ export default function Dashboard() {
   const dispatch = useDispatch();
 
   const [viewCurrency, setViewCurrency] = useState(false);
-
   const isLoading = useSelector(globalSelectors.getIsLoading);
-  // const page = useSelector(state => state.finance.page);
-  // const limit = useSelector(state => state.finance.limit);
-  // const totalPages = useSelector(state => state.finance.totalPages);
+  const transactions = useSelector(financeSelectors.getCurrentTransactions);
 
   useEffect(() => {
+    if (transactions.length > 0) {
+      return;
+    }
     dispatch(refresh());
     dispatch(financeOperations.getCurrentTransactions({ page: 1, limit: 5 }));
-  }, [dispatch]);
-
-  // useEffect(() => {
-  //   dispatch(financeOperations.getCurrentTransactions({ page: 1, limit: 5 }));
-  // }, [dispatch]);
+  }, [dispatch, transactions]);
 
   window.addEventListener('resize', function () {
     if (window.innerWidth > 768) {

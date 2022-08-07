@@ -9,6 +9,7 @@ const initialState = {
   token: null,
 
   user: {
+    id: '',
     name: '',
     email: '',
     balance: '',
