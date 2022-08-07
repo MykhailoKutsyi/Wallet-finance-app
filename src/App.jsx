@@ -86,7 +86,7 @@ export default function App() {
           />
         </Routes>
       </Suspense>
-      <Footer/>
+      <Footer />
       <ToastContainer />
     </Container>
   );

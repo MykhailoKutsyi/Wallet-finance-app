@@ -1,16 +1,11 @@
-const getIsModalAddTransaction = state =>
-  state.global.isModalAddTransactionOpen;
-const getIsModalLogout = state => state.global.isModalLogoutOpen;
-const getIsLoading = state => state.global.isLoading;
+const getCurrentTransactions = state => state.finance.data;
 const getTotalBalance = state => state.finance.totalBalance;
 const getTransactions = state => state.finance.transactions;
 
-const globalSelectors = {
-  getIsModalAddTransaction,
-  getIsModalLogout,
-  getIsLoading,
+const financeSelectors = {
+  getCurrentTransactions,
   getTotalBalance,
   getTransactions,
 };
 
-export default globalSelectors;
+export default financeSelectors;

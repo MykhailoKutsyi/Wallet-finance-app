@@ -1,28 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const totalBalance = createAsyncThunk(
-  'finance/totalBalance',
-  async (credentials, thunkAPI) => {
-    try {
-      const { data } = await axios.get(
-        '/api/finance/totalbalance',
-        credentials
-      );
-      return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue();
-    }
-  }
-);
+// axios.defaults.baseURL = 'http://wallet-backend-app-api.herokuapp.com/';
 
-const transactions = createAsyncThunk(
+const getCurrentTransactions = createAsyncThunk(
   'finance/transactions',
-  async (credentials, thunkAPI) => {
+  async ({ page, limit }, thunkAPI) => {
     try {
       const { data } = await axios.get(
-        '/api/finance/totalbalance',
-        credentials
+        `/api/transactions?page=${page}&limit=${limit}`
       );
       return data;
     } catch (error) {
@@ -31,5 +17,6 @@ const transactions = createAsyncThunk(
   }
 );
 
-const financeOperations = { totalBalance, transactions };
+const financeOperations = { getCurrentTransactions };
+
 export default financeOperations;
