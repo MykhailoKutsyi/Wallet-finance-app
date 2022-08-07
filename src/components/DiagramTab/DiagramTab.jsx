@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import globalSelectors from 'redux/finance/finance-selectors';
+import financeSelectors from 'redux/finance/finance-selectors';
 import { ToastContainer } from 'react-toastify';
 // import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -20,11 +20,11 @@ const DiagramTab = () => {
 
   const currentBalance = useSelector(sessionSelectors.getTotalBalance);
   const dataForDiagramTable = useSelector(
-    globalSelectors.getDataForDiagramTable
+    financeSelectors.getDataForDiagramTable
   );
-  const dataForChart = useSelector(globalSelectors.getDataForChart);
-  const income = useSelector(globalSelectors.getIncome);
-  const expenses = useSelector(globalSelectors.getExpenses);
+  const dataForChart = useSelector(financeSelectors.getDataForChart);
+  const income = useSelector(financeSelectors.getIncome);
+  const expenses = useSelector(financeSelectors.getExpenses);
 
   console.log(expenses, income);
   useEffect(() => {
