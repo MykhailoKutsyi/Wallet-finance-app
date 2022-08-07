@@ -31,6 +31,12 @@ const financeSlice = createSlice({
       state.loading = false;
       state.error = true;
     },
+    [financeOperations.createTransactions.fulfilled](state, { payload }) {
+      return [payload, ...state];
+    },
+    [financeOperations.categories.fulfilled](_, { payload }) {
+      return payload;
+    },
   },
 });
 
