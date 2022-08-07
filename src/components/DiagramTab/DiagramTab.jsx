@@ -1,43 +1,44 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import globalSelectors from 'redux/finance/finance-selectors';
-import { toast, ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
+// import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Chart from "../Chart/Chart";
-import Table from "../Table/Table";
+import Chart from '../Chart/Chart';
+import Table from '../Table/Table';
 import DatePicker from 'components/DatePicker/DatePicker';
-import { Wrapper, SubWrapper } from "./DiagramTab.styled";
+import { Wrapper, SubWrapper } from './DiagramTab.styled';
 import { useEffect } from 'react';
-import financeOperations from "../../redux/finance/finance-operations";
+import financeOperations from '../../redux/finance/finance-operations';
 import sessionSelectors from 'redux/session/session-selectors';
 
-
-
 const DiagramTab = () => {
-
   const dispatch = useDispatch();
 
   const [monthForFilter, setMonthForFilter] = useState(null);
   const [yearForFilter, setYearForFilter] = useState(null);
-    
 
   const currentBalance = useSelector(sessionSelectors.getTotalBalance);
-  const dataForDiagramTable = useSelector(globalSelectors.getDataForDiagramTable);
+  const dataForDiagramTable = useSelector(
+    globalSelectors.getDataForDiagramTable
+  );
   const dataForChart = useSelector(globalSelectors.getDataForChart);
   const income = useSelector(globalSelectors.getIncome);
   const expenses = useSelector(globalSelectors.getExpenses);
-
 
   console.log(expenses, income);
   useEffect(() => {
     if (!yearForFilter || !monthForFilter) {
       return;
     }
-    dispatch(financeOperations.getTransactionsInfo({ month: monthForFilter, year: yearForFilter, }));
-    
-    
-  }, [yearForFilter, monthForFilter]);
-  
+    dispatch(
+      financeOperations.getTransactionsInfo({
+        month: monthForFilter,
+        year: yearForFilter,
+      })
+    );
+  }, [dispatch, yearForFilter, monthForFilter]);
+
   const onDateInput = (event, name) => {
     console.log(event, name);
 
@@ -45,50 +46,44 @@ const DiagramTab = () => {
       return;
     }
 
-    if (name === "year") {
+    if (name === 'year') {
       const year = event._d.getFullYear();
       setYearForFilter(year);
     }
-    if (name === "month") {
+    if (name === 'month') {
       const month = event._d.getMonth() + 1;
       setMonthForFilter(month);
     }
 
-    
-    
     // const { id, value } = event.currentTarget;
     // setDatesForFilter({ ...datesForFilter, [id]: value });
     // console.log(datesForFilter);
-  }
-  
+  };
+
   return (
     <Wrapper>
-      {expenses > 0 ?
-        <Chart
-          dataForChart={dataForChart}
-          currentBalance={currentBalance}
-        />
-        :
-        <h2 style={{ padding: '200px 50px', width: '50%' }}> Sorry, no expenses to display. Please, set date range including any transactions</h2>}
+      {expenses > 0 ? (
+        <Chart dataForChart={dataForChart} currentBalance={currentBalance} />
+      ) : (
+        <h2 style={{ padding: '200px 50px', width: '50%' }}>
+          {' '}
+          Sorry, no expenses to display. Please, set date range including any
+          transactions
+        </h2>
+      )}
       <SubWrapper>
-        <DatePicker
-          onChange={onDateInput}
-        />
+        <DatePicker onChange={onDateInput} />
 
-        <Table
-          data={dataForDiagramTable}
-          expenses={expenses}
-          income={income}
-          />
+        <Table data={dataForDiagramTable} expenses={expenses} income={income} />
       </SubWrapper>
       <ToastContainer />
     </Wrapper>
-  )
+  );
 };
 
 export default DiagramTab;
 
-// Example of response from backend: 
+// Example of response from backend:
 // [
 //   {
 //     "amount": 500,
