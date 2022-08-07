@@ -8,19 +8,24 @@ export const BtnAddTransactions = styled.button`
   border-radius: 50%;
   background-color: var(--light-green-color);
   box-shadow: 0px 6px 15px rgba(36, 204, 167, 0.5);
+
+  // чтобы свг стояла в центре:
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: fixed;
+
+  bottom: 40px;
+  right: 40px;
   &:hover,
   &:focus {
     background-color: var(--light-green-hover-color);
   }
   @media (max-width: 767px) {
-    margin: auto 40px 40px auto;
+    bottom: 20px;
+    right: 20px;
   }
-`;
-
-export const BtnIconWrapper = styled.svg`
-  height: 20px;
-  width: 20px;
-
   &:hover {
     cursor: pointer;
   }

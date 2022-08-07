@@ -8,7 +8,6 @@ import sessionSelectors from 'redux/session/session-selectors';
 
 export default function ProtectedRoute({ children }) {
   const isAuth = useSelector(sessionSelectors.getIsAuth);
-  console.log(isAuth);
   return isAuth ? children : <Navigate to="/login" />;
   // return children;
 }

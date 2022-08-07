@@ -3,13 +3,9 @@ import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import selectors from 'redux/session/session-selectors';
 
-const PublicRoute = ({ children }) => {
+const CustomRoute = () => {
   const isAuth = useSelector(selectors.getIsAuth);
-  return <>{isAuth ? <Navigate to="/" /> : children}</>;
-  // return children;
+  return <>{isAuth ? <Navigate to="/home" /> : <Navigate to="/login" />}</>;
 };
 
-export default PublicRoute;
-// PublicRoute.propTypes = {
-//   children: PropTypes.object.isRequired,
-// };
+export default CustomRoute;

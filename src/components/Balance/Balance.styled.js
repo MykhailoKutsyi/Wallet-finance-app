@@ -10,6 +10,7 @@ export const BalanceBox = styled.div`
   @media (min-width: 768px) {
     width: 336px;
     padding: 8px 40px;
+    margin-top: 28px;
   }
   @media (min-width: 1280px) {
     width: 395px;

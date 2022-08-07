@@ -1,13 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const totalBalance = createAsyncThunk(
-  'finance/totalBalance',
-  async (credentials, thunkAPI) => {
+const getCurrentTransactions = createAsyncThunk(
+  'finance/transactions',
+  async ({ page, limit }, thunkAPI) => {
     try {
       const { data } = await axios.get(
-        '/api/finance/totalbalance',
-        credentials
+        `/api/transactions?page=${page}&limit=${limit}`
       );
       return data;
     } catch (error) {
@@ -16,5 +15,6 @@ const totalBalance = createAsyncThunk(
   }
 );
 
-const financeOperations = { totalBalance };
+const financeOperations = { getCurrentTransactions };
+
 export default financeOperations;

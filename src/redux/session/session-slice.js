@@ -9,7 +9,8 @@ const initialState = {
   token: null,
 
   user: {
-    name: '',
+    id: '',
+    name: 'Unknown',
     email: '',
     balance: '',
   },
@@ -41,6 +42,9 @@ const sessionSlice = createSlice({
     [refresh.fulfilled](state, { payload }) {
       state.user = payload;
       state.isAuth = true;
+    },
+    [refresh.rejected](state) {
+      state.isAuth = false;
     },
   },
 });

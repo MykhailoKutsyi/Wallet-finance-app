@@ -68,10 +68,12 @@ const refresh = createAsyncThunk(
     token.set(localStorageToken);
     try {
       const { data } = await axios.get('/api/auth/current');
-      console.log(data);
       return data;
     } catch (error) {
-      rejectWithValue(error.message);
+      if (error.response.status === 401) {
+        toast.error('Session expired. Please, log in again');
+      }
+      return rejectWithValue();
     }
   }
 );
