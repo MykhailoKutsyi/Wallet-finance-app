@@ -33,18 +33,12 @@ const HomeTab = () => {
   const dispatch = useDispatch();
 
   const transactions = useSelector(financeSelectors.getCurrentTransactions); // redux state => state.finance.data
-  const loading = useSelector(state => state.finance.loading);
-  const totalPages = useSelector(state => state.finance.totalPages);
-  const totalBalance = useSelector(state => state.finance.totalBalance);
-  const currentPage = useSelector(state => state.finance.page);
-  const limit = useSelector(state => state.finance.limit);
-  // const nextPage = useSelector(state => state.finance.page);
-  // const page = useSelector(state => state.finance.page);
-
-  const [sortTransactions, setSortTransactions] = useState([]);
-  const balanceString = totalBalance.toString();
+  const loading = useSelector(financeSelectors.getLoadingStaus);
+  const totalBalance = useSelector(financeSelectors.getTotalBalance);
 
   // sort transactions
+  const [sortTransactions, setSortTransactions] = useState([]);
+  const balanceString = totalBalance.toString();
   useEffect(() => {
     if (transactions && transactions.length !== 0) {
       const copyTransactionsForSort = [...transactions];
@@ -58,20 +52,24 @@ const HomeTab = () => {
     }
   }, [transactions]);
 
+  const nextPage = useSelector(financeSelectors.getPage);
+  const limit = useSelector(financeSelectors.getLimit);
+  const totalPages = useSelector(financeSelectors.getTotalPages);
+
   const handleClick = async e => {
     e.preventDefault();
 
     await dispatch(
       financeOperations.getCurrentTransactions({
-        page: currentPage,
-        limit,
+        page: nextPage,
+        limit: limit,
       })
     );
   };
 
   const LOADING = loading === true;
   const NO_TRASACTIONS = sortTransactions.length === 0;
-  const VIEW_BUTTON = totalPages >= currentPage;
+  const VIEW_BUTTON = totalPages >= nextPage;
 
   return (
     <Transactions>
