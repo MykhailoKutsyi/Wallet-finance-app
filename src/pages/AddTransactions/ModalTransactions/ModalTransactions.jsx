@@ -27,10 +27,11 @@ import {
   TransactContainer,
   TransSumDateCommonBox,
   // TransactCloseBtn,
-} from './ModalTransaction.styled';
+} from './ModalTransactions.styled';
 import { useDispatch } from 'react-redux';
 import financeOperations from 'redux/finance/finance-operations';
 import { toast } from 'react-toastify';
+import { toggleModalAddTransaction } from 'redux/global/global-slice';
 
 export default function AddTransaction({ errors, touched }) {
   const dispatch = useDispatch();
@@ -60,15 +61,18 @@ export default function AddTransaction({ errors, touched }) {
         toast.error('Please enter category');
         return;
       }
-      console.log(values.date);
       const arrDate = values.date.split('-');
       values.year = Number(arrDate[0]);
       values.month = Number(arrDate[1]);
       values.amount = Number(values.amount);
 
-      console.log(values);
       try {
-        await dispatch(financeOperations.createTransactions(values));
+        await dispatch(
+          financeOperations.createTransactions({
+            ...values,
+            type: !values.type,
+          })
+        );
         toast.success('Yeap! Transaction created');
       } catch (error) {
         toast.error(error.message);
@@ -156,11 +160,14 @@ export default function AddTransaction({ errors, touched }) {
             </TransactForm>
           </TransactBox>
         </Formik>
-        <TransactBtnCncl>Cancel</TransactBtnCncl>
+
+        <TransactBtnCncl
+          type="button"
+          onClick={() => dispatch(toggleModalAddTransaction())}
+        >
+          Cancel
+        </TransactBtnCncl>
       </TransactContainer>
     </TransactBackdrop>
   );
 }
-// .split(".")
-// .reverse()
-// .join("-")

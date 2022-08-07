@@ -6,6 +6,7 @@ import Balance from 'components/Balance';
 import Currency from 'components/Currency/Currency';
 import Loader from 'components/Loader/Loader';
 import ButtonAddTransactions from 'components/ButtonAddTransactions/ButtonAddTransactions';
+import ModalTransactions from '../AddTransactions/ModalTransactions/ModalTransactions';
 
 // redux/react
 import { useEffect, useState } from 'react';
@@ -31,6 +32,9 @@ export default function Dashboard() {
   const [viewCurrency, setViewCurrency] = useState(false);
   const isLoading = useSelector(globalSelectors.getIsLoading);
   const transactions = useSelector(financeSelectors.getCurrentTransactions);
+  const isModalAddTransactionOpen = useSelector(
+    globalSelectors.getIsModalAddTransaction
+  );
 
   useEffect(() => {
     if (transactions.length > 0) {
@@ -59,6 +63,7 @@ export default function Dashboard() {
           <Loader />
         </InfoContainer>
       )}
+
       {!LOADING && VIEW_HOME && (
         <DashboardWrapper>
           <HomeInfo>
@@ -87,6 +92,8 @@ export default function Dashboard() {
           <Currency />
         </DashboardWrapper>
       )}
+
+      {!LOADING && isModalAddTransactionOpen && <ModalTransactions />}
     </DashboardContainer>
   );
 }
