@@ -9,9 +9,9 @@ const initialState = {
   token: null,
 
   user: {
-    name: '',
-    email: '',
-    balance: '',
+    id: '223123123',
+    name: 'Изабелла Шмаровоз',
+    email: 'izi228.bitch@mail.com',
   },
 };
 

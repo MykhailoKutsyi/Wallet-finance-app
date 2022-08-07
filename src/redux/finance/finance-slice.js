@@ -1,68 +1,71 @@
-import { createSlice } from '@reduxjs/toolkit';
-import financeOperations from './finance-operations';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 import {
   dataForDiagramTable,
   dataForChart,
+  COLORS_ARRAY,
 } from 'components/DiagramTab/JS/initial-data';
 
-const initialState = {
-  categories: null,
-  data: [],
-  error: null,
-  loading: false,
-  totalBalance: 28000,
-  page: 1,
-  limit: 5,
-  totalPages: 1,
-  statistics: {
-    dataForDiagramTable,
-    dataForChart,
-    income: null,
-    expenses: null,
-  },
-};
+const getCurrentTransactions = createAsyncThunk(
+  'finance/transactions',
+  async ({ page, limit }, thunkAPI) => {
+    try {
+      const { data } = await axios.get(
+        `/api/transactions?page=${page}&limit=${limit}`
+      );
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue();
+    }
+  }
+);
 
-const financeSlice = createSlice({
-  name: 'finance',
-  initialState,
-  extraReducers: {
-    [financeOperations.getCurrentTransactions.pending]: state => {
-      state.loading = true;
-      state.error = false;
-    },
+const getTransactionsInfo = createAsyncThunk(
+  'finance/transactions',
+  async (credentials, thunkAPI) => {
+    console.log(credentials);
+    try {
+      const { month, year } = credentials;
+      const { data } = await axios.get(
+        `/api/transactions/filter?month=${month}&year=${year}`
+      );
+      const newTableData = dataForDiagramTable.map(
+        ({ color, expense, value }, index) => {
+          return {
+            color,
+            expense,
+            value: data.statistics[index].total,
+          };
+        }
+      );
 
-    [financeOperations.getCurrentTransactions.fulfilled]: (state, action) => {
-      state.data = [...state.data, ...action.payload.data];
-      state.page += 1;
-      state.totalPages = action.payload.totalPages;
-      state.loading = false;
-      state.error = false;
-    },
+      const valuesArr = dataForDiagramTable.map(item => item.value);
 
-    [financeOperations.getCurrentTransactions.rejected]: state => {
-      state.loading = false;
-      state.error = true;
-    },
+      const newChartData = {
+        ...dataForChart,
+        datasets: [
+          {
+            label: 'expenses',
+            data: valuesArr,
+            backgroundColor: COLORS_ARRAY,
+            borderColor: COLORS_ARRAY,
+            borderWidth: 1,
+          },
+        ],
+      };
 
-    [financeOperations.getTransactionsInfo.pending](state) {
-      state.loading = true;
-      state.error = null;
-    },
+      return {
+        newTableData,
+        newChartData,
+        income: data.income,
+        expenses: data.expenses,
+      };
+    } catch (error) {
+      return thunkAPI.rejectWithValue();
+    }
+  }
+);
 
-    [financeOperations.getTransactionsInfo.fulfilled](state, { payload }) {
-      state.statistics.dataForDiagramTable = payload.newTableData;
-      state.statistics.dataForChart = payload.newChartData;
-      state.statistics.income = payload.income;
-      state.statistics.expenses = payload.expenses;
-      state.loading = false;
-      state.error = null;
-    },
+const financeOperations = { getTransactionsInfo, getCurrentTransactions };
 
-    [financeOperations.getTransactionsInfo.rejected](state) {
-      state.loading = false;
-      state.error = true;
-    },
-  },
-});
-
-export default financeSlice.reducer;
+export default financeOperations;
