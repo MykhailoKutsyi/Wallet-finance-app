@@ -11,7 +11,7 @@ const Chart = ({dataForChart, currentBalance}) => {
         <ChartWrapper>
             <ChartTitle>Statistics</ChartTitle>
             <Doughnut data={dataForChart} />
-            <BalanceSpan>₴ {Number(currentBalance).toFixed(2)}</BalanceSpan> {/* Заглушка !!!*/}
+            <BalanceSpan>₴ {Number(currentBalance).toFixed(2)}</BalanceSpan>
         </ChartWrapper>
     );
 
