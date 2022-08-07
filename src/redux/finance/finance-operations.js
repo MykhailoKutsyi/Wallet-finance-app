@@ -35,11 +35,7 @@ const createTransactions = createAsyncThunk(
   'finance/createTransactions',
   async (credentials, thunkAPI) => {
     try {
-      const { data } = await axios.post(
-        '/api/transactions/create',
-        credentials
-      );
-      return data;
+      await axios.post('/api/transactions/create', credentials);
     } catch (error) {
       return thunkAPI.rejectWithValue();
     }

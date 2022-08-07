@@ -11,7 +11,6 @@ import Loader from './components/Loader/Loader';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import PublicRoute from './components/PublicRoute/PublicRoute';
 import Footer from 'components/Footer/Footer';
-
 const Login = lazy(() => import('./pages/Auth/LoginPage/LoginPage'));
 const Register = lazy(() => import('./pages/Auth/RegisterPage/RegisterPage'));
 const Dashboard = lazy(() => import('./pages/Dashboard/Dashboard'));

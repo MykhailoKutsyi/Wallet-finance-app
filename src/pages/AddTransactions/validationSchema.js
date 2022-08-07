@@ -4,7 +4,7 @@ let patternTwoDigisAfterComma = /^\d+(\.\d{0,2})?$/;
 const validationSchema = Yup.object().shape({
   category: Yup.string(),
   // .required("Please select the category"),
-  sum: Yup.number()
+  amount: Yup.number()
     .typeError('you must specify a number')
     .moreThan(0, 'Value must be more, than 0.00')
     .test(

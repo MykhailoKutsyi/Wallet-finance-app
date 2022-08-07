@@ -1,11 +1,31 @@
+import { useSelector, useDispatch } from 'react-redux';
+import financeOperations from 'redux/finance/finance-operations';
+import globalSelectors from 'redux/finance/finance-selectors';
+import { useEffect, useState } from 'react';
 import Select from 'react-select';
-const options = [
-  { value: 'main', label: 'Main' },
-  { value: 'car', label: 'Car' },
-  { value: 'health', label: 'Health' },
-];
+// const options = [
+//   { value: 'main', label: 'Main' },
+//   { value: 'car', label: 'Car' },
+//   { value: 'health', label: 'Health' },
+// ];
 
 export default function CustomSelect({ onChange, value, checked }) {
+  const dispatch = useDispatch();
+  // const categories = useSelector(globalSelectors.getCategories);
+  const [options, setOptions] = useState(null);
+
+  useEffect(() => {
+    const getData = async () => {
+      const data = await dispatch(financeOperations.categories());
+      setOptions(
+        data.payload.map(item => {
+          return { value: item.name, label: item.name };
+        })
+      );
+    };
+    getData();
+  }, [dispatch]);
+
   const defaultValue = (options, value) => {
     return options ? options.find(option => option.value === value) : '';
   };
