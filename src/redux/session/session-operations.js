@@ -20,10 +20,14 @@ const register = createAsyncThunk(
     try {
       const { data } = await axios.post('/api/auth/users/signup', credentials);
       token.set(data.token);
-      toast('Welcome to wallet');
+      toast('Registration successfull!');
       return data;
     } catch (error) {
-      toast.error('Email in use');
+      if (error.response.status === 409) {
+        toast.error('Sorry, this email in use!');
+        return rejectWithValue();
+      }
+      toast.error(error.message);
       return rejectWithValue();
     }
   }
@@ -38,7 +42,7 @@ const logIn = createAsyncThunk(
       toast('Welcome to wallet');
       return data;
     } catch (error) {
-      toast.error('E-mail or password is wrong');
+      toast.error(error.response.data.message);
       return rejectWithValue();
     }
   }

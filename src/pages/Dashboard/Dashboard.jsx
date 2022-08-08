@@ -24,6 +24,7 @@ import {
   NavBalWrapper,
   InfoContainer,
 } from './Dashboard.styled';
+import financeSelectors from 'redux/finance/finance-selectors';
 
 export default function Dashboard() {
   const dispatch = useDispatch();
@@ -34,10 +35,16 @@ export default function Dashboard() {
     globalSelectors.getIsModalAddTransaction
   );
 
+  const balance = useSelector(financeSelectors.getTotalBalance);
+
   useEffect(() => {
     dispatch(financeOperations.refreshTransactions());
     dispatch(refresh());
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(refresh());
+  }, [dispatch, balance]);
 
   window.addEventListener('resize', function () {
     if (window.innerWidth > 768) {
