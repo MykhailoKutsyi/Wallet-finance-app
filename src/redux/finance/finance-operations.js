@@ -20,6 +20,18 @@ const getCurrentTransactions = createAsyncThunk(
   }
 );
 
+const refreshTransactions = createAsyncThunk(
+  'finance/refreshTransactions',
+  async thunkAPI => {
+    try {
+      const { data } = await axios.get(`/api/transactions?page=1&limit=5`);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue();
+    }
+  }
+);
+
 const createTransactions = createAsyncThunk(
   'finance/createTransactions',
   async (credentials, thunkAPI) => {
@@ -93,6 +105,7 @@ const getTransactionsInfo = createAsyncThunk(
 );
 
 const financeOperations = {
+  refreshTransactions,
   getCurrentTransactions,
   createTransactions,
   categories,

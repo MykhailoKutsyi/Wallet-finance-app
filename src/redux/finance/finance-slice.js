@@ -26,6 +26,22 @@ const financeSlice = createSlice({
   name: 'finance',
   initialState,
   extraReducers: {
+    [financeOperations.refreshTransactions.pending]: (state, action) => {
+      state.loading = true;
+      state.error = false;
+    },
+    [financeOperations.refreshTransactions.fulfilled]: (state, action) => {
+      state.data = action.payload.data;
+      state.page = 2;
+      state.totalPages = action.payload.totalPages;
+      state.loading = false;
+      state.error = false;
+    },
+    [financeOperations.refreshTransactions.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = true;
+    },
+    //
     [financeOperations.getCurrentTransactions.pending]: (state, action) => {
       state.loading = true;
       state.error = false;
