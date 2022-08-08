@@ -14,7 +14,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter basename="/Wallet-finance-app/">
+        <BrowserRouter>
           <App />
         </BrowserRouter>
       </PersistGate>
