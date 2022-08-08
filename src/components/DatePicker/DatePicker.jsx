@@ -1,26 +1,12 @@
 import { DatePickWrapper, Form } from './DatePicker.styled';
-// import Datetime from 'react-datetime';
-import "react-datetime/css/react-datetime.css";
 import "./DatePicker.module.css";
 import { dataForMonthPicker, dataForYearPicker } from 'components/DiagramTab/js/initial-data';
 
-
 const DatePicker = ({ onInputChange }) => {
-
   
-  return (
+return (
     <DatePickWrapper>
       <Form>
-      {/* <Datetime
-        dateFormat="YYYY"
-        timeFormat={false}
-        inputProps={{ placeholder: 'Year' }}
-        closeOnSelect={ true }
-        onClose={(event) => {
-          onChange(event, "year");
-        }}
-      /> */}
-
       <select
         name='year'
         defaultValue={"Year"}
@@ -43,14 +29,6 @@ const DatePicker = ({ onInputChange }) => {
         })};
       </select>
 
-      {/* <Datetime
-        dateFormat="MM"
-        timeFormat={false}
-        inputProps={{ placeholder: 'Month' }}
-        onClose={(event) => {
-          onChange(event, "month");
-        }}
-      /> */}
       </Form>
     </DatePickWrapper>
   )

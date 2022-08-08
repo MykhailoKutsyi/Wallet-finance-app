@@ -14,6 +14,36 @@ export const NavContainer = styled.div`
   @media (min-width: 768px) {
     flex-direction: column;
   }
+
+  @media (max-width: 767px) {
+    & > * {
+      &.active {
+        &:not(:last-child) {
+          backdrop-filter: ${props =>
+            props.viewCurrency === false ? 'blur(50px)' : 'blur(0px)'};
+          filter: ${props =>
+            props.viewCurrency === false
+              ? 'drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5))'
+              : '0'};
+          opacity: ${props => (props.viewCurrency === false ? '1' : '0.8')};
+        }
+
+        &:last-child {
+          backdrop-filter: ${props =>
+            props.viewCurrency ? 'blur(50px)' : 'blur(0px)'};
+          filter: ${props =>
+            props.viewCurrency
+              ? 'drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5))'
+              : '0'};
+          opacity: ${props => (props.viewCurrency ? '1' : '0.8')};
+        }
+      }
+
+      &:not(:last-child) {
+        margin-right: 36px;
+      }
+    }
+  }
 `;
 
 export const NavButton = styled(NavLink)`
@@ -24,43 +54,30 @@ export const NavButton = styled(NavLink)`
     border-radius: 6px;
     background-color: var(--white-color);
   }
-
-  &.active {
-    & > * {
-      &:first-child {
-        backdrop-filter: blur(50px);
-        filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
-        opacity: 1;
-      }
-      &:last-child {
-        font-weight: 700;
-      }
-    }
-  }
-
-  @media (max-width: 767px) {
-    &:not(:last-child) {
-      margin-right: 36px;
-    }
-
-    &:last-child {
-      backdrop-filter: ${props => props.viewCurrency === true && 'blur(50px)'};
-      filter: ${props =>
-        props.viewCurrency === true &&
-        'drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5))'};
-      opacity: ${props => props.viewCurrency && 1};
-    }
-  }
+  opacity: 0.8;
 
   @media (min-width: 768px) {
     display: flex;
     align-items: center;
     margin-bottom: 12px;
     border-radius: 2px;
+
+    &.active {
+      & > * {
+        &:first-child {
+          backdrop-filter: blur(50px);
+          filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
+          opacity: 1;
+        }
+        &:last-child {
+          font-weight: 700;
+        }
+      }
+    }
   }
 
-  & > * {
-    &:hover {
+  &:hover {
+    & > * {
       &:first-child {
         backdrop-filter: blur(50px);
         filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));

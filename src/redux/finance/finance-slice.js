@@ -13,7 +13,7 @@ const initialState = {
   },
   error: null,
   loading: false,
-  totalBalance: 28000, //null
+  totalBalance: 0,
   page: 1,
   limit: 5,
   totalPages: 1,
@@ -38,7 +38,6 @@ const financeSlice = createSlice({
       state.loading = false;
       state.error = true;
     },
-
     [financeOperations.getTransactionsInfo.pending](state, { payload }) {
       state.loading = true;
       state.error = null;
@@ -54,6 +53,13 @@ const financeSlice = createSlice({
     [financeOperations.getTransactionsInfo.rejected](state, { payload }) {
       state.loading = false;
       state.error = true;
+    },
+
+    [financeOperations.createTransactions.fulfilled]: (state, { payload }) => {
+      state.totalBalance = payload.balance;
+    },
+    [financeOperations.categories.fulfilled](state, { payload }) {
+      state.categories = payload;
     },
   },
 });

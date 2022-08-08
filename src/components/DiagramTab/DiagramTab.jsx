@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import 'react-toastify/dist/ReactToastify.css';
 import Chart from "../Chart/Chart";
 import Table from "../Table/Table";
 import DatePicker from 'components/DatePicker/DatePicker';
@@ -8,6 +7,7 @@ import { Wrapper, SubWrapper } from "./DiagramTab.styled";
 import { useEffect } from 'react';
 import financeOperations from '../../redux/finance/finance-operations';
 import financeSelectors from '../../redux/finance/finance-selectors';
+import sessionSelectors from '../../redux/session/session-selectors';
 
 const DiagramTab = () => {
 
@@ -16,7 +16,7 @@ const DiagramTab = () => {
   const [monthForFilter, setMonthForFilter] = useState(null);
   const [yearForFilter, setYearForFilter] = useState(null);
 
-  const currentBalance = useSelector(financeSelectors.getTotalBalance);
+  const currentBalance = useSelector(sessionSelectors.getUser);
   const dataForDiagramTable = useSelector(financeSelectors.getDataForDiagramTable);
   const dataForChart = useSelector(financeSelectors.getDataForChart);
   const income = useSelector(financeSelectors.getIncome);

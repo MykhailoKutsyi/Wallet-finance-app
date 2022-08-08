@@ -17,6 +17,32 @@ const getCurrentTransactions = createAsyncThunk(
   }
 );
 
+const createTransactions = createAsyncThunk(
+  'finance/createTransactions',
+  async (credentials, thunkAPI) => {
+    try {
+      const { data } = await axios.post(
+        '/api/transactions/create',
+        credentials
+      );
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue();
+    }
+  }
+);
+const categories = createAsyncThunk(
+  'finance/categories',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await axios.get('api/categories');
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue();
+    }
+  }
+);
+
 const getTransactionsInfo = createAsyncThunk(
   'finance/transactions',
   async (credentials, thunkAPI) => {
@@ -63,6 +89,6 @@ const getTransactionsInfo = createAsyncThunk(
   }
 );
 
-const financeOperations = { getCurrentTransactions, getTransactionsInfo };
+const financeOperations = { getCurrentTransactions, createTransactions, categories, getTransactionsInfo };
 
 export default financeOperations;
