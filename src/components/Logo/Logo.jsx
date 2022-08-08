@@ -9,10 +9,7 @@ import {
 const Logo = () => {
   return (
     <LogoWrapper>
-      <LogoLink
-        // після налаштування Route буде додано посилання на домашню сторінку
-        href="#"
-      >
+      <LogoLink to="/home">
         <LogoIconWrapper>
           <use href={`${sprite}#icon-wallet`} />
         </LogoIconWrapper>

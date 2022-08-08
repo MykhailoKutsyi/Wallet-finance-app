@@ -76,18 +76,18 @@ export const dataForChart= {
   }; 
 
 export const dataForMonthPicker = [
-  {id: '1', value: 1, name: '01 - january'},
-  {id: '2', value: 2, name: '02 - february'},
-  {id: '3', value: 3, name: '03 - march'},
-  {id: '4', value: 4, name: '04 - april'},
-  {id: '5', value: 5, name: '05 - may'},
-  {id: '6', value: 6, name: '06 - june'},
-  {id: '7', value: 7, name: '07 - july'},
-  {id: '8', value: 8, name: '08 - august'},
-  {id: '9', value: 9, name: '09 - september'},
-  {id: '10', value: 10, name: '10 - october'},
-  {id: '11', value: 11, name: '11 - november'},
-  {id: '12', value: 12, name: '12 - december'},
+  {id: '1', value: 1, name: 'January'},
+  {id: '2', value: 2, name: 'February'},
+  {id: '3', value: 3, name: 'March'},
+  {id: '4', value: 4, name: 'April'},
+  {id: '5', value: 5, name: 'May'},
+  {id: '6', value: 6, name: 'June'},
+  {id: '7', value: 7, name: 'July'},
+  {id: '8', value: 8, name: 'August'},
+  {id: '9', value: 9, name: 'September'},
+  {id: '10', value: 10, name: 'October'},
+  {id: '11', value: 11, name: 'November'},
+  {id: '12', value: 12, name: 'December'},
 ]
 
 export const dataForYearPicker = [
