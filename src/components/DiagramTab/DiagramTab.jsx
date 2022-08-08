@@ -16,23 +16,35 @@ const DiagramTab = () => {
   const [monthForFilter, setMonthForFilter] = useState(null);
   const [yearForFilter, setYearForFilter] = useState(null);
 
-  const currentBalance = useSelector(sessionSelectors.getUser);
+
+  const { balance } = useSelector(sessionSelectors.getUser);
   const dataForDiagramTable = useSelector(financeSelectors.getDataForDiagramTable);
   const dataForChart = useSelector(financeSelectors.getDataForChart);
   const income = useSelector(financeSelectors.getIncome);
   const expenses = useSelector(financeSelectors.getExpenses);
   
   useEffect(() => {
-    if (!yearForFilter || !monthForFilter) {
-      return;
-    }
-    dispatch(financeOperations.getTransactionsInfo({ month: monthForFilter, year: yearForFilter, }));
 
+    const date = new Date();
+    const month = date.getMonth();
+    const year = date.getFullYear();
+
+    if (!monthForFilter) {
+      setMonthForFilter(month + 1);
+    }
+
+    if (!yearForFilter) {
+      setYearForFilter(year);
+    }
+
+    if (yearForFilter && monthForFilter) {
+      dispatch(financeOperations.getTransactionsInfo({ month: monthForFilter, year: yearForFilter, }));
+    }
 
   }, [yearForFilter, monthForFilter, dispatch]);
 
   const onDateInput = (event) => {
-
+    console.log("!!!!")
     const { name, value } = event.target;
 
     if (!name || !value) {
@@ -40,13 +52,15 @@ const DiagramTab = () => {
     }
 
     if (name === "year") {
+      console.log("year");
       const year = event.target.value;
       setYearForFilter(Number(year));
     }
 
     if (name === "month") {
+      console.log("month");
       const month = event.target.value;
-      setMonthForFilter(Number(month));
+      setMonthForFilter(Number(month) + 1);
     }
   };
 
@@ -55,7 +69,7 @@ const DiagramTab = () => {
       {expenses > 0 ? 
       <Chart
           dataForChart={dataForChart}
-          currentBalance={currentBalance}
+          currentBalance={balance}
       /> 
       : 
       <h2 style={{padding: '200px 50px', maxWidth: '400px'}}> No expenses to display. To show chart, set date range when you spent any money</h2>
@@ -63,6 +77,8 @@ const DiagramTab = () => {
       <SubWrapper>
         <DatePicker
           onInputChange={onDateInput}
+          year={yearForFilter}
+          month={monthForFilter}
         />
 
       {dataForDiagramTable && <Table
