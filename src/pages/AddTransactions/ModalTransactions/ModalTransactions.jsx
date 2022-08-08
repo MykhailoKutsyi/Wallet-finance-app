@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import Datetime from 'react-datetime';
 import { Formik, ErrorMessage, useFormik } from 'formik';
 import 'react-datetime/css/react-datetime.css';
-import { refresh } from 'redux/session/session-operations';
 
 import CustomSelect from '../SelectTransaction/SelectTransaction';
 import moment from 'moment';
