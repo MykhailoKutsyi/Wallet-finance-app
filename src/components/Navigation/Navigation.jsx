@@ -11,14 +11,6 @@ import {
 } from './Navigation.styled';
 
 const Navigation = ({ setViewCurrency, viewCurrency }) => {
-  const handleClick = () => {
-    if (viewCurrency) {
-      return;
-    } else {
-      setViewCurrency(true);
-    }
-  };
-
   return (
     <Media
       queries={{
@@ -43,7 +35,7 @@ const Navigation = ({ setViewCurrency, viewCurrency }) => {
                 <Text>Statistic</Text>
               </NavButton>
 
-              <NavButton to="/home" onClick={handleClick}>
+              <NavButton to="/home" onClick={() => setViewCurrency(true)}>
                 <IconWrapper>
                   <Icon id={'#icon-currency-mobile'} width={38} height={38} />
                 </IconWrapper>
