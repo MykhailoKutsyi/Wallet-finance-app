@@ -1,6 +1,8 @@
 # Wallet finance app
 
-**Kutsyi Mykhailo** - _Team Lead_ **Bohdan Shparuk** - _Scrum master_
+**Kutsyi Mykhailo** - _Team Lead_
+
+**Bohdan Shparuk** - _Scrum master_
 
 #### _Frontend:_
 
