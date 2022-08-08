@@ -25,7 +25,7 @@ export const NavContainer = styled.div`
             props.viewCurrency === false
               ? 'drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5))'
               : '0'};
-          opacity: ${props => (props.viewCurrency == false ? '1' : '0.8')};
+          opacity: ${props => (props.viewCurrency === false ? '1' : '0.8')};
         }
 
         &:last-child {

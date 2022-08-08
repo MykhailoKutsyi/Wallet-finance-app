@@ -14,7 +14,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { refresh } from 'redux/session/session-operations';
 import globalSelectors from 'redux/global/global-selectors';
 import financeOperations from 'redux/finance/finance-operations';
-import financeSelectors from 'redux/finance/finance-selectors';
 
 // import styled components
 import {

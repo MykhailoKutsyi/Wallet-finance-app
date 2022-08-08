@@ -100,8 +100,8 @@ const HomeTab = () => {
             ({ _id, date, type, category, comment, amount, balance }) => {
               const color = type === false ? '#ff6596' : '#24cca7';
               const typeValid = type === true ? '+' : '-';
-              const amountString = amount.toString();
-              const balanceString = balance.toString();
+              const amountString = amount?.toString();
+              const balanceString = balance?.toString();
               return (
                 <Transaction key={_id}>
                   <TransactionField>
