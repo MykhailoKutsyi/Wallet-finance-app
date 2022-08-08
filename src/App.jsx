@@ -1,17 +1,17 @@
 import React, { lazy, Suspense, useEffect } from 'react';
-// import { Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { refresh } from 'redux/session/session-operations';
 import { ToastContainer } from 'react-toastify';
-import { Routes, Route, NavLink } from 'react-router-dom';
 
 import Container from './components/Container/Container';
 import AppBar from './components/AppBar/AppBar';
 import Loader from './components/Loader/Loader';
+import Footer from 'components/Footer/Footer';
+
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import PublicRoute from './components/PublicRoute/PublicRoute';
 import CustomRoute from './components/CustomRoute/CustomRoute';
-import Footer from 'components/Footer/Footer';
 
 const Login = lazy(() => import('./pages/Auth/LoginPage/LoginPage'));
 const Register = lazy(() => import('./pages/Auth/RegisterPage/RegisterPage'));
@@ -28,18 +28,12 @@ export default function App() {
   return (
     <Container>
       <Suspense fallback={<Loader />}>
-        {/* <Suspense fallback={'Loading bitch...'}> */}
         <Routes>
           <Route
             path="/home"
             element={
               <ProtectedRoute>
                 <AppBar />
-
-                <NavLink to="/register">| REGISTER |</NavLink>
-                <NavLink to="/login">| LOGIN |</NavLink>
-                <NavLink to="/home">| HOME |</NavLink>
-                <NavLink to="/diagram">| DIAGRAM |</NavLink>
                 <Dashboard />
               </ProtectedRoute>
             }
@@ -49,10 +43,6 @@ export default function App() {
             path="register"
             element={
               <PublicRoute>
-                <NavLink to="/register">| REGISTER |</NavLink>
-                <NavLink to="/login">| LOGIN |</NavLink>
-                <NavLink to="/home">| HOME |</NavLink>
-                <NavLink to="/diagram">| DIAGRAM |</NavLink>
                 <Register />
               </PublicRoute>
             }
@@ -62,10 +52,6 @@ export default function App() {
             path="login"
             element={
               <PublicRoute>
-                <NavLink to="/register">| REGISTER |</NavLink>
-                <NavLink to="/login">| LOGIN |</NavLink>
-                <NavLink to="/home">| HOME |</NavLink>
-                <NavLink to="/diagram">| DIAGRAM |</NavLink>
                 <Login />
               </PublicRoute>
             }
@@ -76,11 +62,6 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <AppBar />
-
-                <NavLink to="/register">| REGISTER |</NavLink>
-                <NavLink to="/login">| LOGIN |</NavLink>
-                <NavLink to="/home">| HOME |</NavLink>
-                <NavLink to="/diagram">| DIAGRAM |</NavLink>
                 <Statistics />
               </ProtectedRoute>
             }
