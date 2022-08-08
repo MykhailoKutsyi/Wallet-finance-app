@@ -13,6 +13,7 @@ import Logo from '../Logo/Logo';
 import { useDispatch } from 'react-redux';
 import { toggleModalLogout } from '../../redux/global/global-slice';
 import { logOut } from 'redux/session/session-operations';
+import { refresh } from 'redux/finance/finance-slice';
 const ModalRoot = document.querySelector('#modal-root');
 
 const ModalLogout = () => {
@@ -38,9 +39,13 @@ const ModalLogout = () => {
     };
   });
 
-  const handleLogOut = () => {
-    dispatch(logOut());
-    onClose();
+  const handleLogOut = async () => {
+    try {
+      await dispatch(logOut());
+      dispatch(refresh());
+
+      onClose();
+    } catch (error) {}
   };
   return createPortal(
     <LogoutBackdrop onClick={onBackdropClick}>

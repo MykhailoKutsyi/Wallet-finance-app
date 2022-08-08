@@ -25,6 +25,9 @@ const initialState = {
 const financeSlice = createSlice({
   name: 'finance',
   initialState,
+  reducers: {
+    refresh: () => initialState,
+  },
   extraReducers: {
     [financeOperations.refreshTransactions.pending]: (state, action) => {
       state.loading = true;
@@ -81,5 +84,7 @@ const financeSlice = createSlice({
     },
   },
 });
+
+export const { refresh } = financeSlice.actions;
 
 export default financeSlice.reducer;

@@ -63,7 +63,7 @@ export default function AddTransaction({ errors, touched }) {
   );
 
   const today = moment().format('YYYY-MM-DD');
-
+  let localDate = new Date();
   const valid = current => current.isBefore(today);
   const formik = useFormik({
     initialValues: {
@@ -88,7 +88,9 @@ export default function AddTransaction({ errors, touched }) {
       values.year = Number(arrDate[0]);
       values.month = Number(arrDate[1]);
       values.amount = Number(values.amount);
-
+      values.date = `${
+        values.date
+      }T${localDate.getHours()}:${localDate.getMinutes()}`;
       try {
         await dispatch(
           financeOperations.createTransactions({
@@ -175,6 +177,11 @@ export default function AddTransaction({ errors, touched }) {
                     timeFormat={false}
                     isValidDate={valid}
                     closeOnSelect
+                    inputProps={{
+                      onKeyDown: e => {
+                        e.preventDefault();
+                      },
+                    }}
                   />
                   <Icon id={'#icon-date'} width={24} height={24}></Icon>
                 </DateTimeWrapper>

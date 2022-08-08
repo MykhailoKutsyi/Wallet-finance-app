@@ -29,7 +29,6 @@ function Registration() {
       password: values.password,
     };
     await dispatch(register(obj));
-    console.log('ghhjk');
     resetForm();
   };
 
@@ -124,7 +123,11 @@ function Registration() {
             </InputContainer>
 
             <Btn type="submit" disabled={isSubmitting}>
-              {isSubmitting? <BtnTitle>LOADING...</BtnTitle>: <BtnTitle>REGISTER</BtnTitle>}
+              {isSubmitting ? (
+                <BtnTitle>LOADING...</BtnTitle>
+              ) : (
+                <BtnTitle>REGISTER</BtnTitle>
+              )}
             </Btn>
             <Link to="/login">
               <LinkTitle>LOG IN</LinkTitle>
