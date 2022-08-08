@@ -58,7 +58,7 @@ const DiagramTab = () => {
           currentBalance={currentBalance}
       /> 
       : 
-      <h2 style={{padding: '200px 50px', width: '50%'}}> No expenses to display. To show chart, set date range when you spent any money</h2>
+      <h2 style={{padding: '200px 50px', maxWidth: '400px'}}> No expenses to display. To show chart, set date range when you spent any money</h2>
       }
       <SubWrapper>
         <DatePicker
