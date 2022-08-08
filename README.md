@@ -1,13 +1,47 @@
 # Wallet finance app
 
-1. Установи базовые зависимости проекта командой `npm install`.
-2. Запусти режим разработки, выполнив команду `npm start`.
-3. Перейди в браузере по адресу [http://localhost:3000](http://localhost:3000).
-   Эта страница будет автоматически перезагружаться после сохранения изменений в
-   файлах проекта.
+**Kutsyi Mykhailo** - _Team Lead_
 
-### Live:
+**Bohdan Shparuk** - _Scrum master_
 
-### Frontend repo:
+#### _Frontend:_
 
-### Backend repo:
+- **Yevheniia Dolzhykova**
+- **Akim Grakovskiy**
+- **Andriy Lesyk**
+- **Pavel Sarabieiev**
+
+#### _Backend:_
+
+- **Bohdan Vozniak**
+- **Alex Krasnobokyi**
+
+### Live
+
+`<link>` : <https://wallet-finance-app-team-project.netlify.app/>
+
+#### Frontend repo
+
+`<link>` : <https://github.com/MykhailoKutsyi/Wallet-finance-app>
+
+#### Backend repo
+
+`<link>` : <https://github.com/AlexxRed/Wallet-BackEnd>
+
+## Installation
+
+Wallet finance app requires [Node.js](https://nodejs.org/) v10+ to run.
+
+Install the dependencies and devDependencies and start the server.
+
+```sh
+cd Wallet-finance-app
+npm i
+npm start
+```
+
+## License
+
+Ukraine
+
+**Free Software, Hell Yeah!**
