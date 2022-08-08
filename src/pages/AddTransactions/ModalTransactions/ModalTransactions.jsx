@@ -1,3 +1,5 @@
+import { createPortal } from 'react-dom';
+import { useEffect } from 'react';
 import Datetime from 'react-datetime';
 import { Formik, ErrorMessage, useFormik } from 'formik';
 import 'react-datetime/css/react-datetime.css';
@@ -26,15 +28,36 @@ import {
   TransactBtnCncl,
   TransactContainer,
   TransSumDateCommonBox,
-  // TransactCloseBtn,
+  DateTimeWrapper,
+  TransButtonClose,
 } from './ModalTransactions.styled';
 import { useDispatch } from 'react-redux';
 import financeOperations from 'redux/finance/finance-operations';
 import { toast } from 'react-toastify';
 import { toggleModalAddTransaction } from 'redux/global/global-slice';
+import Icon from '../../../components/Icon/Icon';
+const modalRoot = document.querySelector('#modal-root');
 
 export default function AddTransaction({ errors, touched }) {
   const dispatch = useDispatch();
+  const onClose = () => dispatch(toggleModalAddTransaction());
+  const onBackdropClick = e => {
+    if (e.currentTarget === e.target) {
+      onClose();
+    }
+  };
+
+  useEffect(() => {
+    const handleKeyDown = e => {
+      if (e.code === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  });
   const renderInput = props => (
     <TransactDateInput {...props}></TransactDateInput>
   );
@@ -84,14 +107,16 @@ export default function AddTransaction({ errors, touched }) {
   function formatDate(momentDate) {
     return moment(momentDate).format('YYYY-MM-DD');
   }
-  return (
-    <TransactBackdrop>
+  return createPortal(
+    <TransactBackdrop onClick={onBackdropClick}>
       <TransactContainer>
-        {/* <TransactCloseBtn></TransactCloseBtn> */}
+        <TransButtonClose onClick={() => onClose()}>
+          <Icon id={'#icon-close'} width={16} height={16} />
+        </TransButtonClose>
         <Formik>
-          <TransactBox>
+          <TransactForm onSubmit={formik.handleSubmit}>
             <TransTitle>Add transaction</TransTitle>
-            <TransactForm onSubmit={formik.handleSubmit}>
+            <TransactBox>
               <TransactHadleWrapper>
                 <Income checked={formik.values.type}>Income</Income>
                 <CheckBoxWrapper>
@@ -105,7 +130,7 @@ export default function AddTransaction({ errors, touched }) {
                   />
                   <CheckBoxLabel htmlFor="checkbox" />
                 </CheckBoxWrapper>
-                <Expense value={formik.values.type}>Expense</Expense>
+                <Expense checked={formik.values.type}>Expense</Expense>
               </TransactHadleWrapper>
 
               {formik.values.type && (
@@ -123,7 +148,7 @@ export default function AddTransaction({ errors, touched }) {
 
               <TransSumDateCommonBox>
                 <TransactSumLabel htmlFor="amount"></TransactSumLabel>
-                <div>
+                <div style={{ marginRight: 32 }}>
                   <TransactSumInput
                     id="amount"
                     name="amount"
@@ -136,18 +161,21 @@ export default function AddTransaction({ errors, touched }) {
                     <div>{formik.errors.amount}</div>
                   ) : null}
                 </div>
-                <Datetime
-                  value={formik.values.date}
-                  name="date"
-                  onChange={dateFromValue =>
-                    formik.setFieldValue('date', formatDate(dateFromValue))
-                  }
-                  renderInput={renderInput}
-                  dateFormat="YYYY-MM-DD"
-                  timeFormat={false}
-                  isValidDate={valid}
-                  closeOnSelect
-                />
+                <DateTimeWrapper>
+                  <Datetime
+                    value={formik.values.date}
+                    name="date"
+                    onChange={dateFromValue =>
+                      formik.setFieldValue('date', formatDate(dateFromValue))
+                    }
+                    renderInput={renderInput}
+                    dateFormat="YYYY-MM-DD"
+                    timeFormat={false}
+                    isValidDate={valid}
+                    closeOnSelect
+                  />
+                  <Icon id={'#icon-date'} width={24} height={24}></Icon>
+                </DateTimeWrapper>
               </TransSumDateCommonBox>
 
               <TransactComment
@@ -156,18 +184,16 @@ export default function AddTransaction({ errors, touched }) {
                 name="comment"
                 onChange={formik.handleChange}
               ></TransactComment>
-              <TransactBtnAdd type="submit">Add</TransactBtnAdd>
-            </TransactForm>
-          </TransactBox>
+            </TransactBox>
+            <TransactBtnAdd type="submit">Add</TransactBtnAdd>
+          </TransactForm>
         </Formik>
 
-        <TransactBtnCncl
-          type="button"
-          onClick={() => dispatch(toggleModalAddTransaction())}
-        >
+        <TransactBtnCncl type="button" onClick={() => onClose()}>
           Cancel
         </TransactBtnCncl>
       </TransactContainer>
-    </TransactBackdrop>
+    </TransactBackdrop>,
+    modalRoot
   );
 }

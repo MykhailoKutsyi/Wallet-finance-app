@@ -10,6 +10,7 @@ export const TransactBackdrop = styled.div`
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.25);
+  overflow: hidden;
 `;
 
 export const TransactContainer = styled.div`
@@ -25,7 +26,7 @@ export const TransactContainer = styled.div`
   margin-right: auto;
   background: #ffffff;
   @media (min-width: 768px) {
-    width: 394px;
+    width: 540px;
     padding: 40px 73px;
     border-radius: 20px;
   }
@@ -46,11 +47,12 @@ export const TransButtonClose = styled.button`
   padding: 0;
   top: 20px;
   right: 20px;
-  background-image: url(${plus}) no-repeat center;
+
   width: 16px;
   height: 16px;
   border: none;
   fill: black;
+  background-color: transparent;
 `;
 export const TransactForm = styled.form``;
 
@@ -65,6 +67,7 @@ export const TransTitle = styled.h2`
   @media (min-width: 768px) {
     font-size: 30px;
     line-height: 45px;
+    margin-bottom: 40px;
   }
 `;
 
@@ -186,8 +189,9 @@ export const TransactSumInput = styled.input`
   @media (min-width: 768px) {
     /* display: flex;
      justify-content: center; */
+    margin-right: auto;
     text-align: center;
-    width: 141px;
+    width: 181px;
   }
   &:focus {
     outline: 0;
@@ -195,18 +199,27 @@ export const TransactSumInput = styled.input`
     outline-style: none;
   }
 `;
+export const DateTimeWrapper = styled.div`
+  display: flex;
+  height: 32px;
+  width: 240px;
+  margin-top: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-bottom: 1px solid #e0e0e0;
+  @media (min-width: 768px) {
+    width: 181px;
+  }
+`;
 
 export const TransactDateInput = styled.input`
   display: flex;
-  width: 240px;
-  padding-left: 20px;
-  padding-right: 20px;
-  margin-top: 40px;
+  width: 178px;
   height: 32px;
   border: none;
   border-bottom: 1px solid #e0e0e0;
   @media (min-width: 768px) {
-    width: 141px;
+    width: 116px;
   }
   &:focus {
     outline: 0;
