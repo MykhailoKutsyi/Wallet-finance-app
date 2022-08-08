@@ -1,33 +1,34 @@
-import { DatePickWrapper, Form } from './DatePicker.styled';
-import "./DatePicker.module.css";
+import { DatePickWrapper, Form, Input, Option } from './DatePicker.styled';
 import { dataForMonthPicker, dataForYearPicker } from 'components/DiagramTab/js/initial-data';
 
+
 const DatePicker = ({ onInputChange }) => {
+
   
-return (
+  return (
     <DatePickWrapper>
       <Form>
-      <select
+      <Input
         name='year'
         defaultValue={"Year"}
         onChange={(event) => onInputChange(event)}
       >
-          <option defaultValue="Year" disabled hidden>Year</option>
+          <Option defaultValue="Year" disabled hidden>Year</Option>
         {dataForYearPicker.map(item =>{
-          return <option key={item.id} value={item.value}>{item.name}</option>
+          return <Option key={item.id} value={item.value}>{item.name}</Option>
         })};
-      </select>
+      </Input>
 
-      <select
+      <Input
         name='month'
         defaultValue={"Month"}
         onChange={(event) => onInputChange(event)}
       >
-          <option defaultValue="Month" disabled hidden>Month</option>
+          <Option defaultValue="Month" disabled hidden>Month</Option>
         {dataForMonthPicker.map(item =>{
-          return <option key={item.id} value={item.value}>{item.name}</option>
+          return <Option key={item.id} value={item.value}>{item.name}</Option>
         })};
-      </select>
+      </Input>
 
       </Form>
     </DatePickWrapper>
