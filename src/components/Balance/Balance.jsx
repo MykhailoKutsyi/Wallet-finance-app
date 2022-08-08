@@ -1,21 +1,14 @@
 import { BalanceBox, BalanceTitle, BalanceValue } from './Balance.styled';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { useEffect } from 'react';
-// import financeOperations from 'redux/finance/finance-operations';
-// import globalSelectors from 'redux/finance/finance-selectors';
+import { useSelector } from 'react-redux';
+import sessionSelectors from 'redux/session/session-selectors';
 
 export default function Balance() {
-  // const dispatch = useDispatch();
-  // const totalBalance = useSelector(globalSelectors.getTotalBalance);
-
-  // useEffect(() => {
-  //   dispatch(financeOperations.totalBalance()); // ???
-  // }, [dispatch]);
+  const { balance } = useSelector(sessionSelectors.getUser);
 
   return (
     <BalanceBox>
       <BalanceTitle>Your balance</BalanceTitle>
-      <BalanceValue>₴ {24000.0}</BalanceValue>
+      <BalanceValue>₴ {balance}</BalanceValue>
     </BalanceBox>
   );
 }

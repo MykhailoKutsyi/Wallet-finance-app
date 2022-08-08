@@ -34,11 +34,10 @@ const HomeTab = () => {
 
   const transactions = useSelector(financeSelectors.getCurrentTransactions); // redux state => state.finance.data
   const loading = useSelector(financeSelectors.getLoadingStaus);
-  const totalBalance = useSelector(financeSelectors.getTotalBalance);
 
   // sort transactions
   const [sortTransactions, setSortTransactions] = useState([]);
-  const balanceString = totalBalance.toString();
+
   useEffect(() => {
     if (transactions && transactions.length !== 0) {
       const copyTransactionsForSort = [...transactions];
@@ -98,10 +97,11 @@ const HomeTab = () => {
             </HeadRow>
           </TransactionHead>
           {sortTransactions.map(
-            ({ _id, date, type, category, comment, amount }) => {
+            ({ _id, date, type, category, comment, amount, balance }) => {
               const color = type === false ? '#ff6596' : '#24cca7';
               const typeValid = type === true ? '+' : '-';
-              const amountString = amount.toString();
+              const amountString = amount?.toString();
+              const balanceString = balance?.toString();
               return (
                 <Transaction key={_id}>
                   <TransactionField>
