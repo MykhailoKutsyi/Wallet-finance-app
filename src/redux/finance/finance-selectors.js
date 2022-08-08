@@ -8,7 +8,8 @@ const getLoadingStaus = state => state.finance.loading;
 const getIncome = state => state.finance.statistics.income;
 const getExpenses = state => state.finance.statistics.expenses;
 const getDataForChart = state => state.finance.statistics.dataForChart;
-const getDataForDiagramTable = state => state.finance.statistics.dataForDiagramTable;
+const getDataForDiagramTable = state =>
+  state.finance.statistics.dataForDiagramTable;
 const getCategories = state => state.finance.categories;
 
 const financeSelectors = {
@@ -22,7 +23,7 @@ const financeSelectors = {
   getIncome,
   getExpenses,
   getDataForChart,
-  getDataForDiagramTable
+  getDataForDiagramTable,
   getCategories,
 };
 

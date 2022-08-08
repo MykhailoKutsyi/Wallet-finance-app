@@ -1,7 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { dataForDiagramTable, COLORS_ARRAY, EXPENSE_ARRAY } from 'components/DiagramTab/js/initial-data';
-
+import {
+  dataForDiagramTable,
+  COLORS_ARRAY,
+  EXPENSE_ARRAY,
+} from 'components/DiagramTab/js/initial-data';
 
 const getCurrentTransactions = createAsyncThunk(
   'finance/transactions',
@@ -44,22 +47,23 @@ const categories = createAsyncThunk(
 );
 
 const getTransactionsInfo = createAsyncThunk(
-  'finance/transactions',
+  'finance/transactionsInfo',
   async (credentials, thunkAPI) => {
-
     try {
       const { month, year } = credentials;
       const { data } = await axios.get(
         `/api/transactions/filter?month=${month}&year=${year}`
       );
 
-      const newTableData = dataForDiagramTable.map(({ color, expense, value }, index) => {
-        return {
-          color,
-          expense,
-          value: data.statistics[index].total,
+      const newTableData = dataForDiagramTable.map(
+        ({ color, expense, value }, index) => {
+          return {
+            color,
+            expense,
+            value: data.statistics[index].total,
+          };
         }
-      });
+      );
 
       const valuesArr = newTableData.map(item => item.value);
 
@@ -72,9 +76,9 @@ const getTransactionsInfo = createAsyncThunk(
             backgroundColor: COLORS_ARRAY,
             borderColor: COLORS_ARRAY,
             borderWidth: 1,
-        },
-        ]
-      }
+          },
+        ],
+      };
 
       return {
         newTableData,
@@ -82,13 +86,17 @@ const getTransactionsInfo = createAsyncThunk(
         income: data.income,
         expenses: data.expenses,
       };
-
     } catch (error) {
       return thunkAPI.rejectWithValue();
     }
   }
 );
 
-const financeOperations = { getCurrentTransactions, createTransactions, categories, getTransactionsInfo };
+const financeOperations = {
+  getCurrentTransactions,
+  createTransactions,
+  categories,
+  getTransactionsInfo,
+};
 
 export default financeOperations;

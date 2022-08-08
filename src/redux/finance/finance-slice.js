@@ -1,6 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import financeOperations from './finance-operations';
-import { dataForDiagramTable, dataForChart } from 'components/DiagramTab/js/initial-data';
+import {
+  dataForDiagramTable,
+  dataForChart,
+} from 'components/DiagramTab/js/initial-data';
 
 const initialState = {
   categories: null,
@@ -54,7 +57,6 @@ const financeSlice = createSlice({
       state.loading = false;
       state.error = true;
     },
-
     [financeOperations.createTransactions.fulfilled]: (state, { payload }) => {
       state.totalBalance = payload.balance;
     },
