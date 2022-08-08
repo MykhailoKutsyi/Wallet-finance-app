@@ -96,6 +96,8 @@ export default function AddTransaction({ errors, touched }) {
             type: !values.type,
           })
         );
+        onClose();
+        dispatch(financeOperations.refreshTransactions());
         toast.success('Yeap! Transaction created');
       } catch (error) {
         toast.error(error.message);

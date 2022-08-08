@@ -37,6 +37,7 @@ const HomeTab = () => {
 
   // sort transactions
   const [sortTransactions, setSortTransactions] = useState([]);
+  const [previousLoading, setPreviousLoading] = useState(false);
 
   useEffect(() => {
     if (transactions && transactions.length !== 0) {
@@ -57,13 +58,14 @@ const HomeTab = () => {
 
   const handleClick = async e => {
     e.preventDefault();
-
+    setPreviousLoading(true);
     await dispatch(
       financeOperations.getCurrentTransactions({
         page: nextPage,
         limit: limit,
       })
     );
+    setPreviousLoading(false);
   };
 
   const LOADING = loading === true;
@@ -152,12 +154,12 @@ const HomeTab = () => {
           )}
         </table>
       )}
-      {VIEW_BUTTON && LOADING && !NO_TRASACTIONS && (
+      {VIEW_BUTTON && LOADING && !NO_TRASACTIONS && previousLoading && (
         <LoaderWrapper>
           <Spinner />
         </LoaderWrapper>
       )}
-      {VIEW_BUTTON && !LOADING && (
+      {VIEW_BUTTON && !LOADING && !previousLoading && (
         <LoadButton type="button" onClick={handleClick}>
           Load previous
         </LoadButton>

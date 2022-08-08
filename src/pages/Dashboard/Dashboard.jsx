@@ -35,8 +35,8 @@ export default function Dashboard() {
   );
 
   useEffect(() => {
+    dispatch(financeOperations.refreshTransactions());
     dispatch(refresh());
-    dispatch(financeOperations.getCurrentTransactions({ page: 1, limit: 5 }));
   }, [dispatch]);
 
   window.addEventListener('resize', function () {
