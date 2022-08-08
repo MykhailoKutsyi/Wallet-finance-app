@@ -1,40 +1,37 @@
-import {
-  DatePickWrapper,
-  DatePickHeader,
-  DatePickSubheader,
-  SubHeaderSpan,
-  Form,
-} from './DatePicker.styled';
-import Datetime from 'react-datetime';
-import 'react-datetime/css/react-datetime.css';
+import { DatePickWrapper, Form } from './DatePicker.styled';
+import "./DatePicker.module.css";
+import { dataForMonthPicker, dataForYearPicker } from 'components/DiagramTab/js/initial-data';
 
-const DatePicker = ({ onChange }) => {
-  return (
+const DatePicker = ({ onInputChange }) => {
+  
+return (
     <DatePickWrapper>
-      <DatePickHeader>Enter period</DatePickHeader>
-      <DatePickSubheader>
-        <SubHeaderSpan>Year:</SubHeaderSpan>
-        <SubHeaderSpan>Month:</SubHeaderSpan>
-      </DatePickSubheader>
       <Form>
-        <Datetime
-          dateFormat="YYYY"
-          timeFormat={false}
-          onClose={event => {
-            onChange(event, 'year');
-          }}
-        />
+      <select
+        name='year'
+        defaultValue={"Year"}
+        onChange={(event) => onInputChange(event)}
+      >
+          <option defaultValue="Year" disabled hidden>Year</option>
+        {dataForYearPicker.map(item =>{
+          return <option key={item.id} value={item.value}>{item.name}</option>
+        })};
+      </select>
 
-        <Datetime
-          dateFormat="MM"
-          timeFormat={false}
-          onClose={event => {
-            onChange(event, 'month');
-          }}
-        />
+      <select
+        name='month'
+        defaultValue={"Month"}
+        onChange={(event) => onInputChange(event)}
+      >
+          <option defaultValue="Month" disabled hidden>Month</option>
+        {dataForMonthPicker.map(item =>{
+          return <option key={item.id} value={item.value}>{item.name}</option>
+        })};
+      </select>
+
       </Form>
     </DatePickWrapper>
-  );
-};
+  )
+}
 
 export default DatePicker;

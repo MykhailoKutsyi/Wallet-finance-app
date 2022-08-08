@@ -1,0 +1,10 @@
+input, select {
+    outline: none;
+    width: 50%;
+    height: 50px;
+    border: 1px solid var(--black-color);
+    color:  var(--black-color);
+    font-size: 18px;
+    border-radius: 50px;
+    text-align: center;
+}

@@ -14,6 +14,7 @@ import {
 } from "./Table.styled";
 
 const Table = ({ data, expenses, income }) => {
+    // console.log(data);
     
     return (
         <TableWrapper>
