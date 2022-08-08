@@ -101,6 +101,7 @@ const HomeTab = () => {
           {sortTransactions.map(
             ({ _id, date, type, category, comment, amount, balance }) => {
               const color = type === false ? '#ff6596' : '#24cca7';
+              const parseDate = date.split('T');
               const typeValid = type === true ? '+' : '-';
               const amountString = amount?.toString();
               const balanceString = balance?.toString();
@@ -110,7 +111,7 @@ const HomeTab = () => {
                     <LineSide color={color} />
                     <Text>Date</Text>
                     <DataWrapper>
-                      <Data text={date} length={20} />
+                      <Data text={parseDate[0]} length={20} />
                     </DataWrapper>
                   </TransactionField>
                   <TransactionField>
@@ -124,14 +125,14 @@ const HomeTab = () => {
                     <LineSide color={color} />
                     <Text>Category</Text>
                     <DataWrapper>
-                      <Data text={category} length={8} />
+                      <Data text={category} length={15} />
                     </DataWrapper>
                   </TransactionField>
                   <TransactionField>
                     <LineSide color={color} />
                     <Text>Comment</Text>
                     <DataWrapper>
-                      <Data text={comment} length={15} />
+                      <Data text={comment} length={30} />
                     </DataWrapper>
                   </TransactionField>
                   <TransactionField>
