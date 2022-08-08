@@ -1,15 +1,13 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import globalSelectors from 'redux/finance/finance-selectors';
-import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Chart from "../Chart/Chart";
 import Table from "../Table/Table";
 import DatePicker from 'components/DatePicker/DatePicker';
 import { Wrapper, SubWrapper } from "./DiagramTab.styled";
 import { useEffect } from 'react';
-import financeOperations from "../../redux/finance/finance-operations";
-import sessionSelectors from 'redux/session/session-selectors';
+import financeOperations from '../../redux/finance/finance-operations';
+import financeSelectors from '../../redux/finance/finance-selectors';
 
 const DiagramTab = () => {
 
@@ -18,11 +16,11 @@ const DiagramTab = () => {
   const [monthForFilter, setMonthForFilter] = useState(null);
   const [yearForFilter, setYearForFilter] = useState(null);
 
-  const currentBalance = useSelector(sessionSelectors.getTotalBalance);
-  const dataForDiagramTable = useSelector(globalSelectors.getDataForDiagramTable);
-  const dataForChart = useSelector(globalSelectors.getDataForChart);
-  const income = useSelector(globalSelectors.getIncome);
-  const expenses = useSelector(globalSelectors.getExpenses);
+  const currentBalance = useSelector(financeSelectors.getTotalBalance);
+  const dataForDiagramTable = useSelector(financeSelectors.getDataForDiagramTable);
+  const dataForChart = useSelector(financeSelectors.getDataForChart);
+  const income = useSelector(financeSelectors.getIncome);
+  const expenses = useSelector(financeSelectors.getExpenses);
   
   useEffect(() => {
     if (!yearForFilter || !monthForFilter) {
@@ -31,64 +29,50 @@ const DiagramTab = () => {
     dispatch(financeOperations.getTransactionsInfo({ month: monthForFilter, year: yearForFilter, }));
 
 
-  }, [yearForFilter, monthForFilter]);
+  }, [yearForFilter, monthForFilter, dispatch]);
 
-  const onDateInput = (event, name) => {
+  const onDateInput = (event) => {
 
-    if (!event._d) {
+    const { name, value } = event.target;
+
+    if (!name || !value) {
       return;
     }
 
     if (name === "year") {
-      const year = event._d.getFullYear();
-      setYearForFilter(year);
+      const year = event.target.value;
+      setYearForFilter(Number(year));
     }
 
     if (name === "month") {
-      const month = event._d.getMonth() + 1;
-      setMonthForFilter(month);
+      const month = event.target.value;
+      setMonthForFilter(Number(month));
     }
   };
 
   return (
     <Wrapper>
-      {expenses > 0 ? <Chart
+      {expenses > 0 ? 
+      <Chart
           dataForChart={dataForChart}
           currentBalance={currentBalance}
-      /> : <h2 style={{padding: '200px 50px', width: '50%'}}> Sorry, no expenses to display. Please, set date range including any transactions</h2>}
+      /> 
+      : 
+      <h2 style={{padding: '200px 50px', width: '50%'}}> No expenses to display. To show chart, set date range when you spent any money</h2>
+      }
       <SubWrapper>
         <DatePicker
-          onChange={onDateInput}
-          values={datesForFilter}
+          onInputChange={onDateInput}
         />
 
-        <Table
+      {dataForDiagramTable && <Table
           data={dataForDiagramTable}
           expenses={expenses}
           income={income}
-          />
+          />}
       </SubWrapper>
-      <ToastContainer />
     </Wrapper>
   )
 };
 
 export default DiagramTab;
-
-// Example of response from backend: 
-// [
-//   {
-//     "amount": 500,
-//     "type": "income/expense",
-//     "category": "Regular income",
-//     "comment": "January salary",
-//     "date": "2021-02-01",
-//     "balance": 1000,
-//     "owner": "61994b7dc2b3164f924883cc",
-//     "createdAt": "2021-11-20T19:37:20.178Z",
-//     "updatedAt": "2021-11-20T19:37:20.178Z",
-//     "year": 2022,
-//     "month": 2,
-//     "id": "61994e70df4763ac4010ed06"
-//   }
-// ]
