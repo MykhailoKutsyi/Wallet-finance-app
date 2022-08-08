@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export const LogoWrapper = styled.div`
   padding: 15px 0px;
@@ -7,7 +8,7 @@ export const LogoWrapper = styled.div`
   }
 `;
 
-export const LogoLink = styled.a`
+export const LogoLink = styled(NavLink)`
   text-decoration: none;
   display: flex;
   flex-direction: row;
@@ -25,7 +26,6 @@ export const LogoIconWrapper = styled.svg`
 `;
 
 export const LogoSpan = styled.span`
-
   font-family: 'Poppins';
   line-height: 1.5;
   font-style: normal;
@@ -34,7 +34,6 @@ export const LogoSpan = styled.span`
   color: var(--black-color);
   font-size: 26px;
   margin-left: 15px;
-
 
   @media (min-width: 768px) {
     font-size: 30px;

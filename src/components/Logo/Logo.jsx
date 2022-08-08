@@ -9,9 +9,7 @@ import {
 const Logo = () => {
   return (
     <LogoWrapper>
-      <LogoLink
-        href="/home"
-      >
+      <LogoLink to="/home">
         <LogoIconWrapper>
           <use href={`${sprite}#icon-wallet`} />
         </LogoIconWrapper>
