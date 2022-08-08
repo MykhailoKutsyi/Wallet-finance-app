@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Wrapper = styled.section`
     box-sizing: border-box;
-    padding: 40px 20px;
+    padding: 10px 20px;
     display: flex;
     flex-direction: column;
     align-items: top;
@@ -19,8 +19,7 @@ export const Wrapper = styled.section`
         display: flex;
         flex-direction: row;
         align-items: top;
-        padding: 30px 15px 40px 60px;
-        border-left: 1px solid var(--light-grey-color);
+        padding: 30px 15px 40px 0px;
     }
 
 `;
