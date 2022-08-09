@@ -4,19 +4,19 @@ import { useDispatch } from 'react-redux';
 import { refresh } from 'redux/session/session-operations';
 import { ToastContainer } from 'react-toastify';
 
-import Container from './components/Container/Container';
-import AppBar from './components/AppBar/AppBar';
-import Loader from './components/Loader/Loader';
+import Container from 'components/Container/Container';
+import AppBar from 'components/AppBar/AppBar';
+import Loader from 'components/Loader/Loader';
 import Footer from 'components/Footer/Footer';
 
-import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
-import PublicRoute from './components/PublicRoute/PublicRoute';
-import CustomRoute from './components/CustomRoute/CustomRoute';
+import ProtectedRoute from 'components/ProtectedRoute/ProtectedRoute';
+import PublicRoute from 'components/PublicRoute/PublicRoute';
+import CustomRoute from 'components/CustomRoute/CustomRoute';
 
-const Login = lazy(() => import('./pages/Auth/LoginPage/LoginPage'));
-const Register = lazy(() => import('./pages/Auth/RegisterPage/RegisterPage'));
-const Dashboard = lazy(() => import('./pages/Dashboard/Dashboard'));
-const Statistics = lazy(() => import('./pages/Statistics/Statistics'));
+const Login = lazy(() => import('pages/Auth/LoginPage/LoginPage'));
+const Register = lazy(() => import('pages/Auth/RegisterPage/RegisterPage'));
+const Dashboard = lazy(() => import('pages/Dashboard/Dashboard'));
+const Statistics = lazy(() => import('pages/Statistics/Statistics'));
 
 export default function App() {
   const dispatch = useDispatch();
@@ -29,16 +29,6 @@ export default function App() {
     <Container>
       <Suspense fallback={<Loader />}>
         <Routes>
-          <Route
-            path="/home"
-            element={
-              <ProtectedRoute>
-                <AppBar />
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
-
           <Route
             path="register"
             element={
@@ -58,6 +48,16 @@ export default function App() {
           />
 
           <Route
+            path="/home"
+            element={
+              <ProtectedRoute>
+                <AppBar />
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
             path="diagram"
             element={
               <ProtectedRoute>
@@ -68,9 +68,9 @@ export default function App() {
           />
           <Route path="*" element={<CustomRoute />} />
         </Routes>
+        <Footer />
+        <ToastContainer />
       </Suspense>
-      <Footer />
-      <ToastContainer />
     </Container>
   );
 }
