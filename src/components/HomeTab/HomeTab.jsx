@@ -124,14 +124,14 @@ const HomeTab = () => {
                     <LineSide color={color} />
                     <Text>Category</Text>
                     <DataWrapper>
-                      <Data text={category} length={8} />
+                      <Data text={category} length={15} />
                     </DataWrapper>
                   </TransactionField>
                   <TransactionField>
                     <LineSide color={color} />
                     <Text>Comment</Text>
                     <DataWrapper>
-                      <Data text={comment} length={15} />
+                      <Data text={comment} length={30} />
                     </DataWrapper>
                   </TransactionField>
                   <TransactionField>

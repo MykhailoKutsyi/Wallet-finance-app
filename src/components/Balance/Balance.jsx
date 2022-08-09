@@ -4,7 +4,6 @@ import sessionSelectors from 'redux/session/session-selectors';
 
 export default function Balance() {
   const { balance } = useSelector(sessionSelectors.getUser);
-
   return (
     <BalanceBox>
       <BalanceTitle>Your balance</BalanceTitle>
