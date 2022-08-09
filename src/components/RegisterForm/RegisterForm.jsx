@@ -32,7 +32,6 @@ function Registration() {
       name: values.name,
       password: values.password,
     };
-    await dispatch(register(obj));
     const user = await dispatch(register(obj));
     resetForm();
     user.type === 'register/fulfilled' && setUser({ user });

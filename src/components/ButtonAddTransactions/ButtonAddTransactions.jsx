@@ -10,7 +10,7 @@ const ButtonAddTransactions = () => {
       type="button"
       onClick={() => dispatch(toggleModalAddTransaction())}
     >
-      <Icon id={'#icon-plus'} width={20} height={20} />
+      <Icon id={'#icon-plus-add-trans'} width={20} height={20} />
     </BtnAddTransactions>
   );
 };

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const BtnAddTransactions = styled.button`
   margin: auto 40px 40px auto;
+  padding: 12px;
 
   width: 44px;
   height: 44px;
@@ -14,15 +15,12 @@ export const BtnAddTransactions = styled.button`
   justify-content: center;
   align-items: center;
 
-  margin: auto 40px 40px auto;
-  &:hover,
-  &:focus {
-    background-color: var(--light-green-hover-color);
-  }
   @media (max-width: 767px) {
     margin: auto 20px 20px auto;
   }
-  &:hover {
+  &:hover,
+  &:focus {
+    background-color: var(--light-green-hover-color);
     cursor: pointer;
   }
 `;
