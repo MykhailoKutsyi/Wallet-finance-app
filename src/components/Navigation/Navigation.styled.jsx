@@ -62,13 +62,13 @@ export const NavButton = styled(NavLink)`
     align-items: center;
     margin-bottom: 12px;
     border-radius: 2px;
-
+    opacity: 0.8;
     &.active {
+      opacity: 1;
       & > * {
         &:first-child {
           backdrop-filter: blur(50px);
           filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
-          opacity: 1;
         }
         &:last-child {
           font-weight: 700;
