@@ -10,11 +10,12 @@ import ModalTransactions from '../AddTransactions/ModalTransactions/ModalTransac
 // import Eli1 from 'images/Ellipse1.png'
 
 // redux/react
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { refresh } from 'redux/session/session-operations';
 import globalSelectors from 'redux/global/global-selectors';
 import financeOperations from 'redux/finance/finance-operations';
+import { toggleCurrencyView } from 'redux/global/global-slice';
 
 // import styled components
 import {
@@ -30,8 +31,7 @@ import financeSelectors from 'redux/finance/finance-selectors';
 
 export default function Dashboard() {
   const dispatch = useDispatch();
-
-  const [viewCurrency, setViewCurrency] = useState(false);
+  const viewCurrency = useSelector(globalSelectors.getIsCurrencyView);
 
   const isLoading = useSelector(globalSelectors.getIsLoading);
   const isModalAddTransactionOpen = useSelector(
@@ -51,11 +51,11 @@ export default function Dashboard() {
 
   window.addEventListener('resize', function () {
     if (window.innerWidth > 768) {
-      setViewCurrency(false);
+      dispatch(toggleCurrencyView(false));
     }
   });
 
-  useEffect(() => {}, [viewCurrency]);
+  // useEffect(() => {}, [viewCurrency]);
 
   const VIEW_CURRENCY = viewCurrency === true;
   const VIEW_HOME = viewCurrency === false;
@@ -74,7 +74,7 @@ export default function Dashboard() {
           <HomeInfo>
             <NavBalWrapper>
               <Navigation
-                setViewCurrency={setViewCurrency}
+                // setViewCurrency={setViewCurrency}
                 viewCurrency={viewCurrency}
               />
               <Balance />
@@ -92,7 +92,7 @@ export default function Dashboard() {
       {!LOADING && VIEW_CURRENCY && (
         <DashboardWrapper>
           <Navigation
-            setViewCurrency={setViewCurrency}
+            // setViewCurrency={setViewCurrency}
             viewCurrency={viewCurrency}
           />
           <Currency />

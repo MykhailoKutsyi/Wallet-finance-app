@@ -1,4 +1,3 @@
-import { useState } from 'react';
 // import { useState, useEffect } from 'react';
 // import { useDispatch, useSelector } from "react-redux";
 import Balance from 'components/Balance/Balance.jsx';
@@ -13,13 +12,17 @@ import {
   // Elips1,
 } from '../Dashboard/Dashboard.styled';
 import { AsideWrapper } from './Statistics.styled.js';
+import { toggleCurrencyView } from 'redux/global/global-slice';
+import globalSelectors from 'redux/global/global-selectors';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function Statistics() {
-  const [viewCurrency, setViewCurrency] = useState(false);
+  const dispatch = useDispatch();
+  const viewCurrency = useSelector(globalSelectors.getIsCurrencyView);
 
   window.addEventListener('resize', function () {
     if (window.innerWidth > 768) {
-      setViewCurrency(false);
+      dispatch(toggleCurrencyView(false));
     }
   });
 
@@ -29,10 +32,7 @@ export default function Statistics() {
     <AsideWrapper>
       <HomeInfo>
         <NavBalWrapper>
-          <Navigation
-            setViewCurrency={setViewCurrency}
-            viewCurrency={viewCurrency}
-          />
+          <Navigation viewCurrency={viewCurrency} />
           <Balance />
         </NavBalWrapper>
         <CurrencyWrapper>
