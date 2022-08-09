@@ -21,8 +21,7 @@ export const NavContainer = styled.div`
 
       &.active {
         &:not(:last-child) {
-          backdrop-filter: ${props =>
-            props.viewCurrency === false ? 'blur(50px)' : 'blur(0px)'};
+          backdrop-filter: ${props => !props.viewCurrency && 'blur(50px)'};
           filter: ${props =>
             props.viewCurrency === false
               ? 'drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5))'
@@ -31,13 +30,12 @@ export const NavContainer = styled.div`
         }
 
         &:last-child {
-          backdrop-filter: ${props =>
-            props.viewCurrency ? 'blur(50px)' : 'blur(0px)'};
+          backdrop-filter: ${props => props.viewCurrency && 'blur(50px)'};
           filter: ${props =>
-            props.viewCurrency
-              ? 'drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5))'
-              : '0'};
-          opacity: ${props => (props.viewCurrency ? '1' : '0.8')};
+            props.viewCurrency &&
+            'drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5))'};
+
+          opacity: ${props => props.viewCurrency && '1'};
         }
       }
 
