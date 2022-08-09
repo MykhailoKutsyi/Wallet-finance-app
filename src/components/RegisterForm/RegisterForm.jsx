@@ -28,9 +28,7 @@ function Registration() {
       name: values.name,
       password: values.password,
     };
-    const data =
     await dispatch(register(obj));
-    console.log(data)
     resetForm();
   };
 

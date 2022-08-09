@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import plus from '../../../images/plus.svg';
 import minus from '../../../images/minus.svg';
 export const TransactBackdrop = styled.div`
+  z-index:20;
   position: fixed;
   top: 0;
   left: 0;
