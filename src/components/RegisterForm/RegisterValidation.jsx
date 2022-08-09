@@ -9,16 +9,19 @@ function RegisterValidation() {
       .max(63)
       .required('Email is required')
       .test({
-        name: 'first',
-        exclusive: false,
         message: 'before @ at least 2 characters',
         test: value => value[0]&&value[1]!=='@',
+      })
+      .test({
+        message: 'do not type dash at the start ',
+        test: value => value[0]!=='-',
       }),
 
     password: Yup.string().min(6).max(16).required('Password is required').matches(
-      /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]$/,
-      'please enter one letter and one number',
+      /^(?=.*[a-z])(?=.*\d)[a-z\d@$!%*#?&]{6,}$/,
+      "Must Contain min 6 Char, One Letter, One Number"
     ),
+
 
     confirmPassword: Yup.string()
       .min(6)
