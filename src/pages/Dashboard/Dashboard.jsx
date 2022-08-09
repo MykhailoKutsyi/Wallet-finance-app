@@ -32,6 +32,7 @@ export default function Dashboard() {
   const dispatch = useDispatch();
 
   const [viewCurrency, setViewCurrency] = useState(false);
+
   const isLoading = useSelector(globalSelectors.getIsLoading);
   const isModalAddTransactionOpen = useSelector(
     globalSelectors.getIsModalAddTransaction

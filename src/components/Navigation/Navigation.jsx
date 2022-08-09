@@ -11,6 +11,7 @@ import {
 } from './Navigation.styled';
 
 const Navigation = ({ setViewCurrency, viewCurrency }) => {
+  console.log('nav vC:', viewCurrency);
   return (
     <Media
       queries={{

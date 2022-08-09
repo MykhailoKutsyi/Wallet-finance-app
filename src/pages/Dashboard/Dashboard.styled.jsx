@@ -10,7 +10,7 @@ export const DashboardContainer = styled.div`
   flex-direction: column;
   align-items: center;
 
-  /* position: relative; */
+  // position: relative;
 
   @media (min-width: 768px) {
   }

@@ -17,6 +17,8 @@ export const NavContainer = styled.div`
 
   @media (max-width: 767px) {
     & > * {
+      opacity: 0.8;
+
       &.active {
         &:not(:last-child) {
           backdrop-filter: ${props =>
@@ -54,7 +56,6 @@ export const NavButton = styled(NavLink)`
     border-radius: 6px;
     background-color: var(--white-color);
   }
-  opacity: 0.8;
 
   @media (min-width: 768px) {
     display: flex;
@@ -98,7 +99,6 @@ export const NavButton = styled(NavLink)`
 export const IconWrapper = styled.div`
   width: 38px;
   height: 38px;
-  opacity: 0.8;
 
   &:hover {
     &:first-child {
