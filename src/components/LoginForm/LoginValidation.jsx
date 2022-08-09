@@ -14,7 +14,8 @@ function LoginValidation() {
       .test({
         message: 'do not type dash at the start ',
         test: value => value[0]!=='-',
-      }),
+      }).matches(/[a-z0-9]+@[a-z]+\.[a-z]{2,3}/, "Email is invalid"
+),
     password: Yup.string().min(6).max(16).required('Password is required').matches(
       /^(?=.*[a-z])(?=.*\d)[a-z\d@$!%*#?&]{6,}$/,
       "Must Contain min 6 Char, One Letter, One Number"

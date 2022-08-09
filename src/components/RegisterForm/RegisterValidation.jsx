@@ -10,12 +10,13 @@ function RegisterValidation() {
       .required('Email is required')
       .test({
         message: 'before @ at least 2 characters',
-        test: value => value[0]&&value[1]!=='@',
+        test: value => value&&value[0]&&value[1]!=='@',
       })
       .test({
         message: 'do not type dash at the start ',
-        test: value => value[0]!=='-',
-      }),
+        test: value => value&&value[0]!=='-',
+      }).matches(/[a-z0-9]+@[a-z]+\.[a-z]{2,3}/, "Email is invalid"
+),
 
     password: Yup.string().min(6).max(16).required('Password is required').matches(
       /^(?=.*[a-z])(?=.*\d)[a-z\d@$!%*#?&]{6,}$/,
