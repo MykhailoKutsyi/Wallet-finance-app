@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
-// import { useState, useEffect } from 'react';
-// import { useDispatch, useSelector } from "react-redux";
+
 import Balance from 'components/Balance/Balance.jsx';
 import Currency from 'components/Currency/Currency.jsx';
 import Navigation from 'components/Navigation/Navigation.jsx';
 import DiagramTab from 'components/DiagramTab/DiagramTab.jsx';
-// import Eli1 from 'images/Ellipse1.png'
+
 import {
   CurrencyWrapper,
   HomeInfo,
@@ -13,26 +12,28 @@ import {
   // Elips1,
 } from '../Dashboard/Dashboard.styled';
 import { AsideWrapper } from './Statistics.styled.js';
+import { toggleCurrencyView } from 'redux/global/global-slice';
+import globalSelectors from 'redux/global/global-selectors';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function Statistics() {
-  const [viewCurrency, setViewCurrency] = useState(false);
+  const dispatch = useDispatch();
+  const viewCurrency = useSelector(globalSelectors.getIsCurrencyView);
+
   const [viewBalance, setViewBalance] = useState(true);
 
-  window.addEventListener('resize', function () {
-    if (window.innerWidth > 768) {
-      setViewCurrency(false);
-    }
-  });
 
   window.addEventListener('resize', function () {
     if (window.innerWidth < 768) {
       setViewBalance(false);
     } else {
       setViewBalance(true);
+      dispatch(toggleCurrencyView(false));
     }
+       
   });
 
-  useEffect(() => {}, [viewCurrency, viewBalance]);
+  useEffect(() => {}, [viewBalance]);
   const VIEW_BALANCE = viewBalance === true;
 
   return (
@@ -40,7 +41,6 @@ export default function Statistics() {
       <HomeInfo>
         <NavBalWrapper>
           <Navigation
-            setViewCurrency={setViewCurrency}
             viewCurrency={viewCurrency}
           />
           {VIEW_BALANCE && 

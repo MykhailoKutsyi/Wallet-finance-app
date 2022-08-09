@@ -132,7 +132,7 @@ const HomeTab = () => {
                     <LineSide color={color} />
                     <Text>Comment</Text>
                     <DataWrapper>
-                      <Data text={comment} length={30} />
+                      <Data text={comment} length={20} />
                     </DataWrapper>
                   </TransactionField>
                   <TransactionField>
