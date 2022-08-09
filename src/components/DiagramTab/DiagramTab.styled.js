@@ -7,6 +7,7 @@ export const Wrapper = styled.section`
     flex-direction: column;
     align-items: top;
     background: transparent;
+    z-index: 10;
     
     @media (min-width: 768px) {
         display: flex;

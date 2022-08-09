@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const Info = styled.div`
   width: 100%;
   height: 100%;
-
   background-color: #4a56e2;
   filter: opacity(0.8);
 

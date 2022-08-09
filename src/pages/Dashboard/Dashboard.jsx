@@ -7,6 +7,7 @@ import Currency from 'components/Currency/Currency';
 import Loader from 'components/Loader/Loader';
 import ButtonAddTransactions from 'components/ButtonAddTransactions/ButtonAddTransactions';
 import ModalTransactions from '../AddTransactions/ModalTransactions/ModalTransactions';
+import Eli1 from 'images/Ellipse1.png'
 
 // redux/react
 import { useEffect, useState } from 'react';
@@ -23,6 +24,7 @@ import {
   HomeInfo,
   NavBalWrapper,
   InfoContainer,
+  Elips1,
 } from './Dashboard.styled';
 import financeSelectors from 'redux/finance/finance-selectors';
 
@@ -82,6 +84,7 @@ export default function Dashboard() {
           </HomeInfo>
           <HomeTab />
           <ButtonAddTransactions />
+        <Elips1 src={Eli1}/>
         </DashboardWrapper>
       )}
 

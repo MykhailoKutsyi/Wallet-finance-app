@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  overflow:hidden;
   position: relative;
   @media screen and (min-width: 320px) {
     width: 320px;
@@ -84,5 +85,8 @@ export const Elips2 = styled.img`
     position: absolute;
     right: 0;
     top: 0;
+  }
+  @media screen and (min-width: 1280px) {
+    filter: blur(10px)
   }
 `;

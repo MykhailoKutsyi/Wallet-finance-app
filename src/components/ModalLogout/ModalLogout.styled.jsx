@@ -7,6 +7,7 @@ export const LogoBox = styled.div`
 `;
 
 export const LogoutBox = styled.div`
+  
   position: absolute;
   top: 50%;
   left: 50%;
@@ -26,6 +27,7 @@ export const LogoutBox = styled.div`
   }
 `;
 export const LogoutBackdrop = styled.div`
+  z-index:20;
   position: fixed;
   top: 0;
   left: 0;
