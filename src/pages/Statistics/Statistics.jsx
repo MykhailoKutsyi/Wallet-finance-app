@@ -20,7 +20,7 @@ export default function Statistics() {
   const dispatch = useDispatch();
   const viewCurrency = useSelector(globalSelectors.getIsCurrencyView);
 
-  const [viewBalance, setViewBalance] = useState(true);
+  const [viewBalance, setViewBalance] = useState(false);
 
 
   window.addEventListener('resize', function () {
