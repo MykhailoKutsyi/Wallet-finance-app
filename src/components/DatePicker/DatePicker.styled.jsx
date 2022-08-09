@@ -22,6 +22,7 @@ export const Input = styled.select`
   outline: none;
   border: 1px solid #dcdcdf;
   border-radius: 50px;
+  background: transparent;
 `;
 
 export const Option = styled.option`
