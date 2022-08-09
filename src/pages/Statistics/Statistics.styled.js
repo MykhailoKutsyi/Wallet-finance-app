@@ -8,7 +8,7 @@ export const AsideWrapper = styled.div`
     padding: 15px 10px;
     @media (min-width: 320px) {
         padding: 32px 0px;
-        width:320px;
+        width:100%;
         height: max-content;
     }
 

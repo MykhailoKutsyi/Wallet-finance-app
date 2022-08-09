@@ -52,15 +52,13 @@ const DiagramTab = () => {
     }
 
     if (name === "year") {
-      console.log("year");
       const year = event.target.value;
       setYearForFilter(Number(year));
     }
 
     if (name === "month") {
-      console.log("month");
       const month = event.target.value;
-      setMonthForFilter(Number(month) + 1);
+      setMonthForFilter(Number(month));
     }
   };
 
