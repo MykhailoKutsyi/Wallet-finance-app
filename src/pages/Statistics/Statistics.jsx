@@ -5,10 +5,12 @@ import Balance from 'components/Balance/Balance.jsx';
 import Currency from 'components/Currency/Currency.jsx';
 import Navigation from 'components/Navigation/Navigation.jsx';
 import DiagramTab from 'components/DiagramTab/DiagramTab.jsx';
+import Eli1 from 'images/Ellipse1.png'
 import {
   CurrencyWrapper,
   HomeInfo,
   NavBalWrapper,
+  Elips1,
 } from '../Dashboard/Dashboard.styled';
 import { AsideWrapper } from './Statistics.styled.js';
 
@@ -38,6 +40,7 @@ export default function Statistics() {
         </CurrencyWrapper>
       </HomeInfo>
       <DiagramTab />
+      <Elips1 src={Eli1}/>
     </AsideWrapper>
   );
 }

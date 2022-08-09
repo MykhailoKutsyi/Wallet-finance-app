@@ -17,18 +17,28 @@ export const DashboardContainer = styled.div`
 `;
 
 export const DashboardWrapper = styled.div`
+  overflow:hidden;
+  background:  #e4f0f0;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 15px;
+  @media (min-width: 320px) {
+    width: 320px;
+    height: 568px;
+  }
 
   @media (min-width: 768px) {
     padding-top: 32px;
+    width: 768px;
+    height: 1024px;
   }
   @media (min-width: 1280px) {
     display: flex;
     flex-direction: row;
-
+    height: 720px;
+    width:1280px;
     padding-top: 40px;
     padding-left: 19px;
     padding-right: 16px;
@@ -70,7 +80,21 @@ export const NavBalWrapper = styled.div`
 
 export const CurrencyWrapper = styled.div`
   display: none;
+  z-index:10;
   @media (min-width: 768px) {
     display: block;
+  }
+`;
+export const Elips1 = styled.img`
+  @media screen and (min-width: 320px) {
+    display: none;
+  }
+  @media screen and (min-width: 768px) {
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    filter: blur(50px);
+    
   }
 `;
