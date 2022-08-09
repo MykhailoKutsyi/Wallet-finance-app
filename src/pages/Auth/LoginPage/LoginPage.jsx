@@ -19,7 +19,7 @@ function LoginPage() {
         <LoginImage>
           <use href={sprite + '#login'} />
         </LoginImage>
-        <Title>FINANCE APP</Title>
+        <Title>Finance App</Title>
       </Upside>
       <LoginForm />
       <Elips1 src={Eli1} />

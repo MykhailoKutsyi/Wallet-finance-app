@@ -17,7 +17,7 @@ function RegistrationPage() {
     <Container>
       <Upside>
         <RegistrationImage><use href={sprite+'#register'}/></RegistrationImage>
-        <Title>FINANCE APP</Title>
+        <Title>Finance App</Title>
       </Upside>
       <RegistrationForm/>
       <Elips1 src={Eli1}/>

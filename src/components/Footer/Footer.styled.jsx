@@ -5,18 +5,15 @@ export const Container = styled.footer`
   display: flex;
   justify-content: center;
   @media screen and (min-width: 320px) {
-    width: 320px;
     padding: 20px 0;
     text-align: center;
     background: var(--white-color);
     flex-direction: column;
   }
   @media screen and (min-width: 768px) {
-    width: 768px;
     flex-direction: row;
   }
   @media screen and (min-width: 1280px) {
-    width: 1280px;
   }
 `;
 

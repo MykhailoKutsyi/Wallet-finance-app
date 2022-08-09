@@ -4,8 +4,11 @@ import {Form, Field} from 'formik'
 
 export const FormContainer = styled.div`
   @media screen and (min-width: 320px) {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
     width: 280px;
-    height: 500px;
+    height: 568px;
     z-index: 10;
     background: var(--white-color);
   }
@@ -19,7 +22,7 @@ export const Logo = styled.svg`
   @media screen and (min-width: 320px) {
     width: 120px;
     height: 30px;
-    margin: 107px 100px 0px 100px;
+    margin-top: 107px
   }
   @media screen and (min-width: 768px) {
     width: 181px;
@@ -46,7 +49,9 @@ export const Input = styled(Field)`
     width: 373px;
   }
 `;
-export const RegistrationForm = styled(Form)``;
+export const RegistrationForm = styled(Form)`
+ width: max-content;
+  `;
 
 export const Btn = styled.button`
   &:disabled{
@@ -59,7 +64,7 @@ export const Btn = styled.button`
   @media screen and (min-width: 320px) {
     width: 280px;
     height: 50px;
-    margin: 40px 20px 0px 20px;
+    margin-top: 40px;
     background-color: var(--light-green-color);
     border: none;
     border-radius: 20px;
@@ -67,7 +72,7 @@ export const Btn = styled.button`
   @media screen and (min-width: 768px) {
     width: 300px;
     height: 50px;
-    margin: 40px 114px 0px 119px;
+    margin: 20px 114px 0px 119px;
   }
 `;
 export const BtnTitle = styled.span`
@@ -86,7 +91,7 @@ export const Link = styled(NavLink)`
   @media screen and (min-width: 320px) {
     width: 280px;
     height: 50px;
-    margin: 20px 20px 36px 20px;
+    margin: 20px 0 36px 0;
     border-radius: 20px;
     border: 1px solid var(--blue-color);
   }
@@ -131,13 +136,12 @@ export const InputContainer = styled.div`
     height: 32px;
     border: white;
     border-bottom: 1px solid #e0e0e0;
-    margin: 40px 20px 0px 20px;
+    margin-top: 40px 
   }
   @media screen and (min-width: 768px) {
     width: 410px;
     border: var(--white-color);
     border-bottom: 1px solid #e0e0e0;
-    margin-top: 40px;
     margin-left: 65px;
   }
 `;
@@ -147,3 +151,4 @@ export const Error = styled.p`
   color: red;
   top: -24px;
 `;
+

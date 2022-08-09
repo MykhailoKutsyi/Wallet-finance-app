@@ -3,10 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   overflow:hidden;
   position: relative;
-  @media screen and (min-width: 320px) {
-    width: 320px;
-    height: 568px;
-  }
+  
   @media screen and (min-width: 768px) {
     width: 768px;
     height: 1024px;

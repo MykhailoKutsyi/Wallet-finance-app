@@ -5,8 +5,11 @@ import {Form, Field} from 'formik'
 
 export const FormContainer = styled.div`
   @media screen and (min-width: 320px) {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
     width: 280px;
-    height: 500px;
+    height: max-content;
     z-index: 10;
     background: var(--white-color);
   }
@@ -20,7 +23,7 @@ export const Logo = styled.svg`
   @media screen and (min-width: 320px) {
     width: 120px;
     height: 30px;
-    margin: 32px 100px 0px 100px;
+    margin-top: 32px;
   }
   @media screen and (min-width: 768px) {
     width: 181px;
@@ -60,7 +63,7 @@ export const Btn = styled.button`
   @media screen and (min-width: 320px) {
     width: 280px;
     height: 50px;
-    margin: 40px 20px 0px 20px;
+    margin-top: 40px;
     background-color: var(--light-green-color);
     border: none;
     border-radius: 20px;
@@ -87,7 +90,7 @@ export const Link = styled(NavLink)`
   @media screen and (min-width: 320px) {
     width: 280px;
     height: 50px;
-    margin: 20px 20px 36px 20px;
+    margin: 20px 0px 36px 0px;
     border-radius: 20px;
     border: 1px solid var(--blue-color);
   }
@@ -110,7 +113,7 @@ export const FormIcon = styled.svg`
 export const Progress = styled(ProgressBar)`
   @media screen and (min-width: 320px) {
     width: 280px;
-    margin-left: 20px;
+    //margin-left: 20px;
     margin-top: 5px;
   }
   @media screen and (min-width: 768px) {
@@ -130,13 +133,12 @@ export const InputContainer = styled.div`
     height: 32px;
     border: white;
     border-bottom: 1px solid #e0e0e0;
-    margin: 40px 20px 0px 20px;
+    margin-top: 40px ;
   }
   @media screen and (min-width: 768px) {
     width: 410px;
     border: white;
     border-bottom: 1px solid #e0e0e0;
-    margin-top: 40px;
     margin-left: 65px;
   }
 `;
