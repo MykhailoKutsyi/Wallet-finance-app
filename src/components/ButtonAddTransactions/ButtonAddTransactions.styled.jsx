@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 
 export const BtnAddTransactions = styled.button`
-  margin: auto 40px 40px auto;
+  // margin: auto 40px 40px auto;
   padding: 12px;
+  position: fixed;
 
+  bottom: 40px;
+  right: 40px;
   width: 44px;
   height: 44px;
   border: none;
@@ -16,7 +19,11 @@ export const BtnAddTransactions = styled.button`
   align-items: center;
 
   @media (max-width: 767px) {
-    margin: auto 20px 20px auto;
+    // position: absolute;
+    bottom: 20px;
+    right: 20px;
+    // margin-top: 20px;
+    // margin-right: 20px;
   }
   &:hover,
   &:focus {

@@ -5,13 +5,9 @@ export const ContainerStyled = styled.div`
   padding-left: 20px;
   padding-right: 20px;
   margin: 0 auto;
-  
+
   @media (min-width: 320px) {
     width: 320px;
-  }
-
-  @media (min-width: 480px) {
-    width: 480px;
   }
 
   @media (min-width: 768px) {
