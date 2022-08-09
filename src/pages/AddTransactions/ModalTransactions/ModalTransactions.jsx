@@ -63,8 +63,10 @@ export default function AddTransaction({ errors, touched }) {
   );
 
   const today = moment().format('YYYY-MM-DD');
+  const currentDay = moment();
   let localDate = new Date();
-  const valid = current => current.isBefore(today);
+  const valid = current => current.isBefore(currentDay);
+
   const formik = useFormik({
     initialValues: {
       type: true,
@@ -85,12 +87,20 @@ export default function AddTransaction({ errors, touched }) {
         return;
       }
       const arrDate = values.date.split('-');
+      let seconds = localDate.getSeconds();
+      if (seconds < 10) {
+        seconds = `0${seconds}`;
+      }
       values.year = Number(arrDate[0]);
       values.month = Number(arrDate[1]);
       values.amount = Number(values.amount);
+
       values.date = `${
         values.date
-      }T${localDate.getHours()}:${localDate.getMinutes()}`;
+      }T${localDate.getHours()}:${localDate.getMinutes()}:${seconds}Z`;
+      console.log(values.date);
+      console.log(seconds);
+
       try {
         await dispatch(
           financeOperations.createTransactions({

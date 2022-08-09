@@ -92,12 +92,12 @@ export const Transaction = styled.tbody`
     height: auto;
     flex-direction: row;
     border-bottom: 1px solid #dcdcdf;
+    padding-left: 20px;
+    padding-right: 20px;
   }
   @media (min-width: 1280px) {
     width: 715px;
   }
-  padding-left: 20px;
-  padding-right: 20px;
 `;
 
 export const LineSide = styled.td`
@@ -122,6 +122,7 @@ export const TransactionField = styled.tr`
   align-items: center;
 
   position: relative;
+  overflow: hidden;
 
   width: 100%;
   height: 60px;
@@ -130,6 +131,7 @@ export const TransactionField = styled.tr`
     justify-content: space-between;
     padding-left: 20px;
     padding-right: 20px;
+
     &:first-child {
       border-radius: 10px 10px 0px 0px;
     }
@@ -163,6 +165,7 @@ export const Text = styled.td`
 
 export const DataWrapper = styled.td`
   text-align: center;
+
   @media (max-width: 767px) {
     width: 110px;
     text-align: right;

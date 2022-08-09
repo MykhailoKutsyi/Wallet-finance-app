@@ -3,15 +3,15 @@ import styled from 'styled-components';
 // import sprite from '../../../images/sprite.svg';
 import plus from '../../../images/plus.svg';
 import minus from '../../../images/minus.svg';
+
 export const TransactBackdrop = styled.div`
-  z-index:20;
+  z-index: 20;
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.25);
-  overflow: hidden;
 `;
 
 export const TransactContainer = styled.div`
@@ -21,7 +21,8 @@ export const TransactContainer = styled.div`
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 100vw;
+  height: 100vh;
   padding: 10px;
   margin-left: auto;
   margin-right: auto;
@@ -37,6 +38,8 @@ export const TransactBox = styled.div`
   width: 280px;
   padding-left: 10px;
   padding-right: 10px;
+  margin-left: auto;
+  margin-right: auto;
   @media (min-width: 768px) {
     padding: 0;
     width: 100%;

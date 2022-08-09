@@ -17,10 +17,11 @@ export const NavContainer = styled.div`
 
   @media (max-width: 767px) {
     & > * {
+      opacity: 0.8;
+
       &.active {
         &:not(:last-child) {
-          backdrop-filter: ${props =>
-            props.viewCurrency === false ? 'blur(50px)' : 'blur(0px)'};
+          backdrop-filter: ${props => !props.viewCurrency && 'blur(50px)'};
           filter: ${props =>
             props.viewCurrency === false
               ? 'drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5))'
@@ -29,13 +30,12 @@ export const NavContainer = styled.div`
         }
 
         &:last-child {
-          backdrop-filter: ${props =>
-            props.viewCurrency ? 'blur(50px)' : 'blur(0px)'};
+          backdrop-filter: ${props => props.viewCurrency && 'blur(50px)'};
           filter: ${props =>
-            props.viewCurrency
-              ? 'drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5))'
-              : '0'};
-          opacity: ${props => (props.viewCurrency ? '1' : '0.8')};
+            props.viewCurrency &&
+            'drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5))'};
+
+          opacity: ${props => props.viewCurrency && '1'};
         }
       }
 
@@ -54,20 +54,19 @@ export const NavButton = styled(NavLink)`
     border-radius: 6px;
     background-color: var(--white-color);
   }
-  opacity: 0.8;
 
   @media (min-width: 768px) {
     display: flex;
     align-items: center;
     margin-bottom: 12px;
     border-radius: 2px;
-
+    opacity: 0.8;
     &.active {
+      opacity: 1;
       & > * {
         &:first-child {
           backdrop-filter: blur(50px);
           filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
-          opacity: 1;
         }
         &:last-child {
           font-weight: 700;
@@ -98,7 +97,6 @@ export const NavButton = styled(NavLink)`
 export const IconWrapper = styled.div`
   width: 38px;
   height: 38px;
-  opacity: 0.8;
 
   &:hover {
     &:first-child {

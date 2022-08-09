@@ -10,14 +10,11 @@ export const DashboardContainer = styled.div`
   flex-direction: column;
   align-items: center;
 
-  /* position: relative; */
-
   @media (min-width: 768px) {
   }
 `;
 
 export const DashboardWrapper = styled.div`
-  overflow: hidden;
   background: #e4f0f0;
   position: relative;
   display: flex;
