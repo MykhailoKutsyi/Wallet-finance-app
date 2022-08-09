@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Navigate } from 'react-router-dom';
+
 import { Formik, ErrorMessage } from 'formik';
 import RegisterValidation from './RegisterValidation';
+
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/session/session-operations';
 import {
@@ -22,14 +25,17 @@ import sprite from '../../images/sprite.svg';
 function Registration() {
   const dispatch = useDispatch();
 
+  const [user, setUser] = useState(null);
   const handleSubmit = async (values, { resetForm }) => {
     const obj = {
       email: values.email,
       name: values.name,
       password: values.password,
     };
-    await dispatch(register(obj));
+
+    const user = await dispatch(register(obj));
     resetForm();
+    user.type === 'register/fulfilled' && setUser({ user });
   };
 
   return (
@@ -121,6 +127,7 @@ function Registration() {
                 <ErrorMessage name={'name'} />
               </Error>
             </InputContainer>
+            {user && <Navigate to="/login" />}
 
             <Btn type="submit" disabled={isSubmitting}>
               {isSubmitting ? (
