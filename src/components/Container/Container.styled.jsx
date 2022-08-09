@@ -4,13 +4,8 @@ export const ContainerStyled = styled.div`
   width: 100%;
   padding-left: 20px;
   padding-right: 20px;
-<<<<<<< HEAD
-  margin:0 auto;
-  
-=======
   margin: 0 auto;
 
->>>>>>> dev
   @media (min-width: 320px) {
     width: 320px;
   }
