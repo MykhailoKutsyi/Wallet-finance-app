@@ -18,10 +18,7 @@ const register = createAsyncThunk(
   'register',
   async (credentials, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post('/api/auth/users/signup', credentials);
-      token.set(data.token);
-      toast('Registration successfull!');
-      return data;
+      await axios.post('/api/auth/users/signup', credentials);
     } catch (error) {
       if (error.response.status === 409) {
         toast.error('Sorry, this email in use!');
