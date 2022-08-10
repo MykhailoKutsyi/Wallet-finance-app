@@ -99,9 +99,6 @@ export default function AddTransaction({ errors, touched }) {
       values.date = `${
         values.date
       }T${localDate.getHours()}:${localDate.getMinutes()}:${seconds}Z`;
-      console.log(values.date);
-      console.log(seconds);
-
       try {
         await dispatch(
           financeOperations.createTransactions({

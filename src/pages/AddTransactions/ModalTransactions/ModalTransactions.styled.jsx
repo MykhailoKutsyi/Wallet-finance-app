@@ -20,13 +20,14 @@ export const TransactContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 320px;
-  height: 100vh;
+  /* height: 100vh; */
   padding: 10px;
   margin-left: auto;
   margin-right: auto;
-  background: #ffffff;
+  background: var(--white-color);
   @media (min-width: 768px) {
     width: 540px;
+    /* max-height: 603px; */
     padding: 40px 73px;
     border-radius: 20px;
   }
@@ -65,7 +66,7 @@ export const TransTitle = styled.h2`
   font-size: 24px;
   line-height: 36px;
   text-align: center;
-  color: #000000;
+  color: var(--black-color);
   @media (min-width: 768px) {
     font-size: 30px;
     line-height: 45px;
@@ -87,7 +88,7 @@ export const CheckBoxLabel = styled.label`
   left: 0;
   width: 80px;
   height: 40px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--light-grey-color);
   border-radius: 30px;
   background: #ffffff;
   cursor: pointer;
@@ -104,7 +105,7 @@ export const CheckBoxLabel = styled.label`
     width: 44px;
     height: 44px;
     margin: 3px;
-    background: #24cca7 url(${plus}) no-repeat center;
+    background: var(--light-green-color) url(${plus}) no-repeat center;
     box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
     transition: 0.2s;
   }
@@ -119,7 +120,7 @@ export const CheckBox = styled.input`
   width: 80px;
   height: 40px;
   &:checked + ${CheckBoxLabel} {
-    background: #ffffff;
+    background: var(--white-color);
     &::after {
       content: '';
       color: white;
@@ -134,7 +135,7 @@ export const CheckBox = styled.input`
       width: 44px;
       height: 44px;
       margin-left: 40px;
-      background: #ff6596 url(${minus}) no-repeat center;
+      background: var(--ping-color) url(${minus}) no-repeat center;
       transition: 0.2s;
     }
   }
@@ -156,7 +157,6 @@ export const Expense = styled.span`
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
-  /* identical to box height */
   color: ${({ checked }) =>
     checked ? 'var(--ping-color)' : 'var(--light-grey-color)'};
 `;
@@ -187,7 +187,7 @@ export const TransactSumInput = styled.input`
   padding-right: 20px;
   margin-top: 40px;
   border: none;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--light-grey-color);
   @media (min-width: 768px) {
     /* display: flex;
      justify-content: center; */
@@ -208,7 +208,7 @@ export const DateTimeWrapper = styled.div`
   margin-top: 40px;
   padding-left: 20px;
   padding-right: 20px;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--light-grey-color);
   @media (min-width: 768px) {
     width: 181px;
   }
@@ -219,7 +219,7 @@ export const TransactDateInput = styled.input`
   width: 178px;
   height: 32px;
   border: none;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--light-grey-color);
   @media (min-width: 768px) {
     width: 116px;
   }
@@ -236,7 +236,7 @@ export const TransactComment = styled.textarea`
   padding: 0px 20px 8px 20px;
   margin-top: 40px;
   border: none;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--light-grey-color);
   resize: none;
   &:focus {
     outline: 0;
@@ -255,8 +255,8 @@ export const TransactBtnAdd = styled.button`
   align-items: center;
   width: 280px;
   height: 50px;
-  margin: auto auto 0px auto;
-  background: #24cca7;
+  margin: 40px auto 0px auto;
+  background: var(--light-green-color);
   border-radius: 20px;
   border: none;
   font-family: 'Circe';
@@ -268,14 +268,25 @@ export const TransactBtnAdd = styled.button`
   letter-spacing: 0.1em;
   text-transform: uppercase;
   cursor: pointer;
-  color: #ffffff;
+  color: var(--white-color);
+  &:hover,
+  &:focus {
+    background: var(--light-green-hover-color);
+  }
 `;
 
 export const TransactBtnCncl = styled(TransactBtnAdd)`
   margin-top: 20px;
-  background: #ffffff;
-  border: 1px solid #4a56e2;
-  color: #4a56e2;
+  margin-bottom: 17px;
+  background: var(--white-color);
+  border: 1px solid var(--blue-color);
+  color: var(--blue-color);
+  &:hover,
+  &:focus {
+    border: 1px solid var(--blue-hover-color);
+    color: var(--blue-hover-color);
+    background: var(--white-color);
+  }
 `;
 export const Error = styled.div`
   font-size: 12px;
