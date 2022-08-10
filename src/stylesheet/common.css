@@ -1,0 +1,60 @@
+@import './vars.css';
+@import './fonts.css';
+html {
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Circe', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27px;
+
+  background: var(--white-color);
+  color: var(--black-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+ul {
+  margin: 0px;
+  padding: 0px;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  display: block;
+  cursor: pointer;
+  border: transparent;
+}
+
+ul {
+  list-style: none;
+}
+
+label,
+input,
+textarea {
+  display: block;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
