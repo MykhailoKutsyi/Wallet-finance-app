@@ -12,7 +12,12 @@ const Logo = () => {
   const dispatch = useDispatch();
   return (
     <LogoWrapper>
-      <LogoLink to="/home" onClick={dispatch(toggleCurrencyView(false))}>
+      <LogoLink
+        to="/home"
+        onClick={() => {
+          dispatch(toggleCurrencyView(false));
+        }}
+      >
         <LogoIconWrapper>
           <use href={`${sprite}#icon-wallet`} />
         </LogoIconWrapper>
