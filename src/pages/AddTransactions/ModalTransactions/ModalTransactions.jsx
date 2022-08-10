@@ -30,6 +30,7 @@ import {
   TransSumDateCommonBox,
   DateTimeWrapper,
   TransButtonClose,
+  Error,
 } from './ModalTransactions.styled';
 import { useDispatch } from 'react-redux';
 import financeOperations from 'redux/finance/finance-operations';
@@ -170,9 +171,8 @@ export default function AddTransaction({ errors, touched }) {
                     onChange={formik.handleChange}
                     placeholder="0.00"
                   ></TransactSumInput>
-                  {/* <ErrorMessage name="sum" /> */}
                   {formik.errors.amount && formik.touched.amount ? (
-                    <div>{formik.errors.amount}</div>
+                    <Error>{formik.errors.amount}</Error>
                   ) : null}
                 </div>
                 <DateTimeWrapper>
@@ -203,6 +203,9 @@ export default function AddTransaction({ errors, touched }) {
                 name="comment"
                 onChange={formik.handleChange}
               ></TransactComment>
+              {formik.errors.comment && formik.touched.comment ? (
+                <Error>{formik.errors.comment}</Error>
+              ) : null}
             </TransactBox>
             <TransactBtnAdd type="submit">Add</TransactBtnAdd>
           </TransactForm>
