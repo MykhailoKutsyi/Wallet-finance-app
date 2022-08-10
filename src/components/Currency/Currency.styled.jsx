@@ -49,8 +49,8 @@ export const InfoButton = styled.button`
 `;
 
 export const TableContainer = styled.div`
-  margin-top: 10px; // not according to layout
-
+  margin-top: 10px;
+  margin-bottom: 100px;
   width: 280px;
   height: 174px;
 
