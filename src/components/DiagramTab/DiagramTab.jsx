@@ -7,7 +7,6 @@ import { Wrapper, SubWrapper } from "./DiagramTab.styled";
 import { useEffect } from 'react';
 import financeOperations from '../../redux/finance/finance-operations';
 import financeSelectors from '../../redux/finance/finance-selectors';
-import sessionSelectors from '../../redux/session/session-selectors';
 
 const DiagramTab = () => {
 
@@ -16,8 +15,6 @@ const DiagramTab = () => {
   const [monthForFilter, setMonthForFilter] = useState(null);
   const [yearForFilter, setYearForFilter] = useState(null);
 
-
-  const { balance } = useSelector(sessionSelectors.getUser);
   const dataForDiagramTable = useSelector(financeSelectors.getDataForDiagramTable);
   const dataForChart = useSelector(financeSelectors.getDataForChart);
   const income = useSelector(financeSelectors.getIncome);
@@ -67,7 +64,7 @@ const DiagramTab = () => {
       {expenses > 0 ? 
       <Chart
           dataForChart={dataForChart}
-          currentBalance={balance}
+          expenses={expenses}
       /> 
       : 
       <h2 style={{padding: '200px 50px', maxWidth: '400px'}}> No expenses to display. To show chart, set date range when you spent any money</h2>
