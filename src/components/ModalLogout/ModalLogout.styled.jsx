@@ -55,7 +55,7 @@ export const LogoutText = styled.p`
 export const LogoutBtnY = styled.button`
   width: 280px;
   height: 50px;
-  background: var(--category-leisure-color);
+  background: var(--light-green-color);
   border-radius: 20px;
   border: none;
 
@@ -68,6 +68,10 @@ export const LogoutBtnY = styled.button`
   cursor: pointer;
 
   color: var(--white-color);
+  &:hover,
+  &:focus {
+    background: var(--light-green-hover-color);
+  }
 `;
 export const LogoutBtnN = styled(LogoutBtnY)`
   margin-top: 20px;
@@ -75,6 +79,12 @@ export const LogoutBtnN = styled(LogoutBtnY)`
   border: 1px solid var(--blue-color);
 
   color: var(--blue-color);
+  &:hover,
+  &:focus {
+    border: 1px solid var(--blue-hover-color);
+    color: var(--blue-hover-color);
+    background: var(--white-color);
+  }
 `;
 
 export const BtnBox = styled.div`
