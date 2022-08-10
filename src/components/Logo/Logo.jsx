@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { toggleCurrencyView } from 'redux/global/global-slice';
-import sprite from '../../images/sprite.svg';
+import sprite from 'assets/images/sprite.svg';
 import {
   LogoWrapper,
   LogoIconWrapper,

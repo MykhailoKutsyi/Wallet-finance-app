@@ -9,7 +9,7 @@ import {
   NavBalWrapper,
   // Elips1,
 } from '../Dashboard/Dashboard.styled';
-import { AsideWrapper, BalanceWrapper } from './Statistics.styled.js';
+import { AsideWrapper, BalanceWrapper } from './Statistics.styled';
 import { toggleCurrencyView } from 'redux/global/global-slice';
 import globalSelectors from 'redux/global/global-selectors';
 import { useDispatch, useSelector } from 'react-redux';

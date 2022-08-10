@@ -8,9 +8,9 @@ import {
   Elips2,
 } from './LoginPage.styled';
 import LoginForm from 'components/LoginForm/LoginForm';
-import Eli2 from 'images/Ellipse2.png';
-import Eli1 from 'images/Ellipse1.png';
-import sprite from 'images/sprite.svg';
+import Eli2 from 'assets/images/Ellipse2.png';
+import Eli1 from 'assets/images/Ellipse1.png';
+import sprite from 'assets/images/sprite.svg';
 
 function LoginPage() {
   return (
