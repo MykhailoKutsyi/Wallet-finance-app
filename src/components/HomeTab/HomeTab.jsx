@@ -1,5 +1,5 @@
 // libs
-import moment from 'moment'; // for formating array of transactions
+// import moment from 'moment'; // for formating array of transactions
 
 // react/redux
 import { useEffect } from 'react';
@@ -42,13 +42,14 @@ const HomeTab = () => {
   useEffect(() => {
     if (transactions && transactions.length !== 0) {
       const copyTransactionsForSort = [...transactions];
-      setSortTransactions(
-        copyTransactionsForSort.sort(
-          (a, b) =>
-            +moment(b.date, 'YYYY-MM-DD') - +moment(a.date, 'YYYY-MM-DD')
-          // (a, b) => +moment(b.date, 'DD.MM.YY') - +moment(a.date, 'DD.MM.YY')
-        )
-      );
+      setSortTransactions(copyTransactionsForSort);
+      // setSortTransactions(
+      //   copyTransactionsForSort.sort(
+      //     (a, b) =>
+      //       +moment(b.date, 'YYYY-MM-DD') - +moment(a.date, 'YYYY-MM-DD')
+      // (a, b) => +moment(b.date, 'DD.MM.YY') - +moment(a.date, 'DD.MM.YY')
+      // )
+      // );
     }
   }, [transactions]);
 
