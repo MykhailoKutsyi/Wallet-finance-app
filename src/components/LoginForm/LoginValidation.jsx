@@ -17,7 +17,7 @@ function LoginValidation() {
       }).matches(/[a-z0-9]+@[a-z]+\.[a-z]{2,3}/, "Email is invalid"
 ),
     password: Yup.string().min(6).max(16).required('Password is required').matches(
-      /^(?=.*[a-z])(?=.*\d)[a-z\d@$!%*#?&]{0,}$/,
+      /^(?=.*[a-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{0,}$/,
       "Must Contain at least one letter and one number"
     ),
   });
