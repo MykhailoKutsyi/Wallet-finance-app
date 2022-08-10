@@ -26,8 +26,8 @@ export default function App() {
   }, [dispatch]);
 
   return (
-    <Container>
-      <Suspense fallback={<Loader />}>
+    <Suspense fallback={<Loader />}>
+      <Container>
         <Routes>
           <Route
             path="register"
@@ -68,9 +68,9 @@ export default function App() {
           />
           <Route path="*" element={<CustomRoute />} />
         </Routes>
-        <Footer />
         <ToastContainer />
-      </Suspense>
-    </Container>
+        <Footer />
+      </Container>
+    </Suspense>
   );
 }

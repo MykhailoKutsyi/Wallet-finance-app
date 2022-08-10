@@ -4,6 +4,7 @@ import { BsSuitHeart } from 'react-icons/bs';
 export const Container = styled.footer`
   display: flex;
   justify-content: center;
+
   @media screen and (min-width: 320px) {
     padding: 20px 0;
     text-align: center;

@@ -1,5 +1,3 @@
-import { useState, useEffect } from 'react';
-
 import Balance from 'components/Balance/Balance.jsx';
 import Currency from 'components/Currency/Currency.jsx';
 import Navigation from 'components/Navigation/Navigation.jsx';
@@ -11,7 +9,7 @@ import {
   NavBalWrapper,
   // Elips1,
 } from '../Dashboard/Dashboard.styled';
-import { AsideWrapper } from './Statistics.styled.js';
+import { AsideWrapper, BalanceWrapper } from './Statistics.styled.js';
 import { toggleCurrencyView } from 'redux/global/global-slice';
 import globalSelectors from 'redux/global/global-selectors';
 import { useDispatch, useSelector } from 'react-redux';
@@ -20,31 +18,20 @@ export default function Statistics() {
   const dispatch = useDispatch();
   const viewCurrency = useSelector(globalSelectors.getIsCurrencyView);
 
-  const [viewBalance, setViewBalance] = useState(false);
-
-
   window.addEventListener('resize', function () {
-    if (window.innerWidth < 768) {
-      setViewBalance(false);
-    } else {
-      setViewBalance(true);
+    if (window.innerWidth >= 768) {
       dispatch(toggleCurrencyView(false));
     }
-       
   });
-
-  useEffect(() => {}, [viewBalance]);
-  const VIEW_BALANCE = viewBalance === true;
 
   return (
     <AsideWrapper>
       <HomeInfo>
         <NavBalWrapper>
-          <Navigation
-            viewCurrency={viewCurrency}
-          />
-          {VIEW_BALANCE && 
-          <Balance />}
+          <Navigation viewCurrency={viewCurrency} />
+          <BalanceWrapper>
+            <Balance />
+          </BalanceWrapper>
         </NavBalWrapper>
         <CurrencyWrapper>
           <Currency />

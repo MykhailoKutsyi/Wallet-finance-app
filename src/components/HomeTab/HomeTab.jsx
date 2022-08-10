@@ -1,8 +1,4 @@
-// libs
-// import moment from 'moment'; // for formating array of transactions
-
 // react/redux
-import { useEffect } from 'react';
 import { useState } from 'react';
 
 // components
@@ -35,23 +31,7 @@ const HomeTab = () => {
   const transactions = useSelector(financeSelectors.getCurrentTransactions); // redux state => state.finance.data
   const loading = useSelector(financeSelectors.getLoadingStaus);
 
-  // sort transactions
-  const [sortTransactions, setSortTransactions] = useState([]);
   const [previousLoading, setPreviousLoading] = useState(false);
-
-  useEffect(() => {
-    if (transactions && transactions.length !== 0) {
-      const copyTransactionsForSort = [...transactions];
-      setSortTransactions(copyTransactionsForSort);
-      // setSortTransactions(
-      //   copyTransactionsForSort.sort(
-      //     (a, b) =>
-      //       +moment(b.date, 'YYYY-MM-DD') - +moment(a.date, 'YYYY-MM-DD')
-      // (a, b) => +moment(b.date, 'DD.MM.YY') - +moment(a.date, 'DD.MM.YY')
-      // )
-      // );
-    }
-  }, [transactions]);
 
   const nextPage = useSelector(financeSelectors.getPage);
   const limit = useSelector(financeSelectors.getLimit);
@@ -70,7 +50,7 @@ const HomeTab = () => {
   };
 
   const LOADING = loading === true;
-  const NO_TRASACTIONS = sortTransactions.length === 0;
+  const NO_TRASACTIONS = transactions.length === 0;
   const VIEW_BUTTON = totalPages >= nextPage;
 
   return (
@@ -99,7 +79,7 @@ const HomeTab = () => {
               <HeadItem>Balance</HeadItem>
             </HeadRow>
           </TransactionHead>
-          {sortTransactions.map(
+          {transactions.map(
             ({ _id, date, type, category, comment, amount, balance }) => {
               const color = type === false ? '#ff6596' : '#24cca7';
               const parseDate = date.split('T');
