@@ -19,8 +19,8 @@ function RegisterValidation() {
 ),
 
     password: Yup.string().min(6).max(16).required('Password is required').matches(
-      /^(?=.*[a-z])(?=.*\d)[a-z\d@$!%*#?&]{6,}$/,
-      "Must Contain min 6 Char, One Letter, One Number"
+      /^(?=.*[a-z])(?=.*\d)[a-z\d@$!%*#?&]{0,}$/,
+      "Must Contain at least One letter and One number"
     ),
 
 
