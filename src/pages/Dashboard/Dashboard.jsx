@@ -50,7 +50,7 @@ export default function Dashboard() {
   }, [dispatch, balance]);
 
   window.addEventListener('resize', function () {
-    if (window.innerWidth > 768) {
+    if (window.innerWidth >= 768) {
       dispatch(toggleCurrencyView(false));
     }
   });
