@@ -24,7 +24,7 @@ const AppBar = () => {
     <Header>
       <Logo />
       <RightSideGroup>
-        <UserName>{name}</UserName>
+        <UserName>{name && name}</UserName>
         <ExitBtn onClick={() => dispatch(toggleModalLogout())}>
           <BtnIconWrapper>
             <use href={`${sprite}#icon-exit`} />
