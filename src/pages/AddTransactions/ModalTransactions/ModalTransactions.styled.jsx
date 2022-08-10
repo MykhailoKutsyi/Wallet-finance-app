@@ -266,6 +266,7 @@ export const TransactBtnAdd = styled.button`
   line-height: 27px;
   text-align: center;
   letter-spacing: 0.1em;
+  margin-top: 40px;
   text-transform: uppercase;
   cursor: pointer;
   color: #ffffff;
