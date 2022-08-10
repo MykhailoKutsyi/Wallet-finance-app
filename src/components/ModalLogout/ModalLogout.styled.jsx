@@ -14,7 +14,7 @@ export const LogoutBox = styled.div`
   display: flex;
   flex-direction: column;
 
-  width: 100vw;
+  width: 320px;
   height: 100vh;
   padding: 20px;
 

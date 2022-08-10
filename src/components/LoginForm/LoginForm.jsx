@@ -23,10 +23,6 @@ function Login() {
 
   const handleSubmit = async (values, { resetForm }) => {
     await dispatch(logIn(values));
-    console.log(values);
-    //     user: {id: '62f374974132a2e70577039e', email: 'example1234cc55@gmail.com', name: 'd', balance: 0}
-    // [[Prototype]]: Object
-
     resetForm();
   };
 

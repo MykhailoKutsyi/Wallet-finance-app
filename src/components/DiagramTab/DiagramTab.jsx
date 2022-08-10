@@ -41,7 +41,6 @@ const DiagramTab = () => {
   }, [yearForFilter, monthForFilter, dispatch]);
 
   const onDateInput = (event) => {
-    console.log("!!!!")
     const { name, value } = event.target;
 
     if (!name || !value) {
