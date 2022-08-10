@@ -18,7 +18,7 @@ function LoginValidation() {
 ),
     password: Yup.string().min(6).max(16).required('Password is required').matches(
       /^(?=.*[a-z])(?=.*\d)[a-z\d@$!%*#?&]{0,}$/,
-      "Must Contain at least One letter and One number"
+      "Must Contain at least one letter and one number"
     ),
   });
   return validate
