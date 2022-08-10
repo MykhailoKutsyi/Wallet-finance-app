@@ -20,7 +20,6 @@ export const DashboardWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   padding-top: 15px;
-
   padding-bottom: 30px;
 
   @media (min-width: 320px) {
@@ -30,14 +29,13 @@ export const DashboardWrapper = styled.div`
   @media (min-width: 768px) {
     padding-top: 32px;
     width: 768px;
+    height: max-content;
   }
   @media (min-width: 1280px) {
     display: flex;
     flex-direction: row;
     width: 1280px;
     padding-top: 40px;
-    padding-left: 19px;
-    padding-right: 16px;
   }
 `;
 

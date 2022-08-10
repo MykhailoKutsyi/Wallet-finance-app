@@ -23,9 +23,13 @@ const sessionSlice = createSlice({
     [logIn.fulfilled](state, { payload }) {
       state.token = payload.token;
       state.isAuth = true;
+      state.loading = false;
     },
     [logIn.rejected](state) {
       state.error = true;
+    },
+    [logIn.pending](state) {
+      state.loading = true;
     },
     [logOut.pending](state, _) {
       state.loading = true;

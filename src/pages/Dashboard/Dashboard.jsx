@@ -50,12 +50,10 @@ export default function Dashboard() {
   }, [dispatch, balance]);
 
   window.addEventListener('resize', function () {
-    if (window.innerWidth > 768) {
+    if (window.innerWidth >= 768) {
       dispatch(toggleCurrencyView(false));
     }
   });
-
-  // useEffect(() => {}, [viewCurrency]);
 
   const VIEW_CURRENCY = viewCurrency === true;
   const VIEW_HOME = viewCurrency === false;

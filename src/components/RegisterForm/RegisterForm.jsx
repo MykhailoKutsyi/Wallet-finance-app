@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import React from 'react';
 
 import { Formik, ErrorMessage } from 'formik';
 import RegisterValidation from './RegisterValidation';
+import sessionSelectors from 'redux/session/session-selectors';
 
-import { useDispatch } from 'react-redux';
-import { register } from 'redux/session/session-operations';
+import { useDispatch, useSelector } from 'react-redux';
+import { logIn, register } from 'redux/session/session-operations';
+
 import {
   FormContainer,
   Logo,
@@ -24,17 +25,18 @@ import sprite from 'assets/images/sprite.svg';
 
 function Registration() {
   const dispatch = useDispatch();
+  const isLoading = useSelector(sessionSelectors.getLoading);
 
-  const [user, setUser] = useState(null);
-  const handleSubmit = async (values, { resetForm }) => {
+  const handleSubmit = async ({ email, name, password }, { resetForm }) => {
     const obj = {
-      email: values.email,
-      name: values.name,
-      password: values.password,
+      email: email,
+      name: name,
+      password: password,
     };
     const user = await dispatch(register(obj));
+    user.type === 'register/fulfilled' &&
+      (await dispatch(logIn({ email, password })));
     resetForm();
-    user.type === 'register/fulfilled' && setUser({ user });
   };
 
   return (
@@ -126,10 +128,9 @@ function Registration() {
                 <ErrorMessage name={'name'} />
               </Error>
             </InputContainer>
-            {user && <Navigate to="/login" />}
 
-            <Btn type="submit" disabled={isSubmitting}>
-              {isSubmitting ? (
+            <Btn type="submit" disabled={isSubmitting || isLoading}>
+              {isSubmitting || isLoading ? (
                 <BtnTitle>LOADING...</BtnTitle>
               ) : (
                 <BtnTitle>REGISTER</BtnTitle>

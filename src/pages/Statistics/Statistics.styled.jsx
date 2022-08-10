@@ -2,24 +2,26 @@ import styled from 'styled-components';
 
 export const AsideWrapper = styled.div`
   display: block;
-  padding: 15px 10px;
+
+  padding-top: 15px;
+  padding-bottom: 30px;
+
   @media (min-width: 320px) {
-    padding: 32px 0px;
     width: 100%;
     height: max-content;
   }
 
   @media (min-width: 768px) {
-    padding: 32px;
+    padding-top: 32px;
     width: 768px;
     height: max-content;
   }
 
   @media (min-width: 1280px) {
     display: flex;
-    padding: 40px 16px 0px 19px;
+    flex-direction: row;
     width: 1280px;
-    height: 897px;
+    padding-top: 40px;
   }
 `;
 export const Elips1 = styled.img`
@@ -33,5 +35,11 @@ export const Elips1 = styled.img`
     left: 0;
     bottom: 0;
     filter: blur(50px);
+  }
+`;
+
+export const BalanceWrapper = styled.div`
+  @media (max-width: 767px) {
+    display: none;
   }
 `;
