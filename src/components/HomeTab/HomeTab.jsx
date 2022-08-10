@@ -1,8 +1,4 @@
-// libs
-// import moment from 'moment'; // for formating array of transactions
-
 // react/redux
-import { useEffect } from 'react';
 import { useState } from 'react';
 
 // components
