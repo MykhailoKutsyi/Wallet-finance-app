@@ -10,7 +10,12 @@ export const ContainerStyled = styled.div`
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+
+  & > * {
+    &:last-child {
+      margin-top: auto;
+    }
+  }
 
   @media (min-width: 320px) {
     width: 320px;

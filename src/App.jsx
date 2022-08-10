@@ -68,7 +68,6 @@ export default function App() {
           />
           <Route path="*" element={<CustomRoute />} />
         </Routes>
-
         <ToastContainer />
         <Footer />
       </Container>
