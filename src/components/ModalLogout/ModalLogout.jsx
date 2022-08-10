@@ -10,15 +10,16 @@ import {
   LogoutBackdrop,
 } from './ModalLogout.styled';
 import Logo from '../Logo/Logo';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toggleModalLogout } from '../../redux/global/global-slice';
+import sessionSelectors from 'redux/session/session-selectors';
 import { logOut } from 'redux/session/session-operations';
 import { refresh } from 'redux/finance/finance-slice';
 const ModalRoot = document.querySelector('#modal-root');
 
 const ModalLogout = () => {
   const dispatch = useDispatch();
-
+  const isLoading = useSelector(sessionSelectors.getLoading);
   const onClose = () => dispatch(toggleModalLogout());
 
   const onBackdropClick = e => {
@@ -56,9 +57,13 @@ const ModalLogout = () => {
         <LogoutText>Do you really want to leave the page?</LogoutText>
 
         <BtnBox>
-          <LogoutBtnY type="button" onClick={handleLogOut}>
-            Yes
-          </LogoutBtnY>
+          {isLoading ? (
+            <LogoutBtnY>Loading...</LogoutBtnY>
+          ) : (
+            <LogoutBtnY type="button" onClick={handleLogOut}>
+              Yes
+            </LogoutBtnY>
+          )}
           <LogoutBtnN type="button" onClick={() => onClose()}>
             No
           </LogoutBtnN>

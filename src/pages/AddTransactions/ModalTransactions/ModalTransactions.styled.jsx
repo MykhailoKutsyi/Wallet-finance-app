@@ -21,7 +21,7 @@ export const TransactContainer = styled.div`
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
-  width: 100vw;
+  width: 320px;
   height: 100vh;
   padding: 10px;
   margin-left: auto;
@@ -257,7 +257,7 @@ export const TransactBtnAdd = styled.button`
   align-items: center;
   width: 280px;
   height: 50px;
-  margin: 40px auto 0px auto;
+  margin: auto auto 0px auto;
   background: #24cca7;
   border-radius: 20px;
   border: none;
@@ -278,4 +278,9 @@ export const TransactBtnCncl = styled(TransactBtnAdd)`
   background: #ffffff;
   border: 1px solid #4a56e2;
   color: #4a56e2;
+`;
+export const Error = styled.div`
+  font-size: 12px;
+  color: red;
+  top: -24px;
 `;

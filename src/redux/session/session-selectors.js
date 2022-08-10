@@ -6,6 +6,14 @@ const getUser = state => state.session.user;
 
 const getUserBalance = state => state.session.user.name;
 
-const sessionSelectors = { getIsAuth, getUserName, getUser, getUserBalance };
+const getLoading = state => state.session.loading;
+
+const sessionSelectors = {
+  getIsAuth,
+  getUserName,
+  getUser,
+  getUserBalance,
+  getLoading,
+};
 
 export default sessionSelectors;

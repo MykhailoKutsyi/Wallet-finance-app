@@ -19,6 +19,7 @@ const validationSchema = Yup.object().shape({
     )
     // .positive("Value must be a positive number")
     .required('Please enter the amount'),
+  comment: Yup.string().matches(/^[aA-zZ\s]+$/, 'Please only letters'),
 });
 
 export default validationSchema;
