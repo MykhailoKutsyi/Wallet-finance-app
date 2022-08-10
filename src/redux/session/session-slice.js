@@ -37,6 +37,9 @@ const sessionSlice = createSlice({
     [logOut.pending](state, _) {
       state.loading = true;
     },
+    [logOut.rejected](state, _) {
+      state.loading = false;
+    },
     [logOut.fulfilled]() {
       return initialState;
     },
