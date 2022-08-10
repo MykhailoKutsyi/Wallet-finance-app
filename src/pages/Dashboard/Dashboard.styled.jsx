@@ -15,12 +15,14 @@ export const DashboardContainer = styled.div`
 `;
 
 export const DashboardWrapper = styled.div`
-  background: #e4f0f0;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 15px;
+
+  padding-bottom: 30px;
+
   @media (min-width: 320px) {
     width: 320px;
   }
