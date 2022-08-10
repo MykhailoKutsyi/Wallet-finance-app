@@ -1,8 +1,6 @@
 import styled from 'styled-components';
-// import img from '../../../images';
-// import sprite from '../../../images/sprite.svg';
-import plus from '../../../images/plus.svg';
-import minus from '../../../images/minus.svg';
+import plus from 'assets/images/plus.svg';
+import minus from 'assets/images/minus.svg';
 
 export const TransactBackdrop = styled.div`
   z-index: 20;

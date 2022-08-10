@@ -1,9 +1,9 @@
 import Logo from '../Logo/Logo.jsx';
-import sprite from 'images/sprite.svg';
+import sprite from 'assets/images/sprite.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import sessionSelectors from '../../redux/session/session-selectors';
-import globalSelectors from '../../redux/global/global-selectors';
-import { toggleModalLogout } from '../../redux/global/global-slice';
+import sessionSelectors from 'redux/session/session-selectors';
+import globalSelectors from 'redux/global/global-selectors';
+import { toggleModalLogout } from 'redux/global/global-slice';
 import ModalLogout from 'components/ModalLogout/ModalLogout.jsx';
 import {
   Header,

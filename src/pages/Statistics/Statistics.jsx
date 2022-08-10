@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import Balance from 'components/Balance/Balance.jsx';
 import Currency from 'components/Currency/Currency.jsx';
@@ -22,7 +22,6 @@ export default function Statistics() {
 
   const [viewBalance, setViewBalance] = useState(false);
 
-
   window.addEventListener('resize', function () {
     if (window.innerWidth < 768) {
       setViewBalance(false);
@@ -30,21 +29,16 @@ export default function Statistics() {
       setViewBalance(true);
       dispatch(toggleCurrencyView(false));
     }
-       
   });
 
-  useEffect(() => {}, [viewBalance]);
   const VIEW_BALANCE = viewBalance === true;
 
   return (
     <AsideWrapper>
       <HomeInfo>
         <NavBalWrapper>
-          <Navigation
-            viewCurrency={viewCurrency}
-          />
-          {VIEW_BALANCE && 
-          <Balance />}
+          <Navigation viewCurrency={viewCurrency} />
+          {VIEW_BALANCE && <Balance />}
         </NavBalWrapper>
         <CurrencyWrapper>
           <Currency />

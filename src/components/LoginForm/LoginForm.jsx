@@ -16,7 +16,7 @@ import {
   InputContainer,
   Error,
 } from './LoginForm.styled';
-import sprite from '../../images/sprite.svg';
+import sprite from 'assets/images/sprite.svg';
 
 function Login() {
   const dispatch = useDispatch();

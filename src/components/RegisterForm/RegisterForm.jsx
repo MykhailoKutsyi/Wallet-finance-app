@@ -20,7 +20,7 @@ import {
   InputContainer,
   Error,
 } from './RegisterForm.styled';
-import sprite from '../../images/sprite.svg';
+import sprite from 'assets/images/sprite.svg';
 
 function Registration() {
   const dispatch = useDispatch();

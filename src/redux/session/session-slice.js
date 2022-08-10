@@ -20,13 +20,6 @@ const sessionSlice = createSlice({
   name: 'session',
   initialState,
   extraReducers: {
-    // [register.fulfilled](state, { payload }) {
-    //   state.user = payload.user;
-    //   state.isAuth = true;
-    // },
-    // [register.rejected](state) {
-    //   state.error = true;
-    // },
     [logIn.fulfilled](state, { payload }) {
       state.token = payload.token;
       state.isAuth = true;
