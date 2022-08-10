@@ -55,8 +55,6 @@ export default function Dashboard() {
     }
   });
 
-  // useEffect(() => {}, [viewCurrency]);
-
   const VIEW_CURRENCY = viewCurrency === true;
   const VIEW_HOME = viewCurrency === false;
   const LOADING = isLoading === true;
