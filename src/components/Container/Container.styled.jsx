@@ -6,6 +6,12 @@ export const ContainerStyled = styled.div`
   padding-right: 20px;
   margin: 0 auto;
 
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   @media (min-width: 320px) {
     width: 320px;
   }

@@ -54,10 +54,6 @@ export const TableContainer = styled.div`
   width: 280px;
   height: 174px;
 
-  @media (max-width: 767px) {
-    height: 65vh;
-  }
-
   @media (min-width: 768px) {
     width: 336px;
     height: 182px;
