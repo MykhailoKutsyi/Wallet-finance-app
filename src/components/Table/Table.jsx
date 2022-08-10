@@ -32,6 +32,9 @@ const Table = ({ data, expenses, income }) => {
                 <TableBody>
                     {
                         data.map(item => {
+                            if (item.value === 0) {
+                                return null;
+                            }
                             return (
                                 <TableRow key={ item.expense }>
                                     <TableCell>
